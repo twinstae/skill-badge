@@ -1,0 +1,12 @@
+body {
+  font-family: 'Pretendard', sans-serif !important;
+  color: #ddd;
+}
+
+h1 {
+  --typography-spacing-vertical: 0.5rem !important;
+}
+
+blockquote p:last-child {
+  --typography-spacing-vertical: 0;
+}

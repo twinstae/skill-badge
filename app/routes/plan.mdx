@@ -1,0 +1,90 @@
+---
+meta:
+  title: 계획
+  description: 역량배지가 해결하려는 문제와 사용자 스토리, 기술 스택을 소개합니다.
+---
+import styles from "../components/plan.css";
+export const links = () => [
+  { rel: "stylesheet", href: "https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" },
+  { rel: "stylesheet", href: styles },
+];
+import RemixLogo from '../components/RemixLogo'
+import CenterCardLayout from '../components/CenterCardLayout'
+
+<CenterCardLayout>
+# 역량배지 프로젝트 계획
+v0.1
+
+## 해결하고 싶은 문제
+### 채용공고를 기반으로 역량을 구체화하고 학습 자료로 연결해준다
+작게 쪼개진 역량을 선택하고 학습할 수 있습니다.
+### 역량을 회사에 보여줄 수 있는 증거를 정리해서 제시할 수 있습니다.
+역량을 이력서의 문구로 변환해서 제공합니다. 채용 담당자는 구체적으로 세분화된 역량을 토대로 지원자를 판단할 수 있고, 구체적인 근거를 보고 판단할 수 있습니다.
+### 자신의 역량과 성장을 눈에 보이게 확인할 수 있다
+
+## 원칙
+### 대체하지 말고 보완하고, 이용한다
+
+### 근거에 기반해서, 뻔하지 않은 해법을 제시한다
+
+> "저는 뭔가를 만들 때에는 기존에 없던 가치를 전해야 한다 생각해요. 아니면 그냥 원래 있던 걸 쓰거나 남에게 소개하면 되거든요.
+>
+> 여기에 확실한 비결이 있다면 기존에 있던 것들을 써보고 아쉬운 점이나 다른 가능성을 찾고 탐구해보면 내가 기여할 수 있는 부분이 나오더라고요."
+
+### 익명성을 유지한다
+이름, 생년월일, 성별, 연령대, 출생연도, 휴대폰번호가 궁금하지 않습니다!
+
+TODO: 이메일과 비밀번호는 어떻게?
+TODO: 본인 계정 복구는 어떻게?
+
+### 텍스트와 svg 중심의 사이트
+
+## 기술 스택
+### 분석
+여러 사용자가 보는 공통 컨텐츠와, 개인화된 컨텐츠가 섞여있다.
+
+공통 컨텐츠는 캐싱할 수 있지만, 개인 페이지는 1명만이 이용한다.
+
+SSG로는 한계가 있다. SSR이나 CSR이 필요하다.
+
+복잡성이 크기보다는 단순하고 편한 기술을 쓰고 싶다.
+
+검색 엔진 최적화와 유입이 중요하다
+
+### 웹
+#### 리믹스
+SSR SPA with Remix
+<RemixLogo />
+
+리액트
+
+클라우드플레이 페이지
+
+### 스타일링과 컴포넌트
+
+미니 디자인 시스템
+
+테일윈드
+
+데이지
+
+radix, react-aria, zag
+
+### 영속성, 인증
+
+Supabase
+
+Postgres
+
+### 타입, 테스트, 스키마
+Typescript
+
+vitest
+
+testing-library
+
+playwright
+
+zod, ajv
+
+</CenterCardLayout>
