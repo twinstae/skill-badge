@@ -7,7 +7,7 @@ export default function CenterCardLayout({
 }) {
   return (
     <main className="flex flex-row justify-center">
-      <div className="p-4 m-4 rounded-xl shadow-xl max-w-2xl">{children}</div>
+      <div className="p-4 m-4 rounded-xl shadow-xl h-full w-full max-w-xl">{children}</div>
     </main>
   );
 }

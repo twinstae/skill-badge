@@ -14,16 +14,16 @@ export const loader = async () => {
   });
 };
 
-export default function Posts() {
+export default function SkillListPage() {
   const { skills } = useLoaderData() as LoaderData;
   return (
     <CenterCardLayout>
-      <h1 className="text-2xl font-bold mb-2">역량 목록</h1>
-      <ul className="p-2 m-2">
+      <h1>역량 목록</h1>
+      <ul className="p-2 m-2 menu">
         {skills.map((skill) => (
           <li key={skill.slug}>
-            <Link to={'/skills/' + skill.slug} className="link link-primary">
-              {skill.title} 역량
+            <Link to={'/skills/' + skill.slug} className="p-2">
+              {skill.title}
             </Link>
           </li>
         ))}

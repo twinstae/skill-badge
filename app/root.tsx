@@ -7,19 +7,20 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import styles from './tailwind.css';
+import tailwind from './tailwind.css';
+import styles from './styles.css';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: 'New Remix App',
+  title: '역량 배지',
   viewport: 'width=device-width,initial-scale=1',
 });
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: tailwind }, { rel: 'stylesheet', href: styles }];
 
 export default function App() {
   return (
-    <html lang="ko" data-theme="dark">
+    <html lang="ko">
       <head>
         <Meta />
         <Links />

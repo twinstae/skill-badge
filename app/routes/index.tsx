@@ -1,19 +1,46 @@
-import { Link } from "../Link";
+import { json } from '@remix-run/cloudflare';
+import { useLoaderData } from '@remix-run/react';
+import CenterCardLayout from '~/components/CenterCardLayout';
+import { skillIdList } from '~/models/skills.server';
+import createDataList from '~/components/createDataList';
+import {
+  fakeRequirementList,
+  type RequirementT,
+} from '~/models/requirements.server';
+import LinkWithTooltip from '~/components/LinkWithTooltip';
 
-export default function Index() {
+type LoaderData = {
+  requirements: RequirementT[];
+};
+
+export const loader = async () => {
+  return json<LoaderData>({
+    requirements: fakeRequirementList
+      .filter((r) =>skillIdList.includes(r.skill))
+      .sort((a,b) => b.count - a.count),
+  });
+};
+
+const RequirementList = createDataList<RequirementT>({
+  selectId: (r) => r.skill,
+  Item: ({ data: r }) => (
+    <LinkWithTooltip to={'/skills/' + r.skill} tooltip={'/skills/' + r.skill}>
+      {r.rawText} <span className="badge">{r.count}</span>
+    </LinkWithTooltip>
+  ),
+});
+
+export default function Position() {
+  const { requirements } = useLoaderData() as LoaderData;
+
   return (
-    <div className="flex flex-row justify-center">
-      <div className="p-4 m-4 rounded-xl shadow-xl max-w-2xl">
-        <h1 className="text-3xl">역량 배지</h1>
-        <div className="mx-auto mt-16 max-w-7xl text-center">
-          <Link
-            to="/skills"
-            className="text-xl text-blue-600 underline"
-          >
-            역량 보러가기
-          </Link>
-        </div>
-      </div>
-    </div>
+    <CenterCardLayout>
+      <h1>신입 프런트엔드 엔지니어</h1>
+      <RequirementList
+        title="자격 조건"
+        titleId="required-title"
+        dataList={requirements}
+      />
+    </CenterCardLayout>
   );
 }

@@ -13,7 +13,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   const rawData = {
     title: formData.get('title'),
-    tags: (formData.get('tags') as string).split(','),
+    childrens: (formData.get('childrens') as string).split(','),
+    parents: (formData.get('parents') as string).split(','),
   };
 
   const result = skillSchema.omit({slug: true}).safeParse(rawData);
@@ -21,17 +22,15 @@ export const action: ActionFunction = async ({ request }) => {
     return json<ActionData>(result.error.format());
   }
 
-  const { title, tags } = result.data;
   await createSkill({
-    title,
-    slug: title.replace(/ /g, '-'),
-    tags
+    slug: result.data.title.replace(/ /g, '-'),
+    ...result.data,
   });
 
   return redirect('/skills');
 };
 
-export default function NewPost() {
+export default function NewSkill() {
   const errors = useActionData() as ActionData;
 
   const transition = useTransition();
@@ -51,12 +50,22 @@ export default function NewPost() {
           />
         </label>
         <label>
-          태그
+          하위 역량
           <br />
-          <ErrorMessage errors={errors} name="tags" />
+          <ErrorMessage errors={errors} name="childrens" />
           <input
             type="text"
-            name="tags"
+            name="childrens"
+            className="input input-bordered mb-2"
+          />
+        </label>
+        <label>
+          상위 역량
+          <br />
+          <ErrorMessage errors={errors} name="childrens" />
+          <input
+            type="text"
+            name="childrens"
             className="input input-bordered mb-2"
           />
         </label>
