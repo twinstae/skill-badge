@@ -14,20 +14,18 @@ export const action: ActionFunction = async ({ request }) => {
   const result = await request.formData()
     .then(formData => ({
       slug: formData.get('slug'),
+      title: formData.get('title'),
       parents: formData.getAll('parents'),
       children: formData.getAll('children'),
       content: formData.get('content'),
     }))
-    .then(skillSchema.omit({ slug: true }).safeParse);
-  console.log(result);
+    .then(skillSchema.safeParse);
+
   if (!result.success) {
     return json<ActionData>(result.error.format());
   }
 
-  await createSkill({
-    slug: result.data.title.replace(/ /g, '-'),
-    ...result.data,
-  });
+  await createSkill(result.data);
 
   return redirect('/skills');
 };
