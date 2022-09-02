@@ -45,12 +45,14 @@ export default function TagsInput({
         {api.value.map((value, index) => (
           <span key={index} className="p-2 bg-slate-100 m-1 rounded-md">
             <div {...api.getTagProps({ index, value })}>
+              {/* 사람들눈에보이는value */}
               <span>{value} </span>
               <button {...api.getTagDeleteButtonProps({ index, value })} tabIndex={1}>
                 &#x2715;
               </button>
             </div>
             <input {...api.getTagInputProps({ index, value })} />
+            {/* 실제로 보내는 값 */}
             <input type="text" hidden name={name} value={value} readOnly/>
           </span>
         ))}
