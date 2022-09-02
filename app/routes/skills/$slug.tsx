@@ -5,7 +5,7 @@ import invariant from 'tiny-invariant';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
 import { marked } from 'marked';
-import createDataList from '~/components/createDataList';
+import createOptionalDataList from '~/components/createDataList';
 import { fakeRequirementList } from '~/models/requirements.server';
 import { id } from '~/funcUtil';
 import { fakeReactResources, type ResourceT } from '~/models/resource.server';
@@ -37,7 +37,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 // await res.json() // 받은 json data를 parse 하는 것
 
-const RequirementList = createDataList<string>({
+const RequirementList = createOptionalDataList<string>({
   selectId: id,
   Item: ({ data: text }) => (
     <LinkWithTooltip to="/" tooltip="프런트엔드 엔지니어">
@@ -46,7 +46,7 @@ const RequirementList = createDataList<string>({
   ),
 });
 
-const ResourceList = createDataList<ResourceT>({
+const ResourceList = createOptionalDataList<ResourceT>({
   selectId: (data) => data.slug,
   Item: ({ data }) => (
     <div className="tooltip w-full rounded-lg p-2" data-tip={data.link}>

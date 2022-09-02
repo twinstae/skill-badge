@@ -6,7 +6,7 @@ import {
   type RequirementT,
 } from '~/models/requirements.server';
 import CenterCardLayout from '~/components/CenterCardLayout';
-import createDataList from '~/components/createDataList';
+import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 
 type LoaderData = {
@@ -21,7 +21,7 @@ export const loader = async () => {
   });
 };
 
-const RequirementList = createDataList<RequirementT>({
+const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (r) => r.skill,
   Item: ({ data: r }) => (
     <LinkWithTooltip to={'/skills/' + r.skill} tooltip={'/skills/' + r.skill}>

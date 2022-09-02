@@ -1,7 +1,7 @@
 import { id } from "~/funcUtil";
-import createDataList from "./createDataList";
+import createOptionalDataList from "./createDataList";
 
-const ResourceList = createDataList<string>({
+const ResourceList = createOptionalDataList<string>({
   selectId: id,
   Item: ({ data }) => (
     <span>{data}</span>

@@ -1,4 +1,4 @@
-export default function createDataList<T>({
+export default function createOptionalDataList<T>({
   selectId,
   Item,
   className = "",
@@ -7,7 +7,7 @@ export default function createDataList<T>({
   Item: (props: { data: T }) => JSX.Element,
   className?: string
 }){
-  return function DataList({
+  return function OptionalDataList({
     title,
     titleId,
     dataList

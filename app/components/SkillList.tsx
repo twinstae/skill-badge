@@ -1,8 +1,8 @@
 import { id } from "~/funcUtil";
-import createDataList from "./createDataList";
+import createOptionalDataList from "./createDataList";
 import LinkWithTooltip from "./LinkWithTooltip";
 
-const SkillList = createDataList<string>({
+const SkillList = createOptionalDataList<string>({
   selectId: id,
   className: "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3",
   Item: ({ data: slug }) => (
