@@ -1,4 +1,5 @@
 import { Link } from '~/Link';
+import Tooltip from './Tooltip';
 
 export default function LinkWithTooltip({
   to,
@@ -6,11 +7,12 @@ export default function LinkWithTooltip({
   children,
   className,
 }: React.ComponentProps<typeof Link> & { tooltip: string }) {
+  // Link라는 컴포넌트의 Props 타입 & tooltip이라는 string prop이 추가된 타입이다
   return (
     <Link to={to} className={'link-primary p-0 rounded-lg ' + className}>
-      <div className="tooltip w-full rounded-lg p-2" data-tip={tooltip}>
+      <Tooltip className="w-full p-2" tooltip={tooltip}>
         {children}
-      </div>
+      </Tooltip>
     </Link>
   );
 }

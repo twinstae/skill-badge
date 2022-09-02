@@ -1,14 +1,16 @@
 export default function Tooltip({
   tooltip,
+  isOpen = false,
   className = "",
   children,
 }: {
   tooltip: string;
-  className: string;
+  isOpen?: boolean;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className={"tooltip rounded-lg " + className} data-tip={tooltip}>
+    <div className={["tooltip rounded-lg", (isOpen ? "tooltip-open" : ""), className].join(" ")} data-tip={tooltip}>
       {children}
     </div>
   );
