@@ -14,18 +14,18 @@ export const skillSchema = z.object({
 
 export type Skill = z.infer<typeof skillSchema>;
 
-const fakeDB: Skill[] = z.array(skillSchema).parse(skillsData);
+export const fakeSkillList: Skill[] = z.array(skillSchema).parse(skillsData);
 
-export const skillIdList = fakeDB.map(skill =>skill.slug);
+export const skillIdList = fakeSkillList.map(skill =>skill.slug);
 
 export async function getSkillList(){
-  return fakeDB;
+  return fakeSkillList;
 }
 
 export async function getSkill(slug: string){
-  return fakeDB.find(skill => skill.slug === slug);
+  return fakeSkillList.find(skill => skill.slug === slug);
 }
 
 export async function createSkill(skill: Skill) {
-  return fakeDB.push(skill);
+  return fakeSkillList.push(skill);
 }

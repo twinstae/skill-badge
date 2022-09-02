@@ -11,6 +11,7 @@ import { id } from '~/funcUtil';
 import { fakeReactResources, type ResourceT } from '~/models/resource.server';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 import Divider from '~/components/Divider';
+import Tooltip from '~/components/Tooltip';
 
 type LoaderData = {
   skill: Skill;
@@ -20,12 +21,9 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
-
   const skill = await getSkill(params.slug);
 
   invariant(skill, `skill not found: ${params.slug}`);
-
-  // JSON.stringify해서 보내는 용도
   return json<LoaderData>({
     skill: { ...skill, content: marked(skill.content) },
     requirements: fakeRequirementList
@@ -49,17 +47,18 @@ const RequirementList = createOptionalDataList<string>({
 const ResourceList = createOptionalDataList<ResourceT>({
   selectId: (data) => data.slug,
   Item: ({ data }) => (
-    <div className="tooltip w-full rounded-lg p-2" data-tip={data.link}>
-      <a href={data.link} className="w-full" target="_blank" rel="noreferrer">
+    <a href={data.link} className="w-full rounded-lg" target="_blank" rel="noreferrer">
+      <Tooltip className="w-full" tooltip={data.link}>
         <h3>{data.title}</h3>
         <blockquote>{data.description}</blockquote>
-      </a>
-    </div>
+      </Tooltip>
+    </a>
   ),
 });
 
+
 export default function SkillDetail() {
-  const { skill, requirements, resources } = useLoaderData() as LoaderData;
+  const { skill, requirements, resources } = useLoaderData();
 
   return (
     <CenterCardLayout>

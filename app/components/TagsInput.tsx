@@ -59,7 +59,7 @@ export default function TagsInput({
         <Tooltip tooltip="추가하려면 Enter" isOpen={api.inputValue !== ""}>
           <input
             id={'add-tag-input-' + id}
-            className="w-32 rounded-md p-2 m-1"
+            className="input input-bordered w-32 h-10 rounded-md p-2 m-1"
             placeholder={placeholder}
             {...api.inputProps}
           />
