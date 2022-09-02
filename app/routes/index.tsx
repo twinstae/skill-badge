@@ -1,12 +1,12 @@
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import CenterCardLayout from '~/components/CenterCardLayout';
 import { skillIdList } from '~/models/skills.server';
-import createDataList from '~/components/createDataList';
 import {
   fakeRequirementList,
   type RequirementT,
 } from '~/models/requirements.server';
+import CenterCardLayout from '~/components/CenterCardLayout';
+import createDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 
 type LoaderData = {

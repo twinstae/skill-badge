@@ -1,12 +1,11 @@
 import type { ZodFormattedError } from "zod";
-import type { Skill } from "~/models/skills.server";
 
 export default function ErrorMessage<S extends Record<string, any>>({
   errors,
   name,
 }: {
   errors: ZodFormattedError<S> | undefined;
-  name: keyof Skill;
+  name: string;
 }) {
   return errors?.[name] ? (
     <ul>

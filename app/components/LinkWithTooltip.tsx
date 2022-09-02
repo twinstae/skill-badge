@@ -7,7 +7,7 @@ export default function LinkWithTooltip({
   className,
 }: React.ComponentProps<typeof Link> & { tooltip: string }) {
   return (
-    <Link to={to} className={'p-0 rounded-lg ' + className}>
+    <Link to={to} className={'link-primary p-0 rounded-lg ' + className}>
       <div className="tooltip w-full rounded-lg p-2" data-tip={tooltip}>
         {children}
       </div>

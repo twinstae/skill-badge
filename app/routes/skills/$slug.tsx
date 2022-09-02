@@ -24,6 +24,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   const skill = await getSkill(params.slug);
 
   invariant(skill, `skill not found: ${params.slug}`);
+
+  // JSON.stringify해서 보내는 용도
   return json<LoaderData>({
     skill: { ...skill, content: marked(skill.content) },
     requirements: fakeRequirementList
@@ -33,10 +35,12 @@ export const loader: LoaderFunction = async ({ params }) => {
   });
 };
 
+// await res.json() // 받은 json data를 parse 하는 것
+
 const RequirementList = createDataList<string>({
   selectId: id,
   Item: ({ data: text }) => (
-    <LinkWithTooltip to="/" tooltip="토끼네 가짜 회사">
+    <LinkWithTooltip to="/" tooltip="프런트엔드 엔지니어">
       {text}
     </LinkWithTooltip>
   ),
@@ -47,7 +51,7 @@ const ResourceList = createDataList<ResourceT>({
   Item: ({ data }) => (
     <div className="tooltip w-full rounded-lg p-2" data-tip={data.link}>
       <a href={data.link} className="w-full" target="_blank" rel="noreferrer">
-        <h3 className="link link-primary">{data.title}</h3>
+        <h3>{data.title}</h3>
         <blockquote>{data.description}</blockquote>
       </a>
     </div>
@@ -56,6 +60,7 @@ const ResourceList = createDataList<ResourceT>({
 
 export default function SkillDetail() {
   const { skill, requirements, resources } = useLoaderData() as LoaderData;
+
   return (
     <CenterCardLayout>
       <h1>
@@ -76,7 +81,7 @@ export default function SkillDetail() {
       <SkillList
         title="하위 역량"
         titleId="children-title"
-        dataList={skill.childrens}
+        dataList={skill.children}
       />
       <Divider />
       <h2>소개</h2>

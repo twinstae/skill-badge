@@ -16,6 +16,8 @@
     "@remix-run/cloudflare": "^1.7.0",
     "@remix-run/cloudflare-pages": "^1.7.0",
     "@remix-run/react": "^1.7.0",
+    "@zag-js/react": "^0.1.16",
+    "@zag-js/tags-input": "^0.2.6",
     "cross-env": "^7.0.3",
     "daisyui": "^2.24.0",
     "marked": "^4.0.19",

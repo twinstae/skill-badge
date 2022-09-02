@@ -2,7 +2,21 @@
 module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
-    extend: {},
+    screens: {
+      'xs': '320px',
+      'sm': '640px',
+      'mg': '768px',
+      'lg': '1024px',
+    },
+    borderWidth: {
+      DEFAULT: '1px',
+      '0': '0',
+      '1': '2px',
+      '2': '2px',
+      '4': '4px',
+      '6': '6px',
+      '8': '8px',
+    }
   },
   plugins: [require('daisyui')],
 }

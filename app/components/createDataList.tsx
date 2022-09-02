@@ -1,9 +1,11 @@
 export default function createDataList<T>({
   selectId,
-  Item
+  Item,
+  className = "",
 }: {
   selectId: (data: T) => string,
-  Item: (props: { data: T }) => JSX.Element
+  Item: (props: { data: T }) => JSX.Element,
+  className?: string
 }){
   return function DataList({
     title,
@@ -18,7 +20,7 @@ export default function createDataList<T>({
       dataList.length > 0 ? (
         <>
           <h2 id={titleId}>{title}</h2>
-          <ul aria-labelledby={titleId} className="menu">
+          <ul aria-labelledby={titleId} className={"menu " + className}>
             {dataList.map((data) => (
               <li key={selectId(data)} className="rounded-lg">
                 <Item data={data} />

@@ -49,7 +49,7 @@ export const fakeRequirementList = [
   {
     rawText: '글로벌 개발자 커뮤니티를 활용할 수 있는 수준의 영어 독해/작문 역량',
     skill: 'english',
-    count: 1
+    count: 4
   },
   {
     rawText: '측정 가능한 데이터 기반의 성능 최적화 경험이 있는 분',
@@ -63,12 +63,12 @@ export const fakeRequirementList = [
   },
   {
     rawText: '여러 국가에 걸쳐 서비스를 운영/배포한 경험이 있는 분',
-    skill: 'internationalization',
+    skill: 'i18n',
     count: 3
   },
   {
     rawText: 'Redux, MobX, Jotai 등 상태관리 라이브러러 사용 경험이 있는 분',
-    skill: 'front-state-management',
+    skill: 'state-management',
     count: 7
   },
   {

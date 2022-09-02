@@ -1,6 +1,5 @@
 body {
   font-family: 'Pretendard', sans-serif !important;
-  color: #ddd;
 }
 
 h1 {
@@ -9,4 +8,9 @@ h1 {
 
 blockquote p:last-child {
   --typography-spacing-vertical: 0;
+}
+
+ul {
+  padding-inline-start: 1rem;
+  list-style-type: disc;
 }
