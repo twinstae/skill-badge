@@ -1,4 +1,4 @@
-import { json, type LoaderFunction } from '@remix-run/cloudflare';
+import { json, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
 import CenterCardLayout from '~/components/CenterCardLayout';
@@ -24,7 +24,6 @@ export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
   const skill = await context.skillsRepo.getOneBySlug(params.slug);
 
-  invariant(skill, `skill not found: ${params.slug}`);
   return json<LoaderData>({
     skill: { ...skill, content: marked(skill.content) },
     requirements: fakeRequirementList

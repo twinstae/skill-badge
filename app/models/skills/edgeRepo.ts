@@ -3,6 +3,9 @@ import invariant from "tiny-invariant";
 import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from "./errorMessages";
 import type { ISkillRepo } from "./IRepo";
 import { skillSchema } from "./schema";
+import { flatSlug, flatSlugs } from "./transformUtil";
+
+const flatChildren = flatSlugs('children');
 
 export function EdgeSkillsRepo(client: Client): ISkillRepo {
   return {
@@ -14,9 +17,18 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
         }
       `);
     },
+    async getAllSlugs(){
+      return this.getAllList().then(skills => skills.map(flatSlug));
+    },
     async getOneBySlug(slug){
       const result = await client.query(`
-        select Skill
+        select Skill {
+          slug,
+          title,
+          content,
+          children: { slug },
+          parents := .<children[is Skill].slug
+        }
         filter .slug = <str>$slug
       `, { slug });
 
@@ -24,7 +36,7 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
         result[0] !== undefined,
         SKILL_NOT_FOUND(slug)
       )
-      return skillSchema.parse(result[0]);
+      return skillSchema.parse(flatChildren(result[0]));
     },
     async create({ slug, title, content }){
       const [exists] = await client.query(`

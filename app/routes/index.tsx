@@ -1,4 +1,4 @@
-import { json } from '@remix-run/cloudflare';
+import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import {
   fakeRequirementList,
@@ -7,14 +7,19 @@ import {
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
+import { context } from '~/models/context';
+import { flatSlug } from '~/models/skills/transformUtil';
 
 type LoaderData = {
   requirements: RequirementT[];
 };
 
 export const loader = async () => {
+  const allSkills = await context.skillsRepo.getAllList();
+  const allSlugs = new Set(allSkills.map(flatSlug));
   return json<LoaderData>({
     requirements: fakeRequirementList
+      .filter(requirement => allSlugs.has(requirement.skill))
       .sort((a,b) => b.count - a.count),
   });
 };

@@ -1,6 +1,9 @@
 import { z } from 'zod';
 
-export const slugSchema = z.string().min(1, 'slug가 비어있어요').trim();
+export const slugSchema = z.string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+  .min(1, 'slug가 비어있어요')
+  .trim();
 
 export const skillSchema = z.object({
   slug: slugSchema,

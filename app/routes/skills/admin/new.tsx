@@ -1,12 +1,24 @@
 import type { ZodFormattedError } from 'zod';
-import { type ActionFunction, redirect, json } from '@remix-run/cloudflare';
-import { Form, useActionData, useTransition } from '@remix-run/react';
+import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
+import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
 import ErrorMessage from '~/components/form/ErrorMessage';
 import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema } from '~/models/skills/schema';
 import { context } from '~/models/context';
+
+type LoaderData = {
+  allSkillSlugs: string[];
+};
+
+export const loader: LoaderFunction = async () => {
+  const allSkillSlugs = await context.skillsRepo.getAllSlugs();
+
+  return json<LoaderData>({
+    allSkillSlugs
+  });
+};
 
 type ActionData = ZodFormattedError<Skill> | undefined;
 
@@ -32,6 +44,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function NewSkill() {
+  const { allSkillSlugs } = useLoaderData() as LoaderData;
   const errors = useActionData() as
     | ZodFormattedError<Record<string, any>, string>
     | undefined;
@@ -74,6 +87,7 @@ export default function NewSkill() {
           placeholder="ex) react"
           errors={errors}
           maxLength={4}
+          candidates={allSkillSlugs}
         />
         <TagsInput
           id="children-input"
@@ -83,6 +97,7 @@ export default function NewSkill() {
           placeholder="ex) react"
           errors={errors}
           maxLength={16}
+          candidates={allSkillSlugs}
         />
         <label className="label" htmlFor="input-content">
           설명

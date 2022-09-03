@@ -1,5 +1,6 @@
 body {
   font-family: 'Pretendard', sans-serif;
+  word-break: keep-all;
 }
 
 h1, h2, h3, h4 {
@@ -33,4 +34,15 @@ blockquote {
 p {
   text-indent: 0.5rem;
   margin-bottom: 1rem;
+}
+
+input.input {
+  transition: border-color 0.125s ease-in;
+}
+
+.dropdown-list {
+  @apply min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
+}
+.dropdown-item {
+  @apply text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
 }
