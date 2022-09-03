@@ -1,6 +1,5 @@
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import { skillIdList } from '~/models/skills.server';
 import {
   fakeRequirementList,
   type RequirementT,
@@ -16,7 +15,6 @@ type LoaderData = {
 export const loader = async () => {
   return json<LoaderData>({
     requirements: fakeRequirementList
-      .filter((r) =>skillIdList.includes(r.skill))
       .sort((a,b) => b.count - a.count),
   });
 };

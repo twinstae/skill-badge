@@ -2,10 +2,11 @@ import type { ZodFormattedError } from 'zod';
 import { type ActionFunction, redirect, json } from '@remix-run/cloudflare';
 import { Form, useActionData, useTransition } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
-import { createSkill, skillSchema, type Skill } from '~/models/skills.server';
 import Spinner from '~/components/Spinner';
 import ErrorMessage from '~/components/form/ErrorMessage';
 import TagsInput from '~/components/TagsInput';
+import { type Skill, skillSchema } from '~/models/skills/schema';
+import { context } from '~/models/context';
 
 type ActionData = ZodFormattedError<Skill> | undefined;
 
@@ -25,7 +26,7 @@ export const action: ActionFunction = async ({ request }) => {
     return json<ActionData>(result.error.format());
   }
 
-  await createSkill(result.data);
+  await context.skillsRepo.create(result.data);
 
   return redirect('/skills');
 };

@@ -1,6 +1,5 @@
 import { json, type LoaderFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import { getSkill, type Skill } from '~/models/skills.server';
 import invariant from 'tiny-invariant';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
@@ -12,6 +11,8 @@ import { fakeReactResources, type ResourceT } from '~/models/resource.server';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 import Divider from '~/components/Divider';
 import Tooltip from '~/components/Tooltip';
+import type { Skill } from '~/models/skills/schema';
+import { context } from '~/models/context';
 
 type LoaderData = {
   skill: Skill;
@@ -21,7 +22,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
-  const skill = await getSkill(params.slug);
+  const skill = await context.skillsRepo.getOneBySlug(params.slug);
 
   invariant(skill, `skill not found: ${params.slug}`);
   return json<LoaderData>({

@@ -8,3 +8,5 @@ node_modules
 .env
 
 /app/tailwind.css
+
+dbschema/edgeql-js

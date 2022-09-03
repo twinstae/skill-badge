@@ -1,5 +1,12 @@
 export default [
   {
+    slug: 'angular',
+    title: '앵귤러',
+    content: '',
+    children: [],
+    parents: []
+  },
+  {
     slug: 'spa-framework',
     title: 'SPA 프레임워크',
     parents: [],
@@ -186,34 +193,34 @@ export default [
     slug: 'database',
     title: '데이터베이스',
     parents: [],
-    children: ['relational-db', 'no-sql-db'],
+    children: ['rdbms', 'no-sql-db'],
     content: '',
   },
   {
     slug: 'rdbms',
     title: '관계형 데이터베이스',
     parents: ['database'],
-    children: ['sqlite', 'mysql', 'postgresql'],
+    children: ['sqlite', 'mysql', 'postgresql', 'aws-rds'],
     content: '',
   },
   {
     slug: 'sqlite',
     title: 'SQLite',
-    parents: ['relational-db'],
+    parents: ['rdbms'],
     children: [],
     content: '',
   },
   {
     slug: 'mysql',
     title: 'MySQL, MariaDB',
-    parents: ['relational-db'],
+    parents: ['rdbms'],
     children: [],
     content: '',
   },
   {
     slug: 'postgresql',
     title: 'PostgreSQL',
-    parents: ['relational-db'],
+    parents: ['rdbms'],
     children: [],
     content: '',
   },
@@ -256,7 +263,7 @@ export default [
     slug: 'document-db',
     title: '문서 데이터베이스',
     parents: ['no-sql-db'],
-    children: ['mongodb', 'dynamodb'],
+    children: ['dynamodb', 'mongodb'],
     content: '',
   },
   {

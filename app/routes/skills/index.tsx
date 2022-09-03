@@ -3,15 +3,16 @@ import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { Link } from '~/Link';
-import { getSkillList, type Skill } from '~/models/skills.server';
+import type { Skill } from '~/models/skills/schema';
+import { context } from '~/models/context';
 
 type LoaderData = {
-  skills: Skill[];
+  skills: Pick<Skill, 'slug' | 'title'>[];
 };
 
 export const loader = async () => {
   return json<LoaderData>({
-    skills: await getSkillList(),
+    skills: await context.skillsRepo.getAllList(),
   });
 };
 
