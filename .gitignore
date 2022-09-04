@@ -11,6 +11,7 @@ node_modules
 /api/index.js.map
 /api/_assets
 /app/tailwind.css
+/app/styles/
 
 dbschema/edgeql-js
 app/routes/rabbit.mdx

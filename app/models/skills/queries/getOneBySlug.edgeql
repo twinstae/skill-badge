@@ -3,6 +3,6 @@ select Skill {
   title,
   content,
   children: { slug },
-  parents := .<children[is Skill].slug
+  parents
 }
 filter .slug = <str>$slug
