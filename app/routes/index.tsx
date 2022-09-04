@@ -11,15 +11,16 @@ import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 
 type LoaderData = {
+  allSlugs: string[];
   requirements: RequirementT[];
 };
 
 export const loader = async () => {
   const allSkills = await context.skillsRepo.getAllList();
-  const allSlugs = new Set(allSkills.map(flatSlug));
+
   return json<LoaderData>({
+    allSlugs: allSkills.map(flatSlug),
     requirements: fakeRequirementList
-      .filter(requirement => allSlugs.has(requirement.skill))
       .sort((a,b) => b.count - a.count),
   });
 };
@@ -34,7 +35,7 @@ const RequirementList = createOptionalDataList<RequirementT>({
 });
 
 export default function Position() {
-  const { requirements } = useLoaderData() as LoaderData;
+  const { allSlugs, requirements } = useLoaderData() as LoaderData;
 
   return (
     <CenterCardLayout>
@@ -42,7 +43,12 @@ export default function Position() {
       <RequirementList
         title="자격 조건"
         titleId="required-title"
-        dataList={requirements}
+        dataList={requirements.filter(item => allSlugs.includes(item.skill))}
+      />
+      <RequirementList
+        title="정의가 필요"
+        titleId="skill-not-defined"
+        dataList={requirements.filter(item => !allSlugs.includes(item.skill))}
       />
     </CenterCardLayout>
   );

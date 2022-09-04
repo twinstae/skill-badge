@@ -17,7 +17,7 @@ export const fakeRequirementList = [
   },
   {
     rawText: 'vue, react, angular, svelte 등 SPA 프레임워크를 능숙하게 활용하시는 분',
-    skill: 'spa-web-framework',
+    skill: 'spa-framework',
     count: 8
   },
   {
@@ -53,7 +53,7 @@ export const fakeRequirementList = [
   },
   {
     rawText: '측정 가능한 데이터 기반의 성능 최적화 경험이 있는 분',
-    skill: 'profiling',
+    skill: 'optimization',
     count: 5
   },
   {

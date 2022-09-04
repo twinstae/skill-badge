@@ -1,0 +1,4 @@
+select Skill {
+  slug,
+  title,
+}

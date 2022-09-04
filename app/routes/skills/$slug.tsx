@@ -1,4 +1,4 @@
-import { json, type LoaderFunction } from '@remix-run/node';
+import { json, redirect, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
 import CenterCardLayout from '~/components/CenterCardLayout';
@@ -13,6 +13,7 @@ import Divider from '~/components/Divider';
 import Tooltip from '~/components/Tooltip';
 import type { Skill } from '~/models/skills/schema';
 import { context } from '~/models/context';
+import PencilWithSquare from '~/components/PencilWithSquareIcon';
 
 type LoaderData = {
   skill: Skill;
@@ -23,6 +24,10 @@ type LoaderData = {
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
   const skill = await context.skillsRepo.getOneBySlug(params.slug);
+
+  if(skill === null){
+    return redirect('/skills/admin/new?slug='+params.slug)
+  }
 
   return json<LoaderData>({
     skill: { ...skill, content: marked(skill.content) },
@@ -58,14 +63,11 @@ const ResourceList = createOptionalDataList<ResourceT>({
 
 
 export default function SkillDetail() {
-  const { skill, requirements, resources } = useLoaderData();
+  const { skill, requirements, resources } = useLoaderData() as LoaderData;
 
   return (
     <CenterCardLayout>
-      <h1>
-        {skill.title}{' '}
-        <span className="text-lg text-gray-700 font-normal">/{skill.slug}</span>
-      </h1>
+      <h1>{skill.title}</h1>
       <RequirementList
         title="채용공고"
         titleId="position-title"
@@ -91,6 +93,9 @@ export default function SkillDetail() {
         titleId="resource-title"
         dataList={resources}
       />
+      <LinkWithTooltip className="btn btn-ghost" to={`/skills/${skill.slug}/edit`} tooltip="수정하기">
+        <PencilWithSquare />
+      </LinkWithTooltip>
     </CenterCardLayout>
   );
 }

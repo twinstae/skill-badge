@@ -21,6 +21,9 @@ export default function SkillListPage() {
   return (
     <CenterCardLayout>
       <h1>역량 목록</h1>
+      <Link className="btn btn-sm btn-primary w-full" to="/skills/admin/new">
+        새 역량 만들기
+      </Link>
       <ul className="p-2 m-2 menu">
         {skills.map((skill) => (
           <li key={skill.slug}>
@@ -30,9 +33,6 @@ export default function SkillListPage() {
           </li>
         ))}
       </ul>
-      <Link className="btn btn-primary" to="/skills/admin/new">
-        새 역량 만들기
-      </Link>
     </CenterCardLayout>
   );
 }

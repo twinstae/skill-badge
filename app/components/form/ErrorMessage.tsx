@@ -1,6 +1,16 @@
 import type { ZodFormattedError } from "zod";
 
-export default function ErrorMessage<S extends Record<string, any>>({
+export function ErrorMessage({error}: {error: string}){
+  
+  return (
+    <li>
+      <em className="text-red-600">{error}</em>
+      <br />
+    </li>
+  )
+}
+
+export default function ErrorMessages<S extends Record<string, any>>({
   errors,
   name,
 }: {
@@ -10,10 +20,7 @@ export default function ErrorMessage<S extends Record<string, any>>({
   return errors?.[name] ? (
     <ul>
       {errors[name]?._errors.map((error) => (
-        <li key="error">
-          <em className="text-red-600">{error}</em>
-          <br />
-        </li>
+        <ErrorMessage key={error} error={error} />
       ))}
     </ul>
   ) : (

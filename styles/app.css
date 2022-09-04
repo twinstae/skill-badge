@@ -4,8 +4,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -36,8 +36,16 @@ p {
   margin-bottom: 1rem;
 }
 
+p:last-child {
+  margin-bottom: 0rem;
+}
+
 input.input {
   transition: border-color 0.125s ease-in;
+}
+
+input.input:not(:placeholder-shown):not(:focus):invalid {
+  @apply input-error
 }
 
 .dropdown-list {

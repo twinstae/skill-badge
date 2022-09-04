@@ -1,6 +1,6 @@
 import * as tagsInput from '@zag-js/tags-input';
 import { useMachine, normalizeProps } from '@zag-js/react';
-import ErrorMessage from './form/ErrorMessage';
+import ErrorMessages from './form/ErrorMessage';
 import type { ZodFormattedError } from 'zod/lib/ZodError';
 import Tooltip from './Tooltip';
 import clsx from 'clsx';
@@ -26,6 +26,7 @@ export default function TagsInput({
   maxLength?: number;
   candidates?: string[];
 }) {
+  const addInputId = `tags-input:${id}:input`;
   function validate({
     values,
     inputValue,
@@ -46,6 +47,9 @@ export default function TagsInput({
       value: initValue,
       max: maxLength,
       validate,
+      onChange: () => {
+        document.getElementById(addInputId)?.focus();
+      },
     })
   );
 
@@ -61,7 +65,7 @@ export default function TagsInput({
   });
   return (
     <>
-      <label htmlFor={'add-tag-input-' + id} className="label">
+      <label htmlFor={addInputId} className="label">
         {labelText}
       </label>
 
@@ -89,15 +93,17 @@ export default function TagsInput({
           </span>
         ))}
         <Tooltip tooltip="추가하려면 Enter" isOpen={isValid}>
-          <input
-            id={'add-tag-input-' + id}
-            className={clsx(
-              'input input-bordered w-32 h-10 rounded-md p-2 m-1',
-              isValid && 'input-success'
-            )}
-            placeholder={placeholder}
-            {...api.inputProps}
-          />
+          {api.value.length < maxLength && (
+            <input
+              id={addInputId}
+              className={clsx(
+                'input input-bordered w-32 h-10 rounded-md p-2 m-1',
+                isValid && 'input-success'
+              )}
+              placeholder={placeholder}
+              {...api.inputProps}
+            />
+          )}
           {api.inputValue !== '' && (
             <ul className={clsx(`dropdown-list`, 'show')}>
               {recommendation.map((candi) => (
@@ -115,8 +121,13 @@ export default function TagsInput({
             </ul>
           )}
         </Tooltip>
-        <ErrorMessage errors={errors} name={name} />
+        <ErrorMessages errors={errors} name={name} />
       </div>
+      <progress
+        className={clsx("progress w-full", api.value.length < maxLength ? "progress-info" : "progress-primary")}
+        value={api.value.length}
+        max={maxLength}
+      />
     </>
   );
 }

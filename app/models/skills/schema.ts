@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
+export const slugRegex = "^[a-z0-9]+(?:-[a-z0-9]+)*$";
+
 export const slugSchema = z.string()
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+  .regex(new RegExp(slugRegex))
   .min(1, 'slug가 비어있어요')
   .trim();
 
