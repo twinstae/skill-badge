@@ -1,0 +1,12 @@
+diff --git a/node_modules/@remix-run/dev/dist/compiler/loaders.js b/node_modules/@remix-run/dev/dist/compiler/loaders.js
+index 267db7e..281e009 100644
+--- a/node_modules/@remix-run/dev/dist/compiler/loaders.js
++++ b/node_modules/@remix-run/dev/dist/compiler/loaders.js
+@@ -58,6 +58,7 @@ const loaders = {
+   ".ogg": "file",
+   ".otf": "file",
+   ".png": "file",
++  ".edgeql": "text",
+   ".sql": "text",
+   ".svg": "file",
+   ".ts": "ts",
