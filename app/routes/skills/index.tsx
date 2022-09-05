@@ -1,18 +1,18 @@
 import React from 'react';
-import { json } from '@remix-run/cloudflare';
+import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { Link } from '~/Link';
-import { getSkillList, type Skill } from '~/models/skills.server';
+import type { Skill } from '~/models/skills/schema';
+import { context } from '~/models/context';
 
 type LoaderData = {
-  skills: Skill[];
+  skills: Pick<Skill, 'slug' | 'title'>[];
 };
 
 export const loader = async () => {
-  return json<LoaderData>({
-    skills: await getSkillList(),
-  });
+  const skills = await context.skillsRepo.getAllList();
+  return json<LoaderData>({ skills });
 };
 
 export default function SkillListPage() {
@@ -20,6 +20,9 @@ export default function SkillListPage() {
   return (
     <CenterCardLayout>
       <h1>역량 목록</h1>
+      <Link className="btn btn-sm btn-primary w-full" to="/skills/admin/new">
+        새 역량 만들기
+      </Link>
       <ul className="p-2 m-2 menu">
         {skills.map((skill) => (
           <li key={skill.slug}>
@@ -29,9 +32,6 @@ export default function SkillListPage() {
           </li>
         ))}
       </ul>
-      <Link className="btn btn-primary" to="/skills/admin/new">
-        새 역량 만들기
-      </Link>
     </CenterCardLayout>
   );
 }

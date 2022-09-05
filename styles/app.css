@@ -1,0 +1,56 @@
+body {
+  font-family: 'Pretendard', sans-serif;
+  word-break: keep-all;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+blockquote {
+  background-color: rgb(243 244 253);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+p {
+  text-indent: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0rem;
+}
+
+input.input {
+  transition: border-color 0.125s ease-in;
+}
+
+input.input:not(:placeholder-shown):not(:focus):invalid {
+  @apply input-error
+}
+
+.dropdown-list {
+  @apply min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
+}
+.dropdown-item {
+  @apply text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
+}

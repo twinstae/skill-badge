@@ -1,11 +1,28 @@
 import type { ZodFormattedError } from 'zod';
-import { type ActionFunction, redirect, json } from '@remix-run/cloudflare';
-import { Form, useActionData, useTransition } from '@remix-run/react';
+import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
+import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
-import { createSkill, skillSchema, type Skill } from '~/models/skills.server';
 import Spinner from '~/components/Spinner';
-import ErrorMessage from '~/components/form/ErrorMessage';
+import ErrorMessages, { ErrorMessage } from '~/components/form/ErrorMessage';
 import TagsInput from '~/components/TagsInput';
+import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
+import { context } from '~/models/context';
+import { flatSlug } from '~/models/skills/transformUtil';
+import { useState } from 'react';
+import clsx from 'clsx';
+import { useSearchParam } from 'react-use';
+
+type LoaderData = {
+  allSkillSlugs: string[];
+};
+
+export const loader: LoaderFunction = async () => {
+  const allSkills = await context.skillsRepo.getAllList()
+
+  return json<LoaderData>({
+    allSkillSlugs: allSkills.map(flatSlug)
+  });
+};
 
 type ActionData = ZodFormattedError<Skill> | undefined;
 
@@ -25,18 +42,24 @@ export const action: ActionFunction = async ({ request }) => {
     return json<ActionData>(result.error.format());
   }
 
-  await createSkill(result.data);
+  await context.skillsRepo.create(result.data);
 
   return redirect('/skills');
 };
 
 export default function NewSkill() {
+  const { allSkillSlugs } = useLoaderData() as LoaderData;
   const errors = useActionData() as
     | ZodFormattedError<Record<string, any>, string>
     | undefined;
 
   const transition = useTransition();
   const isCreating = Boolean(transition.submission);
+
+  const slugSearch = useSearchParam('slug');
+
+  const [slug, setSlug] = useState(slugSearch ?? '');
+  const isSlugDuplicated = allSkillSlugs.includes(slug);
 
   return (
     <CenterCardLayout>
@@ -50,9 +73,14 @@ export default function NewSkill() {
           name="slug"
           maxLength={16}
           required
-          className="input input-bordered mb-2 w-full"
+          pattern={slugRegex}
+          value={slug}
+          placeholder="ex) design-system"
+          onChange={(e) => setSlug(e.target.value)}
+          className={clsx("input input-bordered mb-2 w-full", isSlugDuplicated && "input-error")}
         />
-        <ErrorMessage errors={errors} name="slug" />
+        {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다."/>}
+        <ErrorMessages errors={errors} name="slug" />
         <label className="label" htmlFor="input-title">
           역량 제목
         </label>
@@ -62,9 +90,10 @@ export default function NewSkill() {
           name="title"
           maxLength={16}
           required
+          placeholder="ex) 디자인 시스템"
           className="input input-bordered mb-2 w-full"
         />
-        <ErrorMessage errors={errors} name="title" />
+        <ErrorMessages errors={errors} name="title" />
         <TagsInput
           id="parents-input"
           className="mb-2"
@@ -73,6 +102,7 @@ export default function NewSkill() {
           placeholder="ex) react"
           errors={errors}
           maxLength={4}
+          candidates={allSkillSlugs}
         />
         <TagsInput
           id="children-input"
@@ -82,6 +112,7 @@ export default function NewSkill() {
           placeholder="ex) react"
           errors={errors}
           maxLength={16}
+          candidates={allSkillSlugs}
         />
         <label className="label" htmlFor="input-content">
           설명
@@ -91,7 +122,7 @@ export default function NewSkill() {
           name="content"
           className="textarea textarea-bordered mb-2 w-full h-64"
         />
-        <ErrorMessage errors={errors} name="content" />
+        <ErrorMessages errors={errors} name="content" />
         <button type="submit" className="btn btn-primary" disabled={isCreating}>
           {isCreating ? <Spinner message="공유 중..." /> : '역량 공유하기'}
         </button>

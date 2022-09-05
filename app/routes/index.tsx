@@ -1,37 +1,39 @@
-import { json } from '@remix-run/cloudflare';
+import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { skillIdList } from '~/models/skills.server';
-import {
-  fakeRequirementList,
-  type RequirementT,
-} from '~/models/requirements.server';
+import type { RequirementT } from '~/models/requirements/schema';
+import { fakeRequirementList } from '~/models/requirements/fakeRepo';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
+import { context } from '~/models/context';
+import { flatSlug } from '~/models/skills/transformUtil';
+import type { WithSkillSlug } from '~/models/skills/schema';
 
 type LoaderData = {
-  requirements: RequirementT[];
+  allSlugs: string[];
+  requirements: WithSkillSlug<RequirementT>[];
 };
 
 export const loader = async () => {
+  const allSkills = await context.skillsRepo.getAllList();
+
   return json<LoaderData>({
-    requirements: fakeRequirementList
-      .filter((r) =>skillIdList.includes(r.skill))
-      .sort((a,b) => b.count - a.count),
+    allSlugs: allSkills.map(flatSlug),
+    requirements: fakeRequirementList,
   });
 };
 
-const RequirementList = createOptionalDataList<RequirementT>({
-  selectId: (r) => r.skill,
+const RequirementList = createOptionalDataList<WithSkillSlug<RequirementT>>({
+  selectId: (r) => r.content,
   Item: ({ data: r }) => (
-    <LinkWithTooltip to={'/skills/' + r.skill} tooltip={'/skills/' + r.skill}>
-      {r.rawText} <span className="badge">{r.count}</span>
+    <LinkWithTooltip to={'/skills/' + r.skillSlug} tooltip={'/skills/' + r.skillSlug}>
+      {r.content}
     </LinkWithTooltip>
   ),
 });
 
 export default function Position() {
-  const { requirements } = useLoaderData() as LoaderData;
+  const { allSlugs, requirements } = useLoaderData() as LoaderData;
 
   return (
     <CenterCardLayout>
@@ -39,7 +41,12 @@ export default function Position() {
       <RequirementList
         title="자격 조건"
         titleId="required-title"
-        dataList={requirements}
+        dataList={requirements.filter(item => allSlugs.includes(item.skillSlug))}
+      />
+      <RequirementList
+        title="정의가 필요"
+        titleId="skill-not-defined"
+        dataList={requirements.filter(item => !allSlugs.includes(item.skillSlug))}
       />
     </CenterCardLayout>
   );

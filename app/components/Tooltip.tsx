@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 export default function Tooltip({
   tooltip,
   isOpen = false,
@@ -10,7 +12,7 @@ export default function Tooltip({
   children: React.ReactNode;
 }) {
   return (
-    <div className={["tooltip rounded-lg", (isOpen ? "tooltip-open" : ""), className].join(" ")} data-tip={tooltip}>
+    <div className={clsx("tooltip rounded-lg", className, isOpen && "tooltip-open")} data-tip={tooltip}>
       {children}
     </div>
   );

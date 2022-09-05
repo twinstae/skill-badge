@@ -1,10 +1,17 @@
 node_modules
 
-/.cache
-/functions/\[\[path\]\].js
-/functions/\[\[path\]\].js.map
-/functions/_assets
-/public/build
+.cache
 .env
+.vercel
+.output
 
+/build/
+/public/build
+/api/index.js
+/api/index.js.map
+/api/_assets
 /app/tailwind.css
+/app/styles/
+
+dbschema/edgeql-js
+app/routes/rabbit.mdx
