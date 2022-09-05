@@ -3,6 +3,7 @@
   "sideEffects": false,
   "scripts": {
     "postinstall": "patch-package",
+    "save:json": "npx ts-node app/models/saveAsJson.ts",
     "build": "run-s \"build:*\"",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "build:remix": "remix build",

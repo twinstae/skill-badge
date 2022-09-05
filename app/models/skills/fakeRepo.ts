@@ -1,7 +1,9 @@
 import invariant from 'tiny-invariant';
 import { z } from 'zod';
-import { fakeRequirementList } from '../requirements/schema';
-import { fakeReactResources } from '../resources/schema';
+
+import { fakeRequirementList } from '../requirements/fakeRepo';
+import { fakeReactResources } from '../resources/fakeRepo';
+
 import { SKILL_ALREADY_EXISTS } from './errorMessages';
 import skillsData from './fakeSkills.json';
 import type { ISkillRepo } from './IRepo';

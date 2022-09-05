@@ -1,9 +1,7 @@
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import {
-  fakeRequirementList,
-  type RequirementT,
-} from '~/models/requirements/schema';
+import type { RequirementT } from '~/models/requirements/schema';
+import { fakeRequirementList } from '~/models/requirements/fakeRepo';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';

@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { slugSchema, withSkillSlug } from '../skills/schema';
-import fakeResources from './fakeResources.json';
+import { slugSchema } from '../skills/schema';
 
 export const resourceSchema = z.object({
   slug: slugSchema,
@@ -11,6 +10,3 @@ export const resourceSchema = z.object({
 
 export type ResourceT = z.infer<typeof resourceSchema>;
 
-export const fakeReactResources = z
-  .array(withSkillSlug(resourceSchema))
-  .parse(fakeResources);
