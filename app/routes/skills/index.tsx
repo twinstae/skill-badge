@@ -11,9 +11,8 @@ type LoaderData = {
 };
 
 export const loader = async () => {
-  return json<LoaderData>({
-    skills: await context.skillsRepo.getAllList(),
-  });
+  const skills = await context.skillsRepo.getAllList();
+  return json<LoaderData>({ skills });
 };
 
 export default function SkillListPage() {

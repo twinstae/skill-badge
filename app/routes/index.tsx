@@ -3,16 +3,17 @@ import { useLoaderData } from '@remix-run/react';
 import {
   fakeRequirementList,
   type RequirementT,
-} from '~/models/requirements.server';
+} from '~/models/requirements/schema';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
+import type { WithSkillSlug } from '~/models/skills/schema';
 
 type LoaderData = {
   allSlugs: string[];
-  requirements: RequirementT[];
+  requirements: WithSkillSlug<RequirementT>[];
 };
 
 export const loader = async () => {
@@ -20,15 +21,14 @@ export const loader = async () => {
 
   return json<LoaderData>({
     allSlugs: allSkills.map(flatSlug),
-    requirements: fakeRequirementList
-      .sort((a,b) => b.count - a.count),
+    requirements: fakeRequirementList.sort((a,b) => b.count - a.count),
   });
 };
 
-const RequirementList = createOptionalDataList<RequirementT>({
-  selectId: (r) => r.skill,
+const RequirementList = createOptionalDataList<WithSkillSlug<RequirementT>>({
+  selectId: (r) => r.rawText,
   Item: ({ data: r }) => (
-    <LinkWithTooltip to={'/skills/' + r.skill} tooltip={'/skills/' + r.skill}>
+    <LinkWithTooltip to={'/skills/' + r.skillSlug} tooltip={'/skills/' + r.skillSlug}>
       {r.rawText} <span className="badge">{r.count}</span>
     </LinkWithTooltip>
   ),
@@ -43,12 +43,12 @@ export default function Position() {
       <RequirementList
         title="자격 조건"
         titleId="required-title"
-        dataList={requirements.filter(item => allSlugs.includes(item.skill))}
+        dataList={requirements.filter(item => allSlugs.includes(item.skillSlug))}
       />
       <RequirementList
         title="정의가 필요"
         titleId="skill-not-defined"
-        dataList={requirements.filter(item => !allSlugs.includes(item.skill))}
+        dataList={requirements.filter(item => !allSlugs.includes(item.skillSlug))}
       />
     </CenterCardLayout>
   );

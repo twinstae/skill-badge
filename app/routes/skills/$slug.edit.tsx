@@ -1,6 +1,8 @@
-import type { ZodFormattedError } from 'zod';
+import { useEffect } from 'react';
+import invariant from 'tiny-invariant';
 import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
 import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
+import type { ZodFormattedError } from 'zod';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
 import ErrorMessages from '~/components/form/ErrorMessage';
@@ -8,8 +10,6 @@ import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { useEffect } from 'react';
-import invariant from 'tiny-invariant';
 
 type LoaderData = {
   skill: Skill;

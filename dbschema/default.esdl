@@ -19,6 +19,8 @@ module default {
       on target delete allow;
     };
     property parents := .<children[is Skill].slug;
+    multi link resources := .<skill[is Resource];
+    multi link requirements := .<skill[is Requirement];
   }
 
   type Resource extending SlugTitle {

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { ZodRawShape, ZodObject } from 'zod';
 
 export const slugRegex = "^[a-z0-9]+(?:-[a-z0-9]+)*$";
 
@@ -16,3 +17,9 @@ export const skillSchema = z.object({
 });
 
 export type Skill = z.infer<typeof skillSchema>;
+
+export type WithSkillSlug<T> = T & { skillSlug: Skill['slug'] }
+
+export function withSkillSlug<T extends ZodRawShape>(schema: ZodObject<T>){
+  return schema.extend({ skillSlug: z.string() });
+}

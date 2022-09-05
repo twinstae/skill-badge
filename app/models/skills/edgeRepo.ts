@@ -1,12 +1,13 @@
 import type { Client } from "edgedb";
 import invariant from "tiny-invariant";
-import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from "./errorMessages";
-import type { ISkillRepo } from "./IRepo";
-import { skillSchema } from "./schema";
-import { flatSlugs } from "./transformUtil";
 
+import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from "./errorMessages";
+import { flatSlugs } from "./transformUtil";
+import { type ISkillRepo, skillWithRequirementsAndResourcesSchema } from "./IRepo.d";
+import { skillSchema } from "./schema";
 import getAllList from "./queries/getAllList.edgeql";
 import getOneBySlug from "./queries/getOneBySlug.edgeql";
+import getOneBySlugWithRequirementsAndResources from "./queries/getOneBySlugWithRequirementsAndResources.edgeql";
 import skillExists from "./queries/skillExists.edgeql";
 import createSkill from "./queries/createSkill.edgeql";
 import updateSkill from "./queries/updateSkill.edgeql";
@@ -25,6 +26,13 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
 
       return skillSchema.parse(flatChildren(result));
     },
+    async getOneBySlugWithRequirementsAndResources(slug){
+      const result = await client.querySingle(getOneBySlugWithRequirementsAndResources, { slug });
+
+      if(result === null) return null;
+
+      return skillWithRequirementsAndResourcesSchema.parse(flatChildren(result));
+    },
     async create(skill){
       const exists = await client.queryRequiredSingle<boolean>(skillExists, { slug: skill.slug });
       invariant(
@@ -36,10 +44,7 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
     },
     async update({ slug, title, content, children, parents }){
       const old = await this.getOneBySlug(slug);
-      invariant(
-        old !== null,
-        SKILL_NOT_FOUND(slug)
-      );
+      invariant(old !== null, SKILL_NOT_FOUND(slug));
 
       const detached_parents = old.parents.filter(item => !parents.includes(item));
       const new_parents = parents.filter(item => !old.parents.includes(item));
