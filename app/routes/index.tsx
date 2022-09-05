@@ -19,15 +19,15 @@ export const loader = async () => {
 
   return json<LoaderData>({
     allSlugs: allSkills.map(flatSlug),
-    requirements: fakeRequirementList.sort((a,b) => b.count - a.count),
+    requirements: fakeRequirementList,
   });
 };
 
 const RequirementList = createOptionalDataList<WithSkillSlug<RequirementT>>({
-  selectId: (r) => r.rawText,
+  selectId: (r) => r.content,
   Item: ({ data: r }) => (
     <LinkWithTooltip to={'/skills/' + r.skillSlug} tooltip={'/skills/' + r.skillSlug}>
-      {r.rawText} <span className="badge">{r.count}</span>
+      {r.content}
     </LinkWithTooltip>
   ),
 });

@@ -4,8 +4,15 @@ import { z } from 'zod';
 import { resourceSchema } from './resources/schema';
 import { skillSchema, withSkillSlug } from './skills/schema';
 import { flatSlugs } from './skills/transformUtil';
+import { requirementSchema } from './requirements/schema';
 
 const client = edgedb();
+
+const flatSkillSlug = (item: any) => ({
+  ...item,
+  skill: undefined,
+  skillSlug: item.skill.slug
+})
 
 client
   .query(`
@@ -21,11 +28,7 @@ client
   `)
   .then((raw) => {
     const data = z.array(withSkillSlug(resourceSchema))
-      .parse(raw.map((item: any) => ({
-        ...item,
-        skill: undefined,
-        skillSlug: item.skill.slug
-      })));
+      .parse(raw.map(flatSkillSlug));
     return fs.writeFile(
       './app/models/resources/fakeResources.json',
       JSON.stringify(data),
@@ -33,6 +36,24 @@ client
     );
   });
 
+client
+  .query(`
+    select Requirement {
+      content,
+      skill: {
+        slug
+      }
+    }
+  `)
+  .then((raw) => {
+    const data = z.array(withSkillSlug(requirementSchema))
+      .parse(raw.map(flatSkillSlug));
+    return fs.writeFile(
+      './app/models/requirements/fakeRequirements.json',
+      JSON.stringify(data),
+      { encoding: 'utf8' }
+    );
+  });
 
 const flatChildren = flatSlugs('children');
 client

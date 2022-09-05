@@ -35,10 +35,10 @@ export const loader: LoaderFunction = async ({ params }) => {
 // await res.json() // 받은 json data를 parse 하는 것
 
 const RequirementList = createOptionalDataList<RequirementT>({
-  selectId: (data) => data.rawText.replace(/ /g, '-'),
+  selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
     <LinkWithTooltip to="/" tooltip="프런트엔드 엔지니어">
-      {data.rawText}
+      {data.content}
     </LinkWithTooltip>
   ),
 });
