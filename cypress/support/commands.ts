@@ -14,6 +14,9 @@ declare global {
        *    cy.visitAndCheck('/', 500)
        */
       visitAndCheck: typeof visitAndCheck;
+      findTextBox: typeof findTextBox;
+      findButton: typeof findButton;
+      findLink: typeof findLink;
     }
   }
 }
@@ -25,4 +28,20 @@ function visitAndCheck(path: string, waitTime: number = 1000) {
 
 Cypress.Commands.add('visitAndCheck', visitAndCheck);
 
+function findTextBox(name: string) {
+  return cy.findByRole('textbox', { name });
+}
+
+function findButton(name: string) {
+  return cy.findByRole('button', { name });
+}
+
+function findLink(name: string) {
+  return cy.findByRole('link', { name });
+}
+
+Cypress.Commands.add('findTextBox', findTextBox);
+Cypress.Commands.add('findButton', findButton);
+Cypress.Commands.add('findLink', findLink);
+Cypress.Commands.add('findLink', findLink);
 export default {};
