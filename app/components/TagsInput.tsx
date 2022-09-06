@@ -71,18 +71,17 @@ export default function TagsInput({
 
       <div
         {...api.rootProps}
-        className={
-          'flex flex-row flex-wrap p-1 border-1 rounded-xl ' + className
-        }
+        className={clsx('flex flex-row flex-wrap p-1 border-1 rounded-xl', className)}
       >
         {api.value.map((value, index) => (
           <span key={index} className="p-2 bg-slate-100 m-1 rounded-md">
             <div {...api.getTagProps({ index, value })}>
               {/* 사람들눈에보이는value */}
-              <span>{value} </span>
+              <span>{value}</span>
               <button
                 {...api.getTagDeleteButtonProps({ index, value })}
                 tabIndex={1}
+                aria-label={`${value} 태그를 삭제`}
               >
                 &#x2715;
               </button>

@@ -20,10 +20,13 @@ type LoaderData = SkillWithRequirementsAndResourcesT;
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
-  const skill = await context.skillsRepo.getOneBySlugWithRequirementsAndResources(params.slug);
+  const skill =
+    await context.skillsRepo.getOneBySlugWithRequirementsAndResources(
+      params.slug
+    );
 
-  if(skill === null){
-    return redirect('/skills/admin/new?slug='+params.slug)
+  if (skill === null) {
+    return redirect('/skills/admin/new?slug=' + params.slug);
   }
 
   return json<LoaderData>({
@@ -46,7 +49,12 @@ const RequirementList = createOptionalDataList<RequirementT>({
 const ResourceList = createOptionalDataList<ResourceT>({
   selectId: (data) => data.slug,
   Item: ({ data }) => (
-    <a href={data.href} className="w-full rounded-lg" target="_blank" rel="noreferrer">
+    <a
+      href={data.href}
+      className="w-full rounded-lg"
+      target="_blank"
+      rel="noreferrer"
+    >
       <Tooltip className="w-full" tooltip={data.href}>
         <h3>{data.title}</h3>
         <blockquote>{data.content}</blockquote>
@@ -55,9 +63,9 @@ const ResourceList = createOptionalDataList<ResourceT>({
   ),
 });
 
-
 export default function SkillDetail() {
-  const { slug, title, content, parents, children, requirements, resources } = useLoaderData() as LoaderData;
+  const { slug, title, content, parents, children, requirements, resources } =
+    useLoaderData() as LoaderData;
 
   return (
     <CenterCardLayout>
@@ -68,21 +76,25 @@ export default function SkillDetail() {
         dataList={requirements}
       />
       <Divider />
-      <SkillList
-        title="상위 역량"
-        titleId="parents-title"
-        dataList={parents}
-      />
+      <SkillList title="상위 역량" titleId="parents-title" dataList={parents} />
       <SkillList
         title="하위 역량"
         titleId="children-title"
         dataList={children}
       />
       <Divider />
-      <h2>소개</h2>
-      <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
-      <LinkWithTooltip className="btn btn-ghost float-right" to={`/skills/${slug}/edit`} tooltip="수정하기">
-        <PencilWithSquare />
+      <h2 id="content-title">소개</h2>
+      <div
+        aria-labelledby="content-title"
+        className="content"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+      <LinkWithTooltip
+        className="btn btn-ghost float-right"
+        to={`/skills/${slug}/edit`}
+        tooltip="수정하기"
+      >
+        <PencilWithSquare label="수정하기" />
       </LinkWithTooltip>
       <Divider />
       <ResourceList

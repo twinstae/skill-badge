@@ -124,11 +124,9 @@ export default function NewSkill() {
           candidates={allSkillSlugs}
           initValue={skill.children}
         />
-        <label className="label" htmlFor="input-content">
-          설명
-        </label>
         <TextEditor
           id="input-content"
+          label="설명"
           name="content"
           initValue={skill.content}
         />

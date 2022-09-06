@@ -77,7 +77,7 @@ export default function NewSkill() {
           pattern={slugRegex}
           value={slug}
           placeholder="ex) design-system"
-          onChange={(e) => setSlug(e.target.value)}
+          onChange={(e) => setSlug(e.currentTarget.value)}
           className={clsx("input input-bordered mb-2 w-full", isSlugDuplicated && "input-error")}
         />
         {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다."/>}
@@ -115,11 +115,10 @@ export default function NewSkill() {
           maxLength={16}
           candidates={allSkillSlugs}
         />
-        <label className="label" htmlFor="input-content">
-          설명
-        </label>
+        
         <TextEditor
           id="input-content"
+          label="설명"
           name="content"
           initValue=""
         />
