@@ -1,8 +1,8 @@
+import { describe, it, expect } from 'vitest';
 import { screen, getAllByRole } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import createOptionalDataList from './createDataList';
-
 
 const DataList = createOptionalDataList<{ name: string }>({
   selectId: el => el.name,
@@ -23,6 +23,7 @@ describe('createOptionalDataList', () => {
 
     expect($list.tagName).toBe('UL');
 
+    // eslint-disable-next-line testing-library/prefer-screen-queries
     const $items = getAllByRole($list, 'listitem');
     $items.forEach(($item, i) => {
       expect($item).toHaveTextContent('이름: '+dataList[i].name)

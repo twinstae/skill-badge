@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -46,11 +47,11 @@ describe('TagsInput', () => {
   it('기존에 있는 값은 추가 되지 않는다', async () => {
     renderTagsInput(['react']);
     const $addInput = screen.getByLabelText('역량');
-    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(screen.getByRole('button')).toBeInTheDocument();
 
     await userEvent.type($addInput, '{enter}react{enter}');
 
-    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('2개 제한을 넘으면 input이 보이지 않는다', async () => {
@@ -70,7 +71,7 @@ describe('TagsInput', () => {
     await userEvent.click(screen.getByRole('button', { name: 'react' }));
 
     expect($addInput).toHaveValue('');
-    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('form으로 제출할 수 있다', async () => {

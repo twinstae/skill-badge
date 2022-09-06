@@ -12,7 +12,8 @@
     "dev:remix": "remix dev",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css",
     "test": "vitest",
-    "test:e2e": "start-server-and-test dev http://localhost:3000 \"npx cypress open\""
+    "test:e2e": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
+    "lint": "eslint app"
   },
   "dependencies": {
     "@reach/portal": "^0.17.0",
@@ -58,6 +59,7 @@
     "cypress": "^10.7.0",
     "daisyui": "^2.24.0",
     "eslint": "^8.20.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-unicorn": "^43.0.2",
     "jsdom": "^20.0.0",
     "npm-run-all": "^4.1.5",

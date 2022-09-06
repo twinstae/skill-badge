@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import invariant from 'tiny-invariant';
 import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
 import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';

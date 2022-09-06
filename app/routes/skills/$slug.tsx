@@ -1,7 +1,7 @@
 import {
-  ActionFunction,
   json,
   redirect,
+  type ActionFunction,
   type LoaderFunction,
 } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';

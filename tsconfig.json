@@ -15,7 +15,7 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "types": ["vitest/globals", "cypress", "@testing-library/cypress"],
+    "types": ["cypress", "@testing-library/cypress"],
     "paths": {
       "~/*": ["./app/*"]
     },
