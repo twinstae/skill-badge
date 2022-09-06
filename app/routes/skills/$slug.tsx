@@ -80,7 +80,7 @@ export default function SkillDetail() {
       />
       <Divider />
       <h2>소개</h2>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
       <LinkWithTooltip className="btn btn-ghost float-right" to={`/skills/${slug}/edit`} tooltip="수정하기">
         <PencilWithSquare />
       </LinkWithTooltip>

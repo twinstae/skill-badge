@@ -11,6 +11,7 @@ import { flatSlug } from '~/models/skills/transformUtil';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useSearchParam } from 'react-use';
+import { TextEditor } from '~/components/TextEditor';
 
 type LoaderData = {
   allSkillSlugs: string[];
@@ -117,10 +118,10 @@ export default function NewSkill() {
         <label className="label" htmlFor="input-content">
           설명
         </label>
-        <textarea
+        <TextEditor
           id="input-content"
           name="content"
-          className="textarea textarea-bordered mb-2 w-full h-64"
+          initValue=""
         />
         <ErrorMessages errors={errors} name="content" />
         <button type="submit" className="btn btn-primary" disabled={isCreating}>

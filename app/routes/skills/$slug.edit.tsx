@@ -10,6 +10,7 @@ import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
+import { TextEditor } from '~/components/TextEditor';
 
 type LoaderData = {
   skill: Skill;
@@ -67,7 +68,6 @@ export default function NewSkill() {
 
   useEffect(() => {
     (document.getElementById('input-title') as HTMLInputElement).value = skill.title;
-    (document.getElementById('input-content') as HTMLInputElement).value = skill.content;
   }, [skill]);
 
   return (
@@ -127,10 +127,10 @@ export default function NewSkill() {
         <label className="label" htmlFor="input-content">
           설명
         </label>
-        <textarea
+        <TextEditor
           id="input-content"
           name="content"
-          className="textarea textarea-bordered mb-2 w-full h-64"
+          initValue={skill.content}
         />
         <ErrorMessages errors={errors} name="content" />
         <button type="submit" className="btn btn-primary" disabled={isCreating}>

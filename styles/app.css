@@ -27,8 +27,30 @@ h3 {
 
 blockquote {
   background-color: rgb(243 244 253);
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
+}
+
+:not(pre)>code {
+  background: rgb(233 234 243);
+  border-radius: 0.25em;
+  color: #1971c2;
+  padding: 0.1em 0.1em;
+  font-size: 0.875rem;
+}
+
+div.content ul {
+  list-style: disc;
+  
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 1rem;
+}
+
+pre {
+  @apply rounded-lg shadow-lg p-4
 }
 
 p {
@@ -38,6 +60,10 @@ p {
 
 p:last-child {
   margin-bottom: 0rem;
+}
+
+label {
+  @apply text-lg font-semibold
 }
 
 input.input {
