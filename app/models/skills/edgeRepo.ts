@@ -11,6 +11,7 @@ import getOneBySlugWithRequirementsAndResources from "./queries/getOneBySlugWith
 import skillExists from "./queries/skillExists.edgeql";
 import createSkill from "./queries/createSkill.edgeql";
 import updateSkill from "./queries/updateSkill.edgeql";
+import deleteSkill from "./queries/deleteSkill.edgeql";
 
 const flatChildren = flatSlugs('children');
 
@@ -54,6 +55,12 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
         new_parents,
         detached_parents
       });
+    },
+    async delete(slug){
+      const old = await this.getOneBySlug(slug);
+      invariant(old !== null, SKILL_NOT_FOUND(slug));
+
+      await client.execute(deleteSkill, { slug });
     }
   }
 }

@@ -50,6 +50,17 @@ export function FakeSkillsRepo(init: Skill[]): ISkillRepo {
     },
     async update(skill){
       _store = _store.map(item => item.slug === skill.slug ? skill : item);
+    },
+    async delete(slug){
+      _store = _store.filter(item => item.slug !== slug);
+      _store = _store.map(a => a.parents.includes(slug)
+          ? {...a, parents: a.parents.filter(item => item !== slug)}
+          : a
+        );
+      _store = _store.map(a => a.children.includes(slug)
+        ? {...a, children: a.children.filter(item => item !== slug)}
+        : a
+      );
     }
   }
 }

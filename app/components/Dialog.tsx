@@ -1,0 +1,57 @@
+import * as dialog from '@zag-js/dialog';
+import { Portal } from '@reach/portal';
+import { useMachine, normalizeProps } from '@zag-js/react';
+import React from 'react';
+import clsx from 'clsx';
+import XIcon from './icons/XIcon';
+import Tooltip from './Tooltip';
+
+export function Dialog({
+  label,
+  children,
+  title,
+  description,
+  button,
+}: {
+  label: string;
+  button: React.ReactNode;
+  children: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  const [state, send] = useMachine(dialog.machine({ id: '1' }));
+
+  const api = dialog.connect(state, send, normalizeProps);
+
+  return (
+    <>
+      <button {...api.triggerProps} aria-label={label} className="btn btn-ghost text-primary float-right">
+        <Tooltip tooltip={label}>{button}</Tooltip>
+      </button>
+      {api.isOpen && (
+        <Portal>
+          <div {...api.backdropProps} />
+          <div
+            {...api.underlayProps}
+            className={clsx('modal', api.isOpen && 'modal-open')}
+          >
+            <div {...api.contentProps} className="modal-box">
+              <h2 className="text-2xl" {...api.titleProps}>
+                {title}
+              </h2>
+              <p {...api.descriptionProps}>{description}</p>
+              <div className="modal-action">{children}</div>
+
+              <button
+                className="btn btn-ghost btn-circle absolute top-2 right-2"
+                {...api.closeButtonProps}
+              >
+                <XIcon />
+              </button>
+            </div>
+          </div>
+        </Portal>
+      )}
+    </>
+  );
+}

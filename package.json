@@ -15,10 +15,12 @@
     "test:e2e": "start-server-and-test dev http://localhost:3000 \"npx cypress open\""
   },
   "dependencies": {
+    "@reach/portal": "^0.17.0",
     "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
     "@remix-run/vercel": "^1.7.0",
     "@vercel/node": "^2.4.4",
+    "@zag-js/dialog": "^0.1.13",
     "@zag-js/react": "^0.1.16",
     "@zag-js/tags-input": "^0.2.6",
     "clsx": "^1.2.1",
@@ -50,6 +52,7 @@
     "@types/node": "^18.7.14",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/testing-library__cypress": "^5.0.9",
     "@vitejs/plugin-react": "^2.0.1",
     "autoprefixer": "^10.4.8",
     "cypress": "^10.7.0",

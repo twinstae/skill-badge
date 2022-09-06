@@ -54,7 +54,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await context.skillsRepo.update(result.data);
 
-  return redirect('/skills');
+  return redirect('/skills/'+result.data.slug);
 };
 
 export default function NewSkill() {
@@ -65,10 +65,6 @@ export default function NewSkill() {
 
   const transition = useTransition();
   const isCreating = Boolean(transition.submission);
-
-  useEffect(() => {
-    (document.getElementById('input-title') as HTMLInputElement).value = skill.title;
-  }, [skill]);
 
   return (
     <CenterCardLayout>
@@ -98,6 +94,7 @@ export default function NewSkill() {
           name="title"
           maxLength={16}
           required
+          defaultValue={skill.title}
           placeholder="ex) 디자인 시스템"
           className="input input-bordered mb-2 w-full"
         />

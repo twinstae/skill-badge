@@ -45,7 +45,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await context.skillsRepo.create(result.data);
 
-  return redirect('/skills');
+  return redirect('/skills/'+result.data.slug);
 };
 
 export default function NewSkill() {

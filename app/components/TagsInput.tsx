@@ -108,6 +108,7 @@ export default function TagsInput({
               {recommendation.map((candi) => (
                 <li key={candi} className="dropdown-item flex justify-center">
                   <button
+                    type="button"
                     className="py-2 px-4 w-full btn btn-sm btn-ghost lowercase font-normal"
                     onClick={() => {
                       api.addValue(candi);
