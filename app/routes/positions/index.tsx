@@ -2,14 +2,12 @@ import { Link } from '~/Link';
 
 function PositionLink({ slug, title }: { slug: string; title: string }) {
   return (
-    <button className="w-1/2 h-full m-1 btn hover:btn-ghost text-xl md:text-2xl">
-      <Link
-        className="w-full h-full flex items-center justify-center"
-        to={'/positions/' + slug}
-      >
-        {title}
-      </Link>
-    </button>
+    <Link
+      className="w-1/2 h-full m-1 btn hover:btn-ghost text-xl md:text-2xl flex items-center justify-center"
+      to={'/positions/' + slug}
+    >
+      {title}
+    </Link>
   );
 }
 
