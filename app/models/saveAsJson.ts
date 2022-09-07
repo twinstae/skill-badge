@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import fs from 'fs/promises';
 import edgedb from 'edgedb';
 import { z } from 'zod';

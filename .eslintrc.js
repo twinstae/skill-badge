@@ -14,8 +14,14 @@ module.exports = {
       version: 28,
     },
   },
+  parserOptions: {
+    project: ['./tsconfig.json'],
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   rules: {
     'testing-library/no-await-sync-events': 'off',
-    'testing-library/prefer-screen-queries': 'off'
+    'testing-library/prefer-screen-queries': 'off',
+    '@typescript-eslint/no-floating-promises': 'error'
   },
 };
