@@ -62,6 +62,20 @@ p:last-child {
   margin-bottom: 0rem;
 }
 
+[data-part="item"][data-focus] {
+  --tw-bg-opacity: .2;
+  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+  --tw-border-opacity: 0;
+  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
+}
+
+[data-part="option-item"][data-focus] {
+  --tw-bg-opacity: .2;
+  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+  --tw-border-opacity: 0;
+  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
+}
+
 label {
   @apply text-lg font-semibold
 }

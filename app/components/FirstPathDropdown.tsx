@@ -4,6 +4,7 @@ import * as menu from '@zag-js/menu';
 import { useMachine, normalizeProps } from '@zag-js/react';
 import { Link } from '~/Link';
 import clsx from 'clsx';
+import { useNavigate } from '@remix-run/react';
 
 // 4-1 prop에 타입을 정의한다
 function FirstPathDropdown({
@@ -13,37 +14,55 @@ function FirstPathDropdown({
   current: string;
   currentPath: string;
 }) {
+  const naviagate = useNavigate();
   // 1. zag에서 복사해서 가져온다
+  // https://zagjs.com/components/react/nested-menu
   const [dropdownState, dropdownSend] = useMachine(
-    menu.machine({ id: '1', 'aria-label': 'skill' })
+    menu.machine({
+      id: 'first-path-dropdown',
+      'aria-label': '어디로?',
+      onSelect: naviagate
+    })
   );
 
   // 2. 불필요한 부분 지우고 이름을 바꾼다
-  const dropdown = menu.connect(dropdownState, dropdownSend, normalizeProps);
+  const api = menu.connect(dropdownState, dropdownSend, normalizeProps);
 
   return (
     <>
       <button
-        {...dropdown.triggerProps}
-        className={clsx(currentPath === '/' + current && 'link-primary')}
+        {...api.triggerProps}
+        className={clsx(
+          'btn btn-ghost btn-sm normal-case text-lg font-normal',
+          currentPath === '/' + current && 'link-primary'
+        )}
       >
         {current}
       </button>
       <Portal>
-        <div {...dropdown.positionerProps} className="z-50">
-          <ul {...dropdown.contentProps} className="menu bg-base-100 w-56 p-2 rounded-lg shadow-xl">
-            <li {...dropdown.getItemProps({ id: 'positions' })}>
+        <div {...api.positionerProps} className="z-50">
+          <ul
+            {...api.contentProps}
+            className="menu bg-base-100 w-56 p-2 rounded-lg shadow-xl"
+          >
+            <li {...api.getItemProps({ id: '/positions' })}>
               <Link
                 to="/positions"
-                className={clsx('/positions' === currentPath && 'link-primary')}
+                className={clsx(
+                  '/positions' === currentPath && 'link-primary'
+                )}
+                tab-index="1"
               >
                 positions
               </Link>
             </li>
-            <li {...dropdown.getItemProps({ id: 'skills' })}>
+            <li {...api.getItemProps({ id: '/skills' })}>
               <Link
                 to="/skills"
-                className={clsx('/skills' === currentPath && 'link-primary')}
+                className={clsx(
+                  '/skills' === currentPath && 'link-primary'
+                )}
+                tab-index="1"
               >
                 skills
               </Link>
