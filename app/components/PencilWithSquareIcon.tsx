@@ -1,4 +1,4 @@
-export default function PencilWithSquare() {
+export default function PencilWithSquare({ label }:{ label: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ export default function PencilWithSquare() {
       strokeWidth={1.5}
       stroke="currentColor"
       className="w-6 h-6"
+      aria-label={label}
     >
       <path
         strokeLinecap="round"

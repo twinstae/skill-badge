@@ -11,6 +11,7 @@ import { flatSlug } from '~/models/skills/transformUtil';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useSearchParam } from 'react-use';
+import { TextEditor } from '~/components/TextEditor';
 
 type LoaderData = {
   allSkillSlugs: string[];
@@ -44,7 +45,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await context.skillsRepo.create(result.data);
 
-  return redirect('/skills');
+  return redirect('/skills/'+result.data.slug);
 };
 
 export default function NewSkill() {
@@ -76,7 +77,7 @@ export default function NewSkill() {
           pattern={slugRegex}
           value={slug}
           placeholder="ex) design-system"
-          onChange={(e) => setSlug(e.target.value)}
+          onChange={(e) => setSlug(e.currentTarget.value)}
           className={clsx("input input-bordered mb-2 w-full", isSlugDuplicated && "input-error")}
         />
         {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다."/>}
@@ -114,13 +115,12 @@ export default function NewSkill() {
           maxLength={16}
           candidates={allSkillSlugs}
         />
-        <label className="label" htmlFor="input-content">
-          설명
-        </label>
-        <textarea
+        
+        <TextEditor
           id="input-content"
+          label="설명"
           name="content"
-          className="textarea textarea-bordered mb-2 w-full h-64"
+          initValue=""
         />
         <ErrorMessages errors={errors} name="content" />
         <button type="submit" className="btn btn-primary" disabled={isCreating}>

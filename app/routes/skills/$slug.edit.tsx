@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import invariant from 'tiny-invariant';
 import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
 import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
@@ -10,6 +9,7 @@ import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
+import { TextEditor } from '~/components/TextEditor';
 
 type LoaderData = {
   skill: Skill;
@@ -53,7 +53,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   await context.skillsRepo.update(result.data);
 
-  return redirect('/skills');
+  return redirect('/skills/'+result.data.slug);
 };
 
 export default function NewSkill() {
@@ -64,11 +64,6 @@ export default function NewSkill() {
 
   const transition = useTransition();
   const isCreating = Boolean(transition.submission);
-
-  useEffect(() => {
-    (document.getElementById('input-title') as HTMLInputElement).value = skill.title;
-    (document.getElementById('input-content') as HTMLInputElement).value = skill.content;
-  }, [skill]);
 
   return (
     <CenterCardLayout>
@@ -98,6 +93,7 @@ export default function NewSkill() {
           name="title"
           maxLength={16}
           required
+          defaultValue={skill.title}
           placeholder="ex) 디자인 시스템"
           className="input input-bordered mb-2 w-full"
         />
@@ -124,13 +120,11 @@ export default function NewSkill() {
           candidates={allSkillSlugs}
           initValue={skill.children}
         />
-        <label className="label" htmlFor="input-content">
-          설명
-        </label>
-        <textarea
+        <TextEditor
           id="input-content"
+          label="설명"
           name="content"
-          className="textarea textarea-bordered mb-2 w-full h-64"
+          initValue={skill.content}
         />
         <ErrorMessages errors={errors} name="content" />
         <button type="submit" className="btn btn-primary" disabled={isCreating}>

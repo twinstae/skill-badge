@@ -1,4 +1,4 @@
-import type { MetaFunction, LinksFunction } from '@remix-run/node';
+import type { MetaFunction, LinksFunction, ErrorBoundaryComponent } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -33,6 +33,34 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export const ErrorBoundary: ErrorBoundaryComponent = function({ error }) {
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>역량뱃지</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+        <a
+          href="https://github.com/twinstae/skill-badge/issues/new/choose"
+          className="btn btn-primary"
+          target="_blank"
+          rel="noreferrer"
+        >
+          개발자에게 이슈 남기기
+        </a>
+        <Scripts />
       </body>
     </html>
   );

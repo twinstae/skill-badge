@@ -16,4 +16,5 @@ interface ISkillRepo {
   async getOneBySlugWithRequirementsAndResources(slug: Skill['slug']): Promise<SkillWithRequirementsAndResourcesT | null>
   async create(skill: Skill): Promise<void>
   async update(skill: Skill): Promise<void>
+  async delete(slug: Skill['slug']): Promise<void>
 }
