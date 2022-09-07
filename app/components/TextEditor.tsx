@@ -18,8 +18,8 @@ export function TextEditor({
       <label className="label" htmlFor={id}>
         {label}
       </label>
-      <h3 id={"preview-"+id}>미리보기</h3>
-      <div aria-labelledby={"preview-"+id} dangerouslySetInnerHTML={{ __html: marked(value) }} className="content textarea textarea-bordered mb-4"/>
+      
+      <div aria-label="미리보기" dangerouslySetInnerHTML={{ __html: marked(value) }} className="content textarea textarea-bordered mb-4"/>
       <textarea
         id={id}
         name={name}
