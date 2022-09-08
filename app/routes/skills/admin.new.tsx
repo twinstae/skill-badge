@@ -8,10 +8,8 @@ import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { useState } from 'react';
-import clsx from 'clsx';
-import { useSearchParam } from 'react-use';
 import { TextEditor } from '~/components/TextEditor';
+import { logger } from '~/logger';
 
 type LoaderData = {
   allSkillSlugs: string[];
@@ -29,8 +27,9 @@ type ActionData = ZodFormattedError<Skill> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-  const result = await request.formData()
-    .then(formData => ({
+  const result = await request
+    .formData()
+    .then((formData) => ({
       slug: formData.get('slug'),
       title: formData.get('title'),
       parents: formData.getAll('parents'),
@@ -44,8 +43,9 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await context.skillsRepo.create(result.data);
+  logger.info(`skill ${result.data.slug} 생성`);
 
-  return redirect('/skills/'+result.data.slug);
+  return redirect('/skills/' + result.data.slug);
 };
 
 export default function NewSkill() {
