@@ -35,8 +35,8 @@ export const loader: LoaderFunction = async ({
 const RequirementList = createOptionalDataList<WithSkillSlug<RequirementT>>({
   selectId: (r) => r.content,
   Item: ({ data: r }) => (
-    <LinkWithTooltip to={'/skills/' + r.skillSlug} tooltip={'/skills/' + r.skillSlug}>
-      {r.content}
+    <LinkWithTooltip to={'/skills/' + r.skillSlug} tooltip={'/skills/' + r.skillSlug} tooltipClass="text-left">
+      - {r.content}
     </LinkWithTooltip>
   ),
 });

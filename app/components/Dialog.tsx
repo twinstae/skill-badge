@@ -25,7 +25,7 @@ export function Dialog({
 
   return (
     <>
-      <button {...api.triggerProps} aria-label={label} className="btn btn-ghost text-primary float-right">
+      <button {...api.triggerProps} aria-label={label} className="text-primary float-right p-0">
         <Tooltip tooltip={label}>{button}</Tooltip>
       </button>
       {api.isOpen && (

@@ -9,12 +9,13 @@ import invariant from 'tiny-invariant';
 import { marked } from 'marked';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { TrashIcon as TrashOutlineIcon, PencilSquareIcon as PencilSquareOutlineIcon } from '@heroicons/react/24/outline'
+import { TrashIcon as TrashSolidIcon, PencilSquareIcon as PencilSquareSolidIcon} from '@heroicons/react/24/solid'
 
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
-import PencilWithSquare from '~/components/icons/PencilWithSquareIcon';
 import Divider from '~/components/Divider';
 import Tooltip from '~/components/Tooltip';
 import { Dialog } from '~/components/Dialog';
@@ -25,6 +26,7 @@ import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
 import { logger } from '~/logger';
+import HoverableIcon from '~/components/icons/HoverableIcon';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
 
@@ -61,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
 const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
-    <LinkWithTooltip to="/" tooltip="프런트엔드 엔지니어">
+    <LinkWithTooltip to="/positions/frontend" tooltip="프런트엔드 엔지니어">
       {data.content}
     </LinkWithTooltip>
   ),
@@ -84,10 +86,10 @@ const ResourceList = createOptionalDataList<ResourceT>({
   ),
 });
 
-function DeleteForm({slug}: {slug: string}){
+function DeleteForm({ slug }: { slug: string }) {
   const [message, setMessage] = useState('');
   const expected = `${slug}를 삭제하겠습니다.`;
-  const isValid = message === expected
+  const isValid = message === expected;
   return (
     <Form method="post" className="flex flex-col">
       <label className="w-full">
@@ -98,21 +100,18 @@ function DeleteForm({slug}: {slug: string}){
           placeholder={expected}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className={clsx("input input-bordered mb-2 w-full", isValid && "input-success")}
+          className={clsx(
+            'input input-bordered mb-2 w-full',
+            isValid && 'input-success'
+          )}
         />
       </label>
-      <input
-        type="text"
-        name="slug"
-        value={slug}
-        hidden
-        readOnly
-      />
+      <input type="text" name="slug" value={slug} hidden readOnly />
       <button type="submit" className="btn btn-error" disabled={!isValid}>
         삭제하겠습니다
       </button>
     </Form>
-  )
+  );
 }
 
 export default function SkillDetail() {
@@ -142,19 +141,19 @@ export default function SkillDetail() {
         dangerouslySetInnerHTML={{ __html: content }}
       />
       <LinkWithTooltip
-        className="btn btn-ghost float-right"
+        className="float-right"
         to={`/skills/${slug}/edit`}
         tooltip="수정하기"
       >
-        <PencilWithSquare label="수정하기" />
+        <HoverableIcon icons={[PencilSquareSolidIcon, PencilSquareOutlineIcon]} label="수정하기" />
       </LinkWithTooltip>
       <Dialog
         label="삭제하기"
-        button={ <TrashIcon />}
+        button={<HoverableIcon icons={[TrashSolidIcon, TrashOutlineIcon]} label=""/>}
         title={`역량 ${slug}를 삭제하기`}
         description="역량과 관련된 모든 자료와 공고가 삭제됩니다. 정말 삭제하시려면 다음을 똑같이 입력해주세요."
       >
-        <DeleteForm slug={slug}/>
+        <DeleteForm slug={slug} />
       </Dialog>
       <Divider />
       <ResourceList

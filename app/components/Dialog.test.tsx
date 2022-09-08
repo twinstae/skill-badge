@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { Dialog } from './Dialog';
-import TrashIcon from './icons/TrashIcon';
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 describe('Dialog', () => {
   it('dialog를 띄우고 액션을 할 수 있다', async () => {
