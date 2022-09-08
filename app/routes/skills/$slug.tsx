@@ -7,12 +7,14 @@ import {
 import { Form, useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
 import { marked } from 'marked';
+import { useState } from 'react';
+import clsx from 'clsx';
 
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
-import PencilWithSquare from '~/components/PencilWithSquareIcon';
+import PencilWithSquare from '~/components/icons/PencilWithSquareIcon';
 import Divider from '~/components/Divider';
 import Tooltip from '~/components/Tooltip';
 import { Dialog } from '~/components/Dialog';
@@ -22,8 +24,6 @@ import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
 import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
-import { useState } from 'react';
-import clsx from 'clsx';
 import TrashIcon from '~/components/icons/TrashIcon';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;

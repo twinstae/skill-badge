@@ -46,7 +46,7 @@ function BreadCrumbs() {
 
 function NavigationBar() {
   return (
-    <nav className="sticky top-0 left-0 bg-white w-full z-40 border-b-2 p-2 navbar">
+    <nav className="sticky top-0 left-0 bg-white w-full z-40 border-b-2 pl-2">
       <BreadCrumbs />
     </nav>
   );
