@@ -63,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
 const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
-    <LinkWithTooltip to="/positions/frontend" tooltip="프런트엔드 엔지니어">
+    <LinkWithTooltip to="/positions/frontend" tooltip="프런트엔드 엔지니어" className="p-2">
       {data.content}
     </LinkWithTooltip>
   ),
