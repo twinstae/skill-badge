@@ -15,3 +15,4 @@ node_modules
 
 dbschema/edgeql-js
 app/routes/rabbit.mdx
+api/log

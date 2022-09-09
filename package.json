@@ -9,13 +9,14 @@
     "build:remix": "remix build",
     "dev": "run-p \"dev:*\"",
     "dev:css": "postcss styles --base styles --dir app/styles -w",
-    "dev:remix": "remix dev",
+    "dev:remix": "remix dev | pino-pretty",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css",
     "test": "vitest",
     "test:e2e": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
     "lint": "eslint app"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.10",
     "@reach/portal": "^0.17.0",
     "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
@@ -33,6 +34,7 @@
     "lru-cache": "^7.14.0",
     "marked": "^4.0.19",
     "patch-package": "^6.4.7",
+    "pino": "^8.5.0",
     "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -8,7 +8,7 @@ export default function CenterCardLayout({
 }) {
   return (
     <div className="flex flex-row justify-center">
-      <div className="static flex flex-col rounded-xl m-2 shadow-xl max-w-xl w-full">
+      <div className="static flex flex-col rounded-xl m-2 shadow-2xl max-w-xl w-full">
         <NavigationBar />
         <main className="h-full w-full p-4">
           {children}

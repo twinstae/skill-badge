@@ -1,6 +1,19 @@
 import type { ZodFormattedError } from 'zod';
-import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
-import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
+import {
+  type ActionFunction,
+  type LoaderFunction,
+  redirect,
+  json,
+} from '@remix-run/node';
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from '@remix-run/react';
+import { useState } from 'react';
+import clsx from 'clsx';
+import { useSearchParam } from 'react-use';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
 import ErrorMessages, { ErrorMessage } from '~/components/form/ErrorMessage';
@@ -16,10 +29,10 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async () => {
-  const allSkills = await context.skillsRepo.getAllList()
+  const allSkills = await context.skillsRepo.getAllList();
 
   return json<LoaderData>({
-    allSkillSlugs: allSkills.map(flatSlug)
+    allSkillSlugs: allSkills.map(flatSlug),
   });
 };
 
@@ -78,9 +91,12 @@ export default function NewSkill() {
           value={slug}
           placeholder="ex) design-system"
           onChange={(e) => setSlug(e.currentTarget.value)}
-          className={clsx("input input-bordered mb-2 w-full", isSlugDuplicated && "input-error")}
+          className={clsx(
+            'input input-bordered mb-2 w-full',
+            isSlugDuplicated && 'input-error'
+          )}
         />
-        {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다."/>}
+        {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다." />}
         <ErrorMessages errors={errors} name="slug" />
         <label className="label" htmlFor="input-title">
           역량 제목
@@ -115,7 +131,7 @@ export default function NewSkill() {
           maxLength={16}
           candidates={allSkillSlugs}
         />
-        
+
         <TextEditor
           id="input-content"
           label="설명"
