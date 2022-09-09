@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 import { useState } from 'react';
+import Tooltip from './Tooltip';
 
 export function TextEditor({
   id,
@@ -18,8 +19,9 @@ export function TextEditor({
       <label className="label" htmlFor={id}>
         {label}
       </label>
-      
-      <div aria-label="미리보기" dangerouslySetInnerHTML={{ __html: marked(value) }} className="content textarea textarea-bordered mb-4"/>
+      <Tooltip tooltip="미리보기" className="text-left">
+        <div aria-label="미리보기" dangerouslySetInnerHTML={{ __html: marked(value) }} className="content textarea textarea-bordered mb-4"/>
+      </Tooltip>
       <textarea
         id={id}
         name={name}
