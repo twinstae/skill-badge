@@ -24,7 +24,7 @@ import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
 import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
-import TrashIcon from '~/components/icons/TrashIcon';
+import { logger } from '~/logger';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
 
@@ -38,6 +38,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (skill === null) {
     return redirect('/skills/admin/new?slug=' + params.slug);
   }
+  logger.info(`skill ${params.slug} 읽기`);
 
   return json<LoaderData>({
     ...skill,
@@ -51,6 +52,7 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(formData.get('message') === `${slug}를 삭제하겠습니다.`);
 
   await context.skillsRepo.delete(slug);
+  logger.info(`skill ${slug} 삭제`);
 
   return redirect('/skills');
 };

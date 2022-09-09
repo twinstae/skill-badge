@@ -1,6 +1,16 @@
 import invariant from 'tiny-invariant';
-import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
-import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
+import {
+  type ActionFunction,
+  type LoaderFunction,
+  redirect,
+  json,
+} from '@remix-run/node';
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from '@remix-run/react';
 import type { ZodFormattedError } from 'zod';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
@@ -10,6 +20,7 @@ import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/TextEditor';
+import { logger } from '~/logger';
 
 type LoaderData = {
   skill: Skill;
@@ -17,19 +28,19 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
-  invariant(params.slug, `params.slug is required`);
-  
+  invariant(params.slug, 'params.slug is required');
+
   const skill = await context.skillsRepo.getOneBySlug(params.slug);
 
-  if(skill === null){
-    return redirect('/skills/admin/new?slug='+params.slug)
+  if (skill === null) {
+    return redirect('/skills/admin/new?slug=' + params.slug);
   }
 
-  const allSkills = await context.skillsRepo.getAllList()
+  const allSkills = await context.skillsRepo.getAllList();
 
   return json<LoaderData>({
     skill,
-    allSkillSlugs: allSkills.map(flatSlug)
+    allSkillSlugs: allSkills.map(flatSlug),
   });
 };
 
@@ -37,8 +48,9 @@ type ActionData = ZodFormattedError<Skill> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-  const result = await request.formData()
-    .then(formData => ({
+  const result = await request
+    .formData()
+    .then((formData) => ({
       slug: formData.get('slug'),
       title: formData.get('title'),
       parents: formData.getAll('parents'),
@@ -52,8 +64,9 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await context.skillsRepo.update(result.data);
+  logger.info(`skill ${result.data.slug} 수정`);
 
-  return redirect('/skills/'+result.data.slug);
+  return redirect('/skills/' + result.data.slug);
 };
 
 export default function NewSkill() {
