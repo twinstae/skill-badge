@@ -24,7 +24,7 @@ export default function SkillListPage() {
         새 역량 만들기
       </Link>
       <ul className="p-2 m-2 menu">
-        {skills.map((skill) => (
+        {skills.slice(0,10).map((skill) => (
           <li key={skill.slug}>
             <Link to={'/skills/' + skill.slug} className="p-2">
               {skill.title}
