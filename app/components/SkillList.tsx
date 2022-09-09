@@ -7,7 +7,7 @@ const SkillList = createOptionalDataList<string>({
   className: 'grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3',
   Item({ data: slug }) {
     return (
-      <LinkWithTooltip to={'/skills/' + slug} tooltip={'/skills/' + slug}>
+      <LinkWithTooltip to={'/skills/' + slug} tooltip={'/skills/' + slug} className="p-2 bg-slate-100 m-1 rounded-md">
         {slug}
       </LinkWithTooltip>
     );

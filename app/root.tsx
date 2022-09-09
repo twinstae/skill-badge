@@ -9,6 +9,7 @@ import {
 } from '@remix-run/react';
 import tailwind from './styles/tailwind.css';
 import styles from './styles/app.css';
+import CenterCardLayout from './components/CenterCardLayout';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -48,18 +49,20 @@ export const ErrorBoundary: ErrorBoundaryComponent = function({ error }) {
         <Links />
       </head>
       <body>
-        <h1>Error</h1>
-        <p>{error.message}</p>
-        <p>The stack trace is:</p>
-        <pre>{error.stack}</pre>
-        <a
-          href="https://github.com/twinstae/skill-badge/issues/new/choose"
-          className="btn btn-primary"
-          target="_blank"
-          rel="noreferrer"
-        >
-          개발자에게 이슈 남기기
-        </a>
+        <CenterCardLayout>
+          <a
+            href="https://github.com/twinstae/skill-badge/issues/new/choose"
+            className="btn btn-primary"
+            target="_blank"
+            rel="noreferrer"
+          >
+            개발자에게 이슈 남기기
+          </a>
+          <h1>Error</h1>
+          <p>{error.message}</p>
+          <p>The stack trace is:</p>
+          <div>{error.stack}</div>
+        </CenterCardLayout>
         <Scripts />
       </body>
     </html>

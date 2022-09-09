@@ -1,6 +1,19 @@
 import type { ZodFormattedError } from 'zod';
-import { type ActionFunction, type LoaderFunction, redirect, json } from '@remix-run/node';
-import { Form, useActionData, useLoaderData, useTransition } from '@remix-run/react';
+import {
+  type ActionFunction,
+  type LoaderFunction,
+  redirect,
+  json,
+} from '@remix-run/node';
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from '@remix-run/react';
+import { useState } from 'react';
+import clsx from 'clsx';
+import { useSearchParam } from 'react-use';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
 import ErrorMessages, { ErrorMessage } from '~/components/form/ErrorMessage';
@@ -8,20 +21,18 @@ import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { useState } from 'react';
-import clsx from 'clsx';
-import { useSearchParam } from 'react-use';
 import { TextEditor } from '~/components/TextEditor';
+import { logger } from '~/logger';
 
 type LoaderData = {
   allSkillSlugs: string[];
 };
 
 export const loader: LoaderFunction = async () => {
-  const allSkills = await context.skillsRepo.getAllList()
+  const allSkills = await context.skillsRepo.getAllList();
 
   return json<LoaderData>({
-    allSkillSlugs: allSkills.map(flatSlug)
+    allSkillSlugs: allSkills.map(flatSlug),
   });
 };
 
@@ -29,8 +40,9 @@ type ActionData = ZodFormattedError<Skill> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-  const result = await request.formData()
-    .then(formData => ({
+  const result = await request
+    .formData()
+    .then((formData) => ({
       slug: formData.get('slug'),
       title: formData.get('title'),
       parents: formData.getAll('parents'),
@@ -44,8 +56,9 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await context.skillsRepo.create(result.data);
+  logger.info(`skill ${result.data.slug} 생성`);
 
-  return redirect('/skills/'+result.data.slug);
+  return redirect('/skills/' + result.data.slug);
 };
 
 export default function NewSkill() {
@@ -78,9 +91,12 @@ export default function NewSkill() {
           value={slug}
           placeholder="ex) design-system"
           onChange={(e) => setSlug(e.currentTarget.value)}
-          className={clsx("input input-bordered mb-2 w-full", isSlugDuplicated && "input-error")}
+          className={clsx(
+            'input input-bordered mb-2 w-full',
+            isSlugDuplicated && 'input-error'
+          )}
         />
-        {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다."/>}
+        {isSlugDuplicated && <ErrorMessage error="slug가 이미 있습니다." />}
         <ErrorMessages errors={errors} name="slug" />
         <label className="label" htmlFor="input-title">
           역량 제목
@@ -115,7 +131,7 @@ export default function NewSkill() {
           maxLength={16}
           candidates={allSkillSlugs}
         />
-        
+
         <TextEditor
           id="input-content"
           label="설명"

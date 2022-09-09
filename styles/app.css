@@ -9,8 +9,8 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
   font-weight: 700;
 }
 
@@ -60,6 +60,20 @@ p {
 
 p:last-child {
   margin-bottom: 0rem;
+}
+
+[data-part="item"][data-focus] {
+  --tw-bg-opacity: .2;
+  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+  --tw-border-opacity: 0;
+  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
+}
+
+[data-part="option-item"][data-focus] {
+  --tw-bg-opacity: .2;
+  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+  --tw-border-opacity: 0;
+  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
 }
 
 label {

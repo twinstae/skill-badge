@@ -7,11 +7,12 @@ export default function LinkWithTooltip({
   tooltip,
   children,
   className,
-}: React.ComponentProps<ILink> & { tooltip: string }) {
+  tooltipClass
+}: React.ComponentProps<ILink> & { tooltip: string, tooltipClass?: string }) {
   // Link라는 컴포넌트의 Props 타입 & tooltip이라는 string prop이 추가된 타입이다
   return (
     <Link to={to} className={clsx('link-primary p-0 rounded-lg', className)} >
-      <Tooltip className="w-full p-2" tooltip={tooltip}>
+      <Tooltip className={clsx("w-full", tooltipClass)} tooltip={tooltip}>
         {children}
       </Tooltip>
     </Link>

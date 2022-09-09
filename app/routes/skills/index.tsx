@@ -5,12 +5,15 @@ import CenterCardLayout from '~/components/CenterCardLayout';
 import { Link } from '~/Link';
 import type { Skill } from '~/models/skills/schema';
 import { context } from '~/models/context';
+import { logger } from '~/logger';
 
 type LoaderData = {
   skills: Pick<Skill, 'slug' | 'title'>[];
 };
 
 export const loader = async () => {
+  logger.info('skill 목록 보기');
+
   const skills = await context.skillsRepo.getAllList();
   return json<LoaderData>({ skills });
 };
