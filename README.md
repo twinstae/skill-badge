@@ -1,4 +1,5 @@
-# Welcome to Remix!
+# 역량배지
+역량 배지는 remix와 edgedb로 만들었습니다.
 
 - [Remix Docs](https://remix.run/docs)
 
