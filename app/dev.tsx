@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import Spinner from './components/Spinner';
+import Spinner from './components/shared/Spinner';
 
 import Page from './routes/skills/$slug';
 import './tailwind.css';

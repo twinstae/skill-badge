@@ -16,9 +16,9 @@ import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/form/TextEditor';
-import TagsInput from '~/components/form/TagsInput';
 import CenterCardLayout from '~/components/CenterCardLayout';
-import Spinner from '~/components/Spinner';
+import Spinner from '~/components/shared/Spinner';
+import TagsInput from '~/components/form/TagsInput';
 import ErrorMessages from '~/components/form/ErrorMessage';
 
 type LoaderData = {

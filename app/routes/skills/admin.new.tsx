@@ -15,7 +15,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { useSearchParam } from 'react-use';
 import CenterCardLayout from '~/components/CenterCardLayout';
-import Spinner from '~/components/Spinner';
+import Spinner from '~/components/shared/Spinner';
 import ErrorMessages, { ErrorMessage } from '~/components/form/ErrorMessage';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';

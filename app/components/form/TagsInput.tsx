@@ -4,7 +4,7 @@ import type { ZodFormattedError } from 'zod/lib/ZodError';
 import clsx from 'clsx';
 
 import ErrorMessages from '~/components/form/ErrorMessage';
-import Tooltip from '~/components/Tooltip';
+import Tooltip from '~/components/shared/Tooltip';
 
 export default function TagsInput({
   id,

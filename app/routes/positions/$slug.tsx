@@ -2,7 +2,7 @@ import { json, redirect, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
-import LinkWithTooltip from '~/components/LinkWithTooltip';
+import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
 import { Link } from '~/Link';
 import { fakeRequirementList } from '~/models/requirements/fakeRepo';
 import type { RequirementT } from '~/models/requirements/schema';

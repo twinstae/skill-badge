@@ -21,10 +21,10 @@ import {
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
 import createOptionalDataList from '~/components/createDataList';
-import LinkWithTooltip from '~/components/LinkWithTooltip';
-import Divider from '~/components/Divider';
-import Tooltip from '~/components/Tooltip';
-import { Dialog } from '~/components/Dialog';
+import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
+import Divider from '~/components/shared/Divider';
+import Tooltip from '~/components/shared/Tooltip';
+import { Dialog } from '~/components/shared/Dialog';
 
 import { context } from '~/models/context';
 import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
