@@ -25,8 +25,19 @@ h3 {
   line-height: 1.5rem;
 }
 
+.bg-quote {
+  background-color: rgb(238 239 248);
+}
+
+.bg-quote:hover {
+  background-color: rgb(228 229 238);
+}
+.bg-quote:focus {
+  background-color: rgb(228 229 238);
+}
+
 blockquote {
-  background-color: rgb(243 244 253);
+  background-color: rgb(238 239 248);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
