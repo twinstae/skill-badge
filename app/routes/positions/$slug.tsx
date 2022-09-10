@@ -3,6 +3,7 @@ import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
+import { Link } from '~/Link';
 import { fakeRequirementList } from '~/models/requirements/fakeRepo';
 import type { RequirementT } from '~/models/requirements/schema';
 import type { WithSkillSlug } from '~/models/skills/schema';
@@ -11,14 +12,6 @@ import type { WithSkillSlug } from '~/models/skills/schema';
 type LoaderData = {
   position: string;
   requirements: WithSkillSlug<RequirementT>[];
-};
-
-const fakeRepuirementsRepo: Record<
-  'frontend' | 'backend',
-  WithSkillSlug<RequirementT>[]
-> = {
-  frontend: fakeRequirementList,
-  backend: fakeRequirementList,
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -31,7 +24,9 @@ export const loader: LoaderFunction = async ({ params }) => {
   // slug: "frontend" | "backend"
   return json<LoaderData>({
     position: slug,
-    requirements: fakeRepuirementsRepo[slug],
+    requirements: fakeRequirementList
+      .filter(item => item.position === slug)
+      .sort((a,b) => b.count - a.count),
   });
 };
 
@@ -57,9 +52,15 @@ export default function PositionDetail() {
   return (
     <CenterCardLayout>
       {/* 4. 사용 */}
-      <h1>{position}</h1>
+      <Link
+        to={position === 'frontend' ? '/positions/backend' : '/positions/frontend'}
+        className="btn btn-primary btn-sm float-right"
+      >
+        {position === 'frontend' ? '백엔드' : '프런트엔드'} 보러 가기
+      </Link>
+      <h1 className="text-primary">{position}</h1>
       <RequirementList
-        title="자격 조건"
+        title="요구 역량"
         titleId="requirements-title"
         dataList={requirements}
       />
