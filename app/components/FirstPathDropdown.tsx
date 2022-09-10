@@ -20,7 +20,7 @@ function FirstPathDropdown({
   const [dropdownState, dropdownSend] = useMachine(
     menu.machine({
       id: 'first-path-dropdown',
-      'aria-label': '어디로?',
+      'aria-label': currentPath + ' 이동하려면 클릭',
       onSelect: naviagate
     })
   );
@@ -51,9 +51,9 @@ function FirstPathDropdown({
                 className={clsx(
                   '/positions' === currentPath && 'link-primary'
                 )}
-                tab-index="1"
+                aria-current={'/positions' === currentPath}
               >
-                positions
+                positions 채용 공고
               </Link>
             </li>
             <li {...api.getItemProps({ id: '/skills' })}>
@@ -62,9 +62,20 @@ function FirstPathDropdown({
                 className={clsx(
                   '/skills' === currentPath && 'link-primary'
                 )}
-                tab-index="1"
+                aria-current={'/skills' === currentPath}
               >
-                skills
+                skills 역량
+              </Link>
+            </li>
+            <li {...api.getItemProps({ id: '/badges' })}>
+              <Link
+                to="/badges"
+                className={clsx(
+                  '/badges' === currentPath && 'link-primary'
+                )}
+                aria-current={'/badges' === currentPath}
+              >
+                badges 배지
               </Link>
             </li>
           </ul>
