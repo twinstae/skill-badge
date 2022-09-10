@@ -19,9 +19,9 @@ export const skillSchema = slugTitleSchema.extend({
   content: z.string().trim(),
 });
 
-export type Skill = z.infer<typeof skillSchema>;
+export type SkillT = z.infer<typeof skillSchema>;
 
-export type WithSkillSlug<T> = T & { skillSlug: Skill['slug'] }
+export type WithSkillSlug<T> = T & { skillSlug: SkillT['slug'] }
 
 export function withSkillSlug<T extends ZodRawShape>(schema: ZodObject<T>){
   return schema.extend({ skillSlug: z.string() });

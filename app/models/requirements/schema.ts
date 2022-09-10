@@ -6,7 +6,7 @@ const PositionSchema = slugTitleSchema;
 export type PositionT = z.infer<typeof PositionSchema>;
 
 export const requirementSchema = withSkillSlug(z.object({
-  uuid: z.string().uuid(),
+  id: z.string().uuid(),
   content: z.string(),
   positionSlug: PositionSchema.shape.slug,
 }));

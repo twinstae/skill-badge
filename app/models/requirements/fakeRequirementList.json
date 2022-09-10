@@ -1,0 +1,482 @@
+[
+  {
+    "id": "d5836f15-208e-447a-9c8c-9d360b25f26a",
+    "content": "HTML5, CSS3, ES6 Javascript 등 웹 표준, 시맨틱 마크업에 능숙하신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "web-standard"
+  },
+  {
+    "id": "0960f46b-5067-4376-876b-55c9d06ca9b4",
+    "content": "Sass등 CSS 전처리기를 활용해 개발할 수 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "sass"
+  },
+  {
+    "id": "02b0a9c9-481a-490b-923b-98321e90a1d9",
+    "content": "vue, react, angular, svelte 등 SPA 프레임워크를 능숙하게 활용하시는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "spa-framework"
+  },
+  {
+    "id": "b2442314-1b0c-45e7-9aa3-0506b99f9958",
+    "content": "크로스 브라우징에 대한 이해가 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "cross-browsing"
+  },
+  {
+    "id": "4b4dd910-083e-4b84-8b7b-b367a1b49f8e",
+    "content": "Vue.js를 이용한 웹앱 개발에 대한 충분한 경험",
+    "positionSlug": "frontend",
+    "skillSlug": "vue"
+  },
+  {
+    "id": "0b3a0714-c1ab-4428-b048-611dcb5770c0",
+    "content": "React에 능숙하신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "react"
+  },
+  {
+    "id": "33407712-547f-48eb-9c46-617462d2697b",
+    "content": "React Native 를 이용한 앱 개발 경험이 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "react-native"
+  },
+  {
+    "id": "2b9ed25d-55a4-4a6d-b708-86736b8b65fe",
+    "content": "함수형 프로그래밍, 이터러블 프로그래밍에 익숙한 분",
+    "positionSlug": "frontend",
+    "skillSlug": "functional"
+  },
+  {
+    "id": "0abdac24-eda4-4809-a7aa-cd3fe8399139",
+    "content": "TypeScript 기반의 서비스를 개발 및 개선해 본 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "typescript"
+  },
+  {
+    "id": "2b69f562-e596-4301-bd4a-a36c97124c7c",
+    "content": "글로벌 개발자 커뮤니티를 활용할 수 있는 수준의 영어 독해/작문 역량",
+    "positionSlug": "frontend",
+    "skillSlug": "english"
+  },
+  {
+    "id": "437b287e-fdd9-4e19-8a70-028e21438bd2",
+    "content": "측정 가능한 데이터 기반의 성능 최적화 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "optimization"
+  },
+  {
+    "id": "2712c007-8086-4776-a55e-37432e96001e",
+    "content": "SEO에 대한 이해도가 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "seo"
+  },
+  {
+    "id": "be919ba5-a39e-4ac3-af1e-62d6e8d0df2c",
+    "content": "여러 국가에 걸쳐 서비스를 운영/배포한 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "i18n"
+  },
+  {
+    "id": "287e2112-827b-4e50-b5b5-b77e7f95f7d8",
+    "content": "Redux, MobX, Jotai 등 상태관리 라이브러러 사용 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "state-management"
+  },
+  {
+    "id": "93cf2ea0-f6f8-42f7-a353-65169bcee37d",
+    "content": "react query",
+    "positionSlug": "frontend",
+    "skillSlug": "react-query"
+  },
+  {
+    "id": "b03711ae-0683-4e6b-a004-19ec04b18ff0",
+    "content": "웹팩4 및 웹팩5 빌드 과정을 상세하게 설정할 수 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "webpack"
+  },
+  {
+    "id": "bff6fe2b-cd40-4d5c-ac99-b0eff3e46a43",
+    "content": "storybook",
+    "positionSlug": "frontend",
+    "skillSlug": "storybook"
+  },
+  {
+    "id": "810f0466-00f5-4542-93fe-a3d26e28790b",
+    "content": "RESTful API 기반 개발 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "restful-api"
+  },
+  {
+    "id": "fb7411aa-d568-4da0-b9aa-d43a8c2cafc8",
+    "content": "Git과 Github를 사용하여 프로젝트를 관리해보신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "git"
+  },
+  {
+    "id": "3c8574dd-f9bd-48e1-a786-34db34b11f6f",
+    "content": "Canvas 사용 경험",
+    "positionSlug": "frontend",
+    "skillSlug": "canvas"
+  },
+  {
+    "id": "4566f265-3503-41c9-ba6b-80c443e499e3",
+    "content": "WebGL/OpenGL을 활용하여 개발해보신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "webgl"
+  },
+  {
+    "id": "f12e4465-8185-472d-b35d-701a0e46ed19",
+    "content": "컴퓨터공학 전공 혹은 그에 준하는 전공 및 지식을 보유하신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "computer-science"
+  },
+  {
+    "id": "a5ff5de2-d387-472d-93aa-7c5ddbf66a50",
+    "content": "다양한 직군과 함께 문제를 정의하고 해결책을 찾아내는 협업 능력 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "collaboration"
+  },
+  {
+    "id": "7f6412c4-f7ee-44e2-9fba-f50e5c8b2969",
+    "content": "NextJS로 프로젝트를 진행해 본 경험이 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "next-js"
+  },
+  {
+    "id": "7456801a-f680-4ae1-b5e7-28396ffd1308",
+    "content": "Jest, Playwright 등으로 테스트를 작성하며 개발하는데 부담이 없으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "test"
+  },
+  {
+    "id": "727f71f4-6df6-4222-8fe5-224e63ee6d1f",
+    "content": "클린한 아키텍처에 관심이 많으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "architecture"
+  },
+  {
+    "id": "a95ffc03-afaa-4a8c-9901-8c8c601392b0",
+    "content": "GraphQL에 대한 경험이 있으신분",
+    "positionSlug": "frontend",
+    "skillSlug": "graph-ql"
+  },
+  {
+    "id": "e977a3e6-9afa-4bca-a709-5434842ed88c",
+    "content": "Javascript 관련 오픈 소스 기여 경험이 있으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "open-source"
+  },
+  {
+    "id": "cfe1654d-660c-421f-8289-c5ac0126580e",
+    "content": "백엔드 서비스 개발 경험 및 Database에 대한 이해를 갖추신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "backend"
+  },
+  {
+    "id": "4e79867d-b93d-4692-85ba-4c03c4bba3b1",
+    "content": "CI/CD, 빌드 자동화, 지속적 통합에 관심이 많은 분",
+    "positionSlug": "frontend",
+    "skillSlug": "ci-cd"
+  },
+  {
+    "id": "47fa7fe8-3e7f-4b14-b0fb-b909962b9311",
+    "content": "서버 사이드 렌더링(SSR)에 대한 이해 및 처리 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "ssr"
+  },
+  {
+    "id": "89ec3545-937f-4a69-9856-1ab92656f4c5",
+    "content": "애자일 스프린트, MVP 단위 개발 프로세스에서의 개발 경험이 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "agile"
+  },
+  {
+    "id": "41d6e0a7-97dc-4afd-98f4-65fbce707264",
+    "content": "AWS (Route53, Cloudfront, S3 를 포함한 다양한 서비스",
+    "positionSlug": "frontend",
+    "skillSlug": "aws"
+  },
+  {
+    "id": "654ef331-f2da-4c78-8a07-ed6ba9caf3ee",
+    "content": "Linux의 기본적인 명령어들을 사용할 수 있는 분",
+    "positionSlug": "frontend",
+    "skillSlug": "linux"
+  },
+  {
+    "id": "79b64433-042d-4a19-ab5e-0ba0ced51681",
+    "content": "Figma / Zeplin을 사용할 디자이너와 협업이 가능하신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "design-tool"
+  },
+  {
+    "id": "fffa5256-454c-4adf-9d46-2884fb936a21",
+    "content": "적극적으로 코드 리뷰에 참여한 경험이 있거나 코드 리뷰에 대해 부담이 없으신 분",
+    "positionSlug": "frontend",
+    "skillSlug": "code-review"
+  },
+  {
+    "id": "1dbbfcbf-85b3-460a-b13c-5f4e9b5b2cb2",
+    "content": "Kotlin/Java/Python/Ruby 등 하나 이상의 프로그래밍 언어 전문성을 보유하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "pr-lang"
+  },
+  {
+    "id": "d7d9b468-c303-4262-b83f-b5ec5bb3c7c0",
+    "content": "파이썬을 이용한 서버 개발 경험",
+    "positionSlug": "backend",
+    "skillSlug": "python"
+  },
+  {
+    "id": "6aab245d-aa73-4a9a-9868-0bb616f4181a",
+    "content": "Django 사용 가능자",
+    "positionSlug": "backend",
+    "skillSlug": "django"
+  },
+  {
+    "id": "78ca0982-5d83-41eb-939b-01db982b3d4a",
+    "content": "Python 3.8 이상의 문법, 타입 힌트 사용 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "py-type-hint"
+  },
+  {
+    "id": "e45797bd-e028-4b89-ad82-6c18b5ff9753",
+    "content": "전공지식은 필요하지만 전공학위는 꼭 필요하다고 생각하지 않기에 컴퓨터공학 학위 여부는 보지 않아요.",
+    "positionSlug": "backend",
+    "skillSlug": "computer-science"
+  },
+  {
+    "id": "9f1c2941-9dc7-4e07-a0da-56c3f72511e4",
+    "content": "RDBMS 및 다양한 NoSQL 데이터베이스에 대한 지식을 보유하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "database"
+  },
+  {
+    "id": "06a622f6-34dd-412a-80f8-b934f3e9af7b",
+    "content": "RDBMS 사용 경험",
+    "positionSlug": "backend",
+    "skillSlug": "rdbms"
+  },
+  {
+    "id": "674e9c69-c904-4a0e-b8d2-051b13b68622",
+    "content": "Redis, Kafka, ElasticSearch, Solr 등 NoSQL 사용 경험",
+    "positionSlug": "backend",
+    "skillSlug": "no-sql-db"
+  },
+  {
+    "id": "c7e014f0-ec3a-4d9f-8ac4-d8ac8c5b11b1",
+    "content": "JPA 등 ORM을 사용하는데 능숙하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "orm"
+  },
+  {
+    "id": "fdac9cb3-3201-412c-8e79-3cb1fcc1da59",
+    "content": "JPA와 DB Transaction에 대한 높은 이해도를 보유하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "jpa"
+  },
+  {
+    "id": "33ffe9f1-e08a-4410-932c-c4039d59d784",
+    "content": "비동기 네트워크 프로그래밍 관련 경험을 보유하시거나 이해도가 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "async"
+  },
+  {
+    "id": "361abb3f-ad98-4ea9-960c-2c4e42da87e1",
+    "content": "대용량 트래픽 처리에 대한 이해 및 서비스 경험이 있는 분",
+    "positionSlug": "backend",
+    "skillSlug": "large-traffic"
+  },
+  {
+    "id": "9dc1819f-fe24-4f15-a8d6-3429b5d1b9de",
+    "content": "kafka 경험자",
+    "positionSlug": "backend",
+    "skillSlug": "kafka"
+  },
+  {
+    "id": "ab0eb381-96df-44cd-bcdd-ad0e6eb8c6b0",
+    "content": "ElasticSearch 사용 경험이 있는 분",
+    "positionSlug": "backend",
+    "skillSlug": "kafka"
+  },
+  {
+    "id": "5dd17b2a-ca74-4553-8ecf-a887927b0b5a",
+    "content": "React, Vue, Angular 개발 경험이 있는 분",
+    "positionSlug": "backend",
+    "skillSlug": "spa-framework"
+  },
+  {
+    "id": "0fe0f82f-ab3d-4b19-b3b4-fc7fadadf067",
+    "content": "MSA 개발 경험",
+    "positionSlug": "backend",
+    "skillSlug": "msa"
+  },
+  {
+    "id": "5f0276a4-9098-45f3-ae8e-91b279429c77",
+    "content": "Agile Methodology & Practice 경험 및 지식을 보유하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "agile"
+  },
+  {
+    "id": "6586ed34-fcbe-44d2-b52a-c637b2dd9f4e",
+    "content": "AWS EC2, ECS, RDS, Cloudfront, Route 53, VPC 등을 사용해 직접 인프라를 만들고 유지 보수해 본 경험",
+    "positionSlug": "backend",
+    "skillSlug": "aws"
+  },
+  {
+    "id": "4397e5c1-e707-42ba-9d77-677e098322fa",
+    "content": "Docker 기반 개발 환경에 익숙하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "docker"
+  },
+  {
+    "id": "8efd516b-bd92-4727-980d-10c99202d0de",
+    "content": "Kubernetes 기반 서비스 경험",
+    "positionSlug": "backend",
+    "skillSlug": "kubernetes"
+  },
+  {
+    "id": "b0753ee4-d6de-4267-bf5a-5ecc2bbca8ed",
+    "content": "Node.js 기반 웹 어플리케이션 개발이 가능하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "nodejs"
+  },
+  {
+    "id": "3e4649a5-8d3e-4aec-b276-1a398da5d510",
+    "content": "Socket.io와 같은 양방향 통신 라이브러리를 사용해 개발한 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "socket-io"
+  },
+  {
+    "id": "ac14dc7e-8208-4153-be9c-548760473fa3",
+    "content": "정적 타입 언어를 사용했거나, TypeScript에 대한 깊은 이해가 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "typescript"
+  },
+  {
+    "id": "dba3677c-d0c5-4dff-9170-42e2a12e5476",
+    "content": "MySQL 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "mysql"
+  },
+  {
+    "id": "f1c0ef0a-1688-4d6a-bbda-9b7433e2158c",
+    "content": "MongoDB 등의 NoSQL을 사용해보셨거나, 학습할 의지가 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "mongodb"
+  },
+  {
+    "id": "707fa872-6fed-4976-bf65-54cfade0f2ed",
+    "content": "Redis 등 인메모리 DB에 대한 높은 이해를 가지고 계신 분",
+    "positionSlug": "backend",
+    "skillSlug": "redis"
+  },
+  {
+    "id": "e984e2bf-91cc-4dc6-86c6-2444e51283de",
+    "content": "웹 프로토콜 및 네트워크 인프라에 대한 이해를 갖추신 분",
+    "positionSlug": "backend",
+    "skillSlug": "network"
+  },
+  {
+    "id": "e6242463-925d-48fa-bf12-c5826cd85146",
+    "content": "Java/Kotlin 기반 서버 개발 경험",
+    "positionSlug": "backend",
+    "skillSlug": "java"
+  },
+  {
+    "id": "d6dfbbf4-564f-46b8-a6cc-69ea4cac9591",
+    "content": "기본적인 Linux기반의 운영체제에 대한 사용 경험이 있는 분",
+    "positionSlug": "backend",
+    "skillSlug": "linux"
+  },
+  {
+    "id": "df5b6c38-b596-40b1-910c-61c458e19576",
+    "content": "HTTP, RESTful API에 대한 이해",
+    "positionSlug": "backend",
+    "skillSlug": "http"
+  },
+  {
+    "id": "b229c96e-730a-4a71-bf3c-07fcde328b88",
+    "content": "REST API 기반 서버 시스템의 개발 및 운영 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "restful-api"
+  },
+  {
+    "id": "5677172c-9d82-41f7-9e2b-a54b64ef1410",
+    "content": "GraphQL 사용 경험",
+    "positionSlug": "backend",
+    "skillSlug": "graph-ql"
+  },
+  {
+    "id": "9c398431-f8be-4136-8c65-fa0abfb29b9a",
+    "content": "RDBMS에 대한 이해",
+    "positionSlug": "backend",
+    "skillSlug": "rdbms"
+  },
+  {
+    "id": "9bee75f5-fbe1-430c-8943-a5fd0bbd4283",
+    "content": "데이터의 양이 급격히 증가하는 환경에서 DB tuning을 해본 경험",
+    "positionSlug": "backend",
+    "skillSlug": "database-tuning"
+  },
+  {
+    "id": "49bd283a-a168-49f4-b7b8-5f7eaafdc090",
+    "content": "Spring Framework 사용 경험",
+    "positionSlug": "backend",
+    "skillSlug": "spring"
+  },
+  {
+    "id": "5d9689a8-c9f6-4037-9c91-717c08959f4f",
+    "content": "Spring webflux를 이용한 비동기 프로그래밍 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "spring-webflux"
+  },
+  {
+    "id": "a7559a8a-65c1-4f0f-8605-b47fedfed7d8",
+    "content": "테스트코드 작성 및 꾸준한 리펙터링을 추구하는 분",
+    "positionSlug": "backend",
+    "skillSlug": "test"
+  },
+  {
+    "id": "7d20277c-6fdb-4e32-a49d-e1db4c42181f",
+    "content": "TDD 적용 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "tdd"
+  },
+  {
+    "id": "5eac8ff9-33d9-493c-b99f-8e4c36d28e85",
+    "content": "빌드/테스트/배포 자동화 경험",
+    "positionSlug": "backend",
+    "skillSlug": "ci-cd"
+  },
+  {
+    "id": "f62ee738-cbed-4cca-a985-f5993e9202a5",
+    "content": "웹 보안 관련 지식 보유",
+    "positionSlug": "backend",
+    "skillSlug": "web-security"
+  },
+  {
+    "id": "86b64778-0f97-4eb0-bebd-fb998702d529",
+    "content": "다양한 분야의 사람들과 팀워크 및 협업 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "collaboration"
+  },
+  {
+    "id": "a7ce8995-db7b-477d-bb21-e01dc06c86ee",
+    "content": "Git을 통한 협업 및 코드 관리 경험이 있는 분",
+    "positionSlug": "backend",
+    "skillSlug": "git"
+  },
+  {
+    "id": "853df20b-1a6a-4a05-a4fb-cd60947eb693",
+    "content": "모니터링/로그/알람을 통해 장애를 탐지하고 해결해본 경험이 있으신 분",
+    "positionSlug": "backend",
+    "skillSlug": "observability"
+  },
+  {
+    "id": "d3432f37-0ca2-4d3f-ad20-ef705de94aa5",
+    "content": "문서화에 대한 집착이 강하신 분",
+    "positionSlug": "backend",
+    "skillSlug": "documentation"
+  }
+]

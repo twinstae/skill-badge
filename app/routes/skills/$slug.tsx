@@ -67,8 +67,8 @@ const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
     <LinkWithTooltip
-      to={'/positions/' + data.position}
-      tooltip={data.position + ' 직군'}
+      to={'/positions/' + data.positionSlug}
+      tooltip={data.positionSlug + ' 직군'}
       className="p-2"
     >
       {data.content}

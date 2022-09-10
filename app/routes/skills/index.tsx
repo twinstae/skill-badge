@@ -3,11 +3,11 @@ import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { Link } from '~/Link';
-import type { Skill } from '~/models/skills/schema';
+import type { SkillT } from '~/models/skills/schema';
 import { context } from '~/models/context';
 
 type LoaderData = {
-  skills: Pick<Skill, 'slug' | 'title'>[];
+  skills: Pick<SkillT, 'slug' | 'title'>[];
 };
 
 export const loader = async () => {

@@ -12,7 +12,7 @@ import {
   useTransition,
 } from '@remix-run/react';
 import type { ZodFormattedError } from 'zod';
-import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
+import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/form/TextEditor';
@@ -22,7 +22,7 @@ import TagsInput from '~/components/form/TagsInput';
 import ErrorMessages from '~/components/form/ErrorMessage';
 
 type LoaderData = {
-  skill: Skill;
+  skill: SkillT;
   allSkillSlugs: string[];
 };
 
@@ -43,7 +43,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   });
 };
 
-type ActionData = ZodFormattedError<Skill> | undefined;
+type ActionData = ZodFormattedError<SkillT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData

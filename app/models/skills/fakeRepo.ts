@@ -7,11 +7,11 @@ import { fakeReactResources } from '../resources/fakeRepo';
 import { SKILL_ALREADY_EXISTS } from './errorMessages';
 import skillsData from './fakeSkills.json';
 import type { ISkillRepo } from './IRepo';
-import { type Skill, skillSchema } from './schema';
+import { type SkillT, skillSchema } from './schema';
 
-export const fakeSkillList: Skill[] = z.array(skillSchema).parse(skillsData);
+export const fakeSkillList: SkillT[] = z.array(skillSchema).parse(skillsData);
 
-export function FakeSkillsRepo(init: Skill[]): ISkillRepo {
+export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
   let _store = init;
   return {
     async getAllList(){

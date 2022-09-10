@@ -1,5 +1,4 @@
-import rawFrontReqList from './frontReqList.json';
-import rawBackReqList from './backReqList.json';
+import rawRequirementList from './fakeRequirementList.json';
 import { requirementSchema, type RequirementT } from './schema';
 import type { IPositionsRepo } from './IRepo';
 import { withSkillSlug } from '../skills/schema';
@@ -7,10 +6,6 @@ import { z } from 'zod';
 import { uuidv4 } from '../uuidv4';
 
 const reqListSchema = z.array(withSkillSlug(requirementSchema));
-
-const rawRequirementList = rawFrontReqList
-  .map((v) => ({ ...v, uuid: uuidv4(), positionSlug: 'frontend' }))
-  .concat(rawBackReqList.map((v) => ({ ...v, uuid: uuidv4(), positionSlug: 'backend' })));
 
 export const fakeRequirementList = reqListSchema.parse(rawRequirementList);
 
@@ -28,15 +23,15 @@ export function FakePositionsRepo(
     async getRequirementsByPosition(positionSlug) {
       return _store.filter((req) => req.positionSlug === positionSlug);
     },
-    async addRequirement(requirement: Omit<RequirementT, 'uuid'>) {
-      _store = [..._store, { ...requirement, uuid: uuidv4() }];
+    async addRequirement(requirement) {
+      _store = [..._store, { ...requirement, id: uuidv4() }];
     },
-    async deleteRequirement(uuid: string) {
-      _store = _store.filter((req) => req.uuid !== uuid);
+    async deleteRequirement(uuid) {
+      _store = _store.filter((req) => req.id !== uuid);
     },
-    async updateRequirement(requirement: RequirementT) {
+    async updateRequirement(requirement) {
       _store = _store.map((req) =>
-        req.uuid === requirement.uuid ? requirement : req
+        req.id === requirement.id ? requirement : req
       );
     },
   };
