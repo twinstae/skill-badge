@@ -24,7 +24,7 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html lang="ko">
+    <html lang="ko" data-theme="emerald">
       <head>
         <Meta />
         <Links />

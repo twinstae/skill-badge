@@ -26,26 +26,26 @@ h3 {
 }
 
 .bg-quote {
-  background-color: rgb(238 239 248);
+  background-color: hsl(var(--p) / 0.05);
 }
 
 .bg-quote:hover {
-  background-color: rgb(228 229 238);
+  background-color: hsl(var(--p) / 0.1);
 }
 .bg-quote:focus {
-  background-color: rgb(228 229 238);
+  background-color: hsl(var(--p) / 0.1);
 }
 
 blockquote {
-  background-color: rgb(238 239 248);
+  background-color: hsl(var(--p) / 0.05);
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
 
 :not(pre)>code {
-  background: rgb(233 234 243);
+  background-color: hsl(var(--p) / 0.05);
   border-radius: 0.25em;
-  color: #1971c2;
+  color: hsl(var(--p) / 1);
   padding: 0.1em 0.1em;
   font-size: 0.875rem;
 }
@@ -103,5 +103,22 @@ input.input:not(:placeholder-shown):not(:focus):invalid {
   @apply min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
 }
 .dropdown-item {
-  @apply text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
+  @apply swap text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
+}
+
+a:focus .tooltip:before, 
+a:focus .tooltip:after,
+button:focus .tooltip:before,
+button:focus .tooltip:after {
+  opacity: 1;
+  transition-delay: 75ms;
+}
+
+a:focus .swap-off,
+button:focus .swap-off {
+  opacity: 0;
+}
+a:focus .swap-on,
+button:focus .swap-on {
+  opacity: 1;
 }

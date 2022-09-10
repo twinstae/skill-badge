@@ -9,8 +9,8 @@ function BreadCrumbs() {
   const currentPath = location.pathname; // "/skills/agile" | "/skills" | "/"
   const pathParts = currentPath.split('/'); // ["", "skills", "agile"] | ["", "skills"] | [""]
   return (
-    <div className="breadcrumbs">
-      <ul className="navbar">
+    <div className="breadcrumbs p-0">
+      <ul className="p-2">
         <li>
           <Link to="/" className="btn btn-ghost btn-sm normal-case text-lg">
             역량 배지
@@ -33,6 +33,7 @@ function BreadCrumbs() {
                   'btn btn-ghost btn-sm normal-case text-lg font-normal',
                   itemPath === currentPath && 'link-primary'
                 )}
+                aria-current={itemPath === currentPath}
               >
                 {item}
               </Link>
@@ -46,7 +47,7 @@ function BreadCrumbs() {
 
 function NavigationBar() {
   return (
-    <nav className="sticky top-0 left-0 bg-white w-full z-40 border-b-2 pl-2">
+    <nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100">
       <BreadCrumbs />
     </nav>
   );
