@@ -1,7 +1,10 @@
-CREATE MIGRATION m1jix37l2rxuc4mkqc37mowb2ro4xk2dgbvxhxqnbmytm4wkadueva
-    ONTO m1j6lzcm47fbype3pot3on3cawb76pfk3v5tlkca2kvdf4ofjztrea
+CREATE MIGRATION m1nkiwyg42wk6rdmtn7rlcydohnhmuhluq2paxrzd6dsumd2gl5dza
+    ONTO m1uoaaw5gbdu4tken2eu2cq5dk2el4pbplcdln5adyt5jiq3opo3kq
 {
-  ALTER TYPE default::Skill {
-      DROP LINK parents;
+  ALTER TYPE default::Requirement {
+      ALTER PROPERTY content {
+          CREATE CONSTRAINT std::exclusive;
+          CREATE CONSTRAINT std::min_len_value(1);
+      };
   };
 };

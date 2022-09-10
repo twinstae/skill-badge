@@ -50,7 +50,7 @@ client
     const data = z.array(withSkillSlug(requirementSchema))
       .parse(raw.map(flatSkillSlug));
     return fs.writeFile(
-      './app/models/requirements/fakeRequirements.json',
+      './app/models/requirements/fakeRequirementList.json',
       JSON.stringify(data),
       { encoding: 'utf8' }
     );
