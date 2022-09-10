@@ -1,4 +1,4 @@
-type IconT = (props: React.ComponentProps<'svg'>) => JSX.Element
+export type IconT = (props: React.ComponentProps<'svg'>) => JSX.Element
 
 function HoverableIcon({ icons: [SolidIcon, OutlineIcon], label }: {
   icons: [IconT, IconT],
