@@ -12,14 +12,14 @@ import {
   useTransition,
 } from '@remix-run/react';
 import type { ZodFormattedError } from 'zod';
-import CenterCardLayout from '~/components/CenterCardLayout';
-import Spinner from '~/components/Spinner';
-import ErrorMessages from '~/components/form/ErrorMessage';
-import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { TextEditor } from '~/components/TextEditor';
+import { TextEditor } from '~/components/form/TextEditor';
+import TagsInput from '~/components/form/TagsInput';
+import CenterCardLayout from '~/components/CenterCardLayout';
+import Spinner from '~/components/Spinner';
+import ErrorMessages from '~/components/form/ErrorMessage';
 
 type LoaderData = {
   skill: Skill;

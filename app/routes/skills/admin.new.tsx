@@ -17,11 +17,11 @@ import { useSearchParam } from 'react-use';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/Spinner';
 import ErrorMessages, { ErrorMessage } from '~/components/form/ErrorMessage';
-import TagsInput from '~/components/TagsInput';
 import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { TextEditor } from '~/components/TextEditor';
+import TagsInput from '~/components/form/TagsInput';
+import { TextEditor } from '~/components/form/TextEditor';
 
 type LoaderData = {
   allSkillSlugs: string[];

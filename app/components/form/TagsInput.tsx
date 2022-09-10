@@ -1,9 +1,10 @@
 import * as tagsInput from '@zag-js/tags-input';
 import { useMachine, normalizeProps } from '@zag-js/react';
-import ErrorMessages from './form/ErrorMessage';
 import type { ZodFormattedError } from 'zod/lib/ZodError';
-import Tooltip from './Tooltip';
 import clsx from 'clsx';
+
+import ErrorMessages from '~/components/form/ErrorMessage';
+import Tooltip from '~/components/Tooltip';
 
 export default function TagsInput({
   id,
