@@ -4,7 +4,6 @@ import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
 import LinkWithTooltip from '~/components/LinkWithTooltip';
 import { Link } from '~/Link';
-import { logger } from '~/logger';
 import { fakeRequirementList } from '~/models/requirements/fakeRepo';
 import type { RequirementT } from '~/models/requirements/schema';
 import type { WithSkillSlug } from '~/models/skills/schema';
@@ -23,12 +22,10 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
   // 2. 타입에 맞게 데이터를 넘겨줌
   // slug: "frontend" | "backend"
-  logger.position.detail(slug);
   return json<LoaderData>({
     position: slug,
     requirements: fakeRequirementList
       .filter(item => item.position === slug)
-      .sort((a,b) => b.count - a.count),
   });
 };
 

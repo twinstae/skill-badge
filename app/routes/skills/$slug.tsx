@@ -31,7 +31,6 @@ import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
 import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
-import { logger } from '~/logger';
 import HoverableIcon from '~/components/icons/HoverableIcon';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
@@ -46,7 +45,6 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (skill === null) {
     return redirect('/skills/admin/new?slug=' + params.slug);
   }
-  logger.skill.detail(params.slug);
 
   return json<LoaderData>({
     ...skill,
