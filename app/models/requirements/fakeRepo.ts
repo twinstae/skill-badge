@@ -10,6 +10,6 @@ const backReqList = rawBackReqList;
 
 type FakeRequirementT = WithSkillSlug<RequirementT> & { count: number };
 
-export const fakeRequirementList = 
+export const fakeRequirementList: FakeRequirementT[] = 
   frontReqList.map(v => ({...v, position: 'frontend' } as FakeRequirementT))
   .concat(backReqList.map(v=>({...v, position: 'backend'} as FakeRequirementT)));

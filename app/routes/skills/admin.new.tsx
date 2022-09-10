@@ -22,7 +22,6 @@ import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/TextEditor';
-import { logger } from '~/logger';
 
 type LoaderData = {
   allSkillSlugs: string[];
@@ -56,7 +55,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await context.skillsRepo.create(result.data);
-  logger.info(`skill ${result.data.slug} 생성`);
 
   return redirect('/skills/' + result.data.slug);
 };

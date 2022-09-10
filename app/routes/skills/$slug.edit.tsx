@@ -20,7 +20,6 @@ import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/TextEditor';
-import { logger } from '~/logger';
 
 type LoaderData = {
   skill: Skill;
@@ -64,7 +63,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   await context.skillsRepo.update(result.data);
-  logger.info(`skill ${result.data.slug} 수정`);
 
   return redirect('/skills/' + result.data.slug);
 };

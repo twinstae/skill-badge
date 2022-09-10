@@ -40,7 +40,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (skill === null) {
     return redirect('/skills/admin/new?slug=' + params.slug);
   }
-  logger.info(`skill ${params.slug} 읽기`);
+  logger.skill.detail(params.slug);
 
   return json<LoaderData>({
     ...skill,
@@ -54,7 +54,6 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(formData.get('message') === `${slug}를 삭제하겠습니다.`);
 
   await context.skillsRepo.delete(slug);
-  logger.info(`skill ${slug} 삭제`);
 
   return redirect('/skills');
 };

@@ -12,7 +12,7 @@ type LoaderData = {
 };
 
 export const loader = async () => {
-  logger.info('skill 목록 보기');
+  logger.skill.list();
 
   const skills = await context.skillsRepo.getAllList();
   return json<LoaderData>({ skills });
