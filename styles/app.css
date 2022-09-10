@@ -114,10 +114,12 @@ button:focus .tooltip:after {
   transition-delay: 75ms;
 }
 
+a:hover .swap-off,
 a:focus .swap-off,
 button:focus .swap-off {
   opacity: 0;
 }
+a:hover .swap-on,
 a:focus .swap-on,
 button:focus .swap-on {
   opacity: 1;
