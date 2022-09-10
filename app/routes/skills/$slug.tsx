@@ -9,8 +9,14 @@ import invariant from 'tiny-invariant';
 import { marked } from 'marked';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { TrashIcon as TrashOutlineIcon, PencilSquareIcon as PencilSquareOutlineIcon } from '@heroicons/react/24/outline'
-import { TrashIcon as TrashSolidIcon, PencilSquareIcon as PencilSquareSolidIcon} from '@heroicons/react/24/solid'
+import {
+  TrashIcon as TrashOutlineIcon,
+  PencilSquareIcon as PencilSquareOutlineIcon,
+} from '@heroicons/react/24/outline';
+import {
+  TrashIcon as TrashSolidIcon,
+  PencilSquareIcon as PencilSquareSolidIcon,
+} from '@heroicons/react/24/solid';
 
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
@@ -62,7 +68,11 @@ export const action: ActionFunction = async ({ request }) => {
 const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
-    <LinkWithTooltip to={"/positions/" + data.position} tooltip={data.position + ' 직무'} className="p-2">
+    <LinkWithTooltip
+      to={'/positions/' + data.position}
+      tooltip={data.position + ' 직군'}
+      className="p-2"
+    >
       {data.content}
     </LinkWithTooltip>
   ),
@@ -119,7 +129,7 @@ export default function SkillDetail() {
 
   return (
     <CenterCardLayout>
-      <h1>{title}</h1>
+      <h1>{title}  <span className="font-normal text-lg text-primary">{slug}</span></h1>
       <RequirementList
         title="채용공고"
         titleId="position-title"
@@ -144,11 +154,16 @@ export default function SkillDetail() {
         to={`/skills/${slug}/edit`}
         tooltip="수정하기"
       >
-        <HoverableIcon icons={[PencilSquareSolidIcon, PencilSquareOutlineIcon]} label="수정하기" />
+        <HoverableIcon
+          icons={[PencilSquareSolidIcon, PencilSquareOutlineIcon]}
+          label="수정하기"
+        />
       </LinkWithTooltip>
       <Dialog
         label="삭제하기"
-        button={<HoverableIcon icons={[TrashSolidIcon, TrashOutlineIcon]} label=""/>}
+        button={
+          <HoverableIcon icons={[TrashSolidIcon, TrashOutlineIcon]} label="" />
+        }
         title={`역량 ${slug}를 삭제하기`}
         description="역량과 관련된 모든 자료와 공고가 삭제됩니다. 정말 삭제하시려면 다음을 똑같이 입력해주세요."
       >
