@@ -16,6 +16,7 @@ describe('스킬 페이지', () => {
     cy.findLink('react').click();
 
     cy.location('pathname').should('eq', '/skills/react');
+    cy.matchImageSnapshot('리액트 역량 상세');
   });
 
   it('역량을 만들 수 있다', () => {
