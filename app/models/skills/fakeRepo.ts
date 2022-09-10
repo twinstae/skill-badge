@@ -67,11 +67,11 @@ export function FakeSkillsRepo(init: Skill[]): ISkillRepo {
 
 // https://stackoverflow.com/questions/72661999/how-do-i-use-in-memory-cache-in-remix-run-dev-mode
 declare global {
-  var __fakeDB: ISkillRepo | undefined;
+  var __fakeSkillRepo: ISkillRepo | undefined;
 }
 
-if (global.__fakeDB === undefined){
-  global.__fakeDB = FakeSkillsRepo(fakeSkillList);
+if (global.__fakeSkillRepo === undefined){
+  global.__fakeSkillRepo = FakeSkillsRepo(fakeSkillList);
 }
 
-export default global.__fakeDB!;
+export default global.__fakeSkillRepo!;
