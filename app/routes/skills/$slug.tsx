@@ -9,8 +9,14 @@ import invariant from 'tiny-invariant';
 import { marked } from 'marked';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { TrashIcon as TrashOutlineIcon, PencilSquareIcon as PencilSquareOutlineIcon } from '@heroicons/react/24/outline'
-import { TrashIcon as TrashSolidIcon, PencilSquareIcon as PencilSquareSolidIcon} from '@heroicons/react/24/solid'
+import {
+  TrashIcon as TrashOutlineIcon,
+  PencilSquareIcon as PencilSquareOutlineIcon,
+} from '@heroicons/react/24/outline';
+import {
+  TrashIcon as TrashSolidIcon,
+  PencilSquareIcon as PencilSquareSolidIcon,
+} from '@heroicons/react/24/solid';
 
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
@@ -25,7 +31,6 @@ import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
 import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
-import { logger } from '~/logger';
 import HoverableIcon from '~/components/icons/HoverableIcon';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
@@ -40,7 +45,6 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (skill === null) {
     return redirect('/skills/admin/new?slug=' + params.slug);
   }
-  logger.info(`skill ${params.slug} 읽기`);
 
   return json<LoaderData>({
     ...skill,
@@ -54,7 +58,6 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(formData.get('message') === `${slug}를 삭제하겠습니다.`);
 
   await context.skillsRepo.delete(slug);
-  logger.info(`skill ${slug} 삭제`);
 
   return redirect('/skills');
 };
@@ -63,7 +66,11 @@ export const action: ActionFunction = async ({ request }) => {
 const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
-    <LinkWithTooltip to="/positions/frontend" tooltip="프런트엔드 엔지니어" className="p-2">
+    <LinkWithTooltip
+      to={'/positions/' + data.position}
+      tooltip={data.position + ' 직군'}
+      className="p-2"
+    >
       {data.content}
     </LinkWithTooltip>
   ),
@@ -120,7 +127,7 @@ export default function SkillDetail() {
 
   return (
     <CenterCardLayout>
-      <h1>{title}</h1>
+      <h1>{title}  <span className="font-normal text-lg text-primary">{slug}</span></h1>
       <RequirementList
         title="채용공고"
         titleId="position-title"
@@ -145,11 +152,16 @@ export default function SkillDetail() {
         to={`/skills/${slug}/edit`}
         tooltip="수정하기"
       >
-        <HoverableIcon icons={[PencilSquareSolidIcon, PencilSquareOutlineIcon]} label="수정하기" />
+        <HoverableIcon
+          icons={[PencilSquareSolidIcon, PencilSquareOutlineIcon]}
+          label="수정하기"
+        />
       </LinkWithTooltip>
       <Dialog
         label="삭제하기"
-        button={<HoverableIcon icons={[TrashSolidIcon, TrashOutlineIcon]} label=""/>}
+        button={
+          <HoverableIcon icons={[TrashSolidIcon, TrashOutlineIcon]} label="" />
+        }
         title={`역량 ${slug}를 삭제하기`}
         description="역량과 관련된 모든 자료와 공고가 삭제됩니다. 정말 삭제하시려면 다음을 똑같이 입력해주세요."
       >

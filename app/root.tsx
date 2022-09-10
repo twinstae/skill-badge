@@ -24,12 +24,15 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html lang="ko">
+    <html lang="ko" data-theme="emerald">
       <head>
         <Meta />
         <Links />
       </head>
       <body>
+        <a className="absolute text-transparent focus:text-primary" href="#main" tabIndex={1}>
+          main으로 점프
+        </a>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
