@@ -4,7 +4,8 @@ describe('스킬 페이지', () => {
 
     cy.visitAndCheck('/skills');
 
-    cy.findLink('리액트 네이티브').click();
+    cy.findTextBox('검색하기').type('react');
+    cy.findLink('리액트 네이티브 react-native').click();
 
     cy.location('pathname').should('eq', '/skills/react-native');
   });
@@ -51,7 +52,7 @@ describe('스킬 페이지', () => {
     cy.findButton('역량 수정하기').click();
 
     cy.location('pathname').should('eq', '/skills/fake-for-test');
-    cy.findByRole('heading', { name: '테스트 용 fake' });
+    cy.findByRole('heading', { name: '테스트 용 fake fake-for-test' });
   });
 
   it('역량을 삭제할 수 있다', () => {

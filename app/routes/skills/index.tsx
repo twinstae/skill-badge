@@ -33,13 +33,18 @@ export default function SkillListPage() {
       <Link className="btn btn-sm btn-primary w-full" to="/skills/admin/new">
         새 역량 만들기
       </Link>
-      <input
-        type="text"
-        className="input input-bordered mt-2 w-full"
-        value={search}
-        placeholder="ex) database, 데이터베이스, react, 오픈 소스"
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <form role="search" onSubmit={(e) => e.preventDefault()}>
+        <label>
+          검색하기
+          <input
+            type="text"
+            className="input input-bordered mt-2 w-full"
+            value={search}
+            placeholder="ex) database, 데이터베이스, react, 오픈 소스"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </label>
+      </form>
       <ul className="p-2 m-2 menu">
         {filteredSkills.slice(0,10).map((skill) => (
             <li key={skill.slug}>

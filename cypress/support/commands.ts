@@ -28,15 +28,17 @@ function visitAndCheck(path: string, waitTime: number = 1000) {
 
 Cypress.Commands.add('visitAndCheck', visitAndCheck);
 
-function findTextBox(name: string) {
+type AccessibleName = string | RegExp | ((accessibleName: string, element: Element) => boolean);
+
+function findTextBox(name: AccessibleName) {
   return cy.findByRole('textbox', { name });
 }
 
-function findButton(name: string) {
+function findButton(name: AccessibleName) {
   return cy.findByRole('button', { name });
 }
 
-function findLink(name: string) {
+function findLink(name: AccessibleName) {
   return cy.findByRole('link', { name });
 }
 
