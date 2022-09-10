@@ -1,15 +1,12 @@
 import rawFrontReqList from './frontReqList.json';
 import rawBackReqList from './backReqList.json';
-import type { RequirementT } from './schema';
-import type { WithSkillSlug } from '../skills/schema';
+import { requirementSchema } from './schema';
+import { withSkillSlug } from '../skills/schema';
+import { z } from 'zod';
 
-// const reqListSchema = z.array(withSkillSlug(requirementSchema));
+const reqListSchema = z.array(withSkillSlug(requirementSchema));
 
-const frontReqList = rawFrontReqList;
-const backReqList = rawBackReqList;
+const rawRequirementList = rawFrontReqList.map(v => ({...v, position: 'frontend' }))
+  .concat(rawBackReqList.map(v=>({...v, position: 'backend'})));
 
-type FakeRequirementT = WithSkillSlug<RequirementT> & { count: number };
-
-export const fakeRequirementList: FakeRequirementT[] = 
-  frontReqList.map(v => ({...v, position: 'frontend' } as FakeRequirementT))
-  .concat(backReqList.map(v=>({...v, position: 'backend'} as FakeRequirementT)));
+export const fakeRequirementList = reqListSchema.parse(rawRequirementList);
