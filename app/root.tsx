@@ -30,6 +30,9 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <a className="absolute text-transparent focus:text-primary" href="#main" tabIndex={1}>
+          main으로 점프
+        </a>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
