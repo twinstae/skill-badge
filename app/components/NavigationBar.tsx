@@ -6,11 +6,13 @@ import {
   CheckBadgeIcon as CheckBadgeOutlineIcon,
   DocumentTextIcon as DocumentTextOutlineIcon,
   ComputerDesktopIcon as ComputerDesktopOutlineIcon,
+  BuildingOfficeIcon as BuildingOfficeOutlineIcon,
 } from '@heroicons/react/24/outline';
 import {
   CheckBadgeIcon as CheckBadgeSolidIcon,
   DocumentTextIcon as DocumentTextSolidIcon,
   ComputerDesktopIcon as ComputerDesktopSolidIcon,
+  BuildingOfficeIcon as BuildingOfficeSolidIcon,
 } from '@heroicons/react/24/solid';
 import HoverableIcon, { type IconT } from './icons/HoverableIcon';
 // import FirstPathDropdown from './FirstPathDropdown';
@@ -61,7 +63,7 @@ const paths = [
   {
     title: '직군',
     path: 'positions',
-    icons: [DocumentTextSolidIcon, DocumentTextOutlineIcon],
+    icons: [BuildingOfficeSolidIcon, BuildingOfficeOutlineIcon],
   },
   {
     title: '역량',
@@ -72,6 +74,11 @@ const paths = [
     title: '배지',
     path: 'badges',
     icons: [CheckBadgeSolidIcon, CheckBadgeOutlineIcon],
+  },
+  {
+    title: '이력서',
+    path: 'resumes',
+    icons: [DocumentTextSolidIcon, DocumentTextOutlineIcon],
   },
 ] as { title: string; path: string; icons: [IconT, IconT] }[];
 

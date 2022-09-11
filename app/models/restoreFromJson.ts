@@ -30,19 +30,19 @@ async function restore(){
 
 
   // for(const requirement of fakeRequirementList){
-  //   await client.execute(`
-  //     with skill := ( select Skill filter .slug in <str>$skillSlug limit 1),
-  //       position := ( select Position filter .slug in <str>$positionSlug limit 1)
-  //     insert Requirement {
-  //       content := <str>$content,
-  //       skill := skill,
-  //       position := position,
-  //     };
-  //   `, {
-  //     content: requirement.content,
-  //     skillSlug: requirement.skillSlug,
-  //     positionSlug: requirement.positionSlug,
-  //   })
+    // await client.execute(`
+    //   with skill := ( select Skill filter .slug in <str>$skillSlug limit 1),
+    //     position := ( select Position filter .slug in <str>$positionSlug limit 1)
+    //   insert Requirement {
+    //     content := <str>$content,
+    //     skill := skill,
+    //     position := position,
+    //   };
+    // `, {
+    //   content: requirement.content,
+    //   skillSlug: requirement.skillSlug,
+    //   positionSlug: requirement.positionSlug,
+    // })
   //   .catch(() => console.log(requirement.content))
   // }
 }
