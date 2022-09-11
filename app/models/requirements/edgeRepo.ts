@@ -1,5 +1,7 @@
 import type { Client } from 'edgedb';
+import { z } from 'zod';
 import type { IPositionsRepo } from './IRepo';
+import { positionSchema, requirementSchema } from './schema';
 
 export function EdgePositionsRepo(client: Client): IPositionsRepo {
   return {
@@ -9,7 +11,7 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
         slug,
         title
       }
-      `);
+      `).then(z.array(positionSchema).parse);
     },
     async getRequirementsByPosition(positionSlug) {
       return client.query(`
@@ -21,7 +23,8 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
         positionSlug := .position.slug,
       }
       filter .position = position;
-      `, { positionSlug });
+      `, { positionSlug })
+      .then(z.array(requirementSchema).parse);
     },
     async addRequirement(requirement) {
       return client.execute(`
