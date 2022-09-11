@@ -18,3 +18,4 @@ app/routes/rabbit.mdx
 api/log
 cypress/videos
 cypress/downloads
+*.pyc
