@@ -1,12 +1,13 @@
 import * as tagsInput from '@zag-js/tags-input';
 import { useMachine, normalizeProps } from '@zag-js/react';
-import type { ZodFormattedError } from 'zod/lib/ZodError';
 import clsx from 'clsx';
 
-import ErrorMessages from '~/components/form/ErrorMessage';
+import ErrorMessages, {
+  type FieldErrors,
+} from '~/components/form/ErrorMessage';
 import Tooltip from '~/components/shared/Tooltip';
 
-export default function TagsInput({
+export default function TagsInput<S>({
   id,
   className = '',
   name,
@@ -22,7 +23,7 @@ export default function TagsInput({
   labelText: string;
   initValue?: string[];
   placeholder?: string;
-  errors: ZodFormattedError<Record<string, any>, string> | undefined;
+  errors: FieldErrors<S> | undefined;
   className?: string;
   maxLength?: number;
   candidates?: string[];
@@ -72,7 +73,10 @@ export default function TagsInput({
 
       <div
         {...api.rootProps}
-        className={clsx('flex flex-row flex-wrap p-1 border-1 rounded-xl', className)}
+        className={clsx(
+          'flex flex-row flex-wrap p-1 border-1 rounded-xl',
+          className
+        )}
       >
         {api.value.map((value, index) => (
           <span key={index} className="p-2 bg-slate-100 m-1 rounded-md">
@@ -125,7 +129,10 @@ export default function TagsInput({
         <ErrorMessages errors={errors} name={name} />
       </div>
       <progress
-        className={clsx("progress w-full", api.value.length < maxLength ? "progress-info" : "progress-primary")}
+        className={clsx(
+          'progress w-full',
+          api.value.length < maxLength ? 'progress-info' : 'progress-primary'
+        )}
         value={api.value.length}
         max={maxLength}
       />
