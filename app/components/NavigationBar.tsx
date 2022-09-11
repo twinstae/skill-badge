@@ -86,7 +86,7 @@ function NavigationBar() {
   const location = useLocation();
   const currentPath = location.pathname; // "/skills/agile" | "/skills" | "/"
   return (
-    <nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100">
+    <nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1">
       <ul className="flex justify-evenly w-1/2">
         {paths.map(({ title, path, icons }) => (
           <li key={path}>

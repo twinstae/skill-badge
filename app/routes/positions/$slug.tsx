@@ -18,14 +18,15 @@ export const loader: LoaderFunction = async ({ params }) => {
   const slug = params.slug as string;
   if (slug !== 'frontend' && slug !== 'backend') {
     // 이상한 슬러그가 들어오면 선택 페이지로 되돌려보냄!
-    throw Error('이상한 슬러그! ' + slug)
+    throw Error('이상한 슬러그! ' + slug);
   }
   // 2. 타입에 맞게 데이터를 넘겨줌
   // slug: "frontend" | "backend"
   return json<LoaderData>({
     positionSlug: slug,
-    requirements: fakeRequirementList
-      .filter(item => item.positionSlug === slug)
+    requirements: fakeRequirementList.filter(
+      (item) => item.positionSlug === slug
+    ),
   });
 };
 
@@ -52,7 +53,11 @@ export default function PositionDetail() {
     <CenterCardLayout>
       {/* 4. 사용 */}
       <Link
-        to={positionSlug === 'frontend' ? '/positions/backend' : '/positions/frontend'}
+        to={
+          positionSlug === 'frontend'
+            ? '/positions/backend'
+            : '/positions/frontend'
+        }
         className="btn btn-primary btn-sm float-right"
       >
         {positionSlug === 'frontend' ? '백엔드' : '프런트엔드'} 보러 가기
@@ -63,6 +68,12 @@ export default function PositionDetail() {
         titleId="requirements-title"
         dataList={requirements}
       />
+      <Link
+        to="/positions/requirements/admin/new"
+        className="w-full btn btn-primary"
+      >
+        공고 문구 추가하기
+      </Link>
     </CenterCardLayout>
   );
 }
