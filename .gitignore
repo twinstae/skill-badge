@@ -19,3 +19,4 @@ api/log
 cypress/videos
 cypress/downloads
 *.pyc
+*.diff.png
