@@ -11,18 +11,20 @@ import {
   useLoaderData,
   useTransition,
 } from '@remix-run/react';
-import type { ZodFormattedError } from 'zod';
-import CenterCardLayout from '~/components/CenterCardLayout';
-import Spinner from '~/components/Spinner';
-import ErrorMessages from '~/components/form/ErrorMessage';
-import TagsInput from '~/components/TagsInput';
-import { type Skill, skillSchema, slugRegex } from '~/models/skills/schema';
+import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
-import { TextEditor } from '~/components/TextEditor';
+import { TextEditor } from '~/components/form/TextEditor';
+import CenterCardLayout from '~/components/CenterCardLayout';
+import Spinner from '~/components/shared/Spinner';
+import TagsInput from '~/components/form/TagsInput';
+import ErrorMessages, {
+  getFieldErrors,
+  type FieldErrors,
+} from '~/components/form/ErrorMessage';
 
 type LoaderData = {
-  skill: Skill;
+  skill: SkillT;
   allSkillSlugs: string[];
 };
 
@@ -43,7 +45,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   });
 };
 
-type ActionData = ZodFormattedError<Skill> | undefined;
+type ActionData = FieldErrors<SkillT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
@@ -59,7 +61,7 @@ export const action: ActionFunction = async ({ request }) => {
     .then(skillSchema.safeParse);
 
   if (!result.success) {
-    return json<ActionData>(result.error.format());
+    return json<ActionData>(getFieldErrors(result));
   }
 
   await context.skillsRepo.update(result.data);
@@ -69,9 +71,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function NewSkill() {
   const { skill, allSkillSlugs } = useLoaderData() as LoaderData;
-  const errors = useActionData() as
-    | ZodFormattedError<Record<string, any>, string>
-    | undefined;
+  const errors = useActionData() as ActionData;
 
   const transition = useTransition();
   const isCreating = Boolean(transition.submission);

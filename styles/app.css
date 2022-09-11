@@ -3,7 +3,10 @@ body {
   word-break: keep-all;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -42,7 +45,7 @@ blockquote {
   border-radius: 0.5rem;
 }
 
-:not(pre)>code {
+:not(pre) > code {
   background-color: hsl(var(--p) / 0.05);
   border-radius: 0.25em;
   color: hsl(var(--p) / 1);
@@ -52,7 +55,7 @@ blockquote {
 
 div.content ul {
   list-style: disc;
-  
+
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
@@ -61,7 +64,7 @@ div.content ul {
 }
 
 pre {
-  @apply rounded-lg shadow-lg p-4
+  @apply rounded-lg shadow-lg p-4;
 }
 
 p {
@@ -73,22 +76,22 @@ p:last-child {
   margin-bottom: 0rem;
 }
 
-[data-part="item"][data-focus] {
-  --tw-bg-opacity: .2;
-  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+[data-part='item'][data-focus] {
+  --tw-bg-opacity: 0.2;
+  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
   --tw-border-opacity: 0;
-  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
+  border-color: hsl(var(--nf, var(--n)) / var(--tw-border-opacity));
 }
 
-[data-part="option-item"][data-focus] {
-  --tw-bg-opacity: .2;
-  background-color: hsl(var(--bc)/var(--tw-bg-opacity));
+[data-part='option-item'][data-focus] {
+  --tw-bg-opacity: 0.2;
+  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
   --tw-border-opacity: 0;
-  border-color: hsl(var(--nf,var(--n))/var(--tw-border-opacity));
+  border-color: hsl(var(--nf, var(--n)) / var(--tw-border-opacity));
 }
 
 label {
-  @apply text-lg font-semibold
+  @apply text-lg font-semibold;
 }
 
 input.input {
@@ -96,17 +99,27 @@ input.input {
 }
 
 input.input:not(:placeholder-shown):not(:focus):invalid {
-  @apply input-error
+  @apply input-error;
+}
+
+input:focus + .dropdown-list {
+  @apply block;
+}
+.dropdown-list:focus {
+  @apply block;
+}
+.dropdown-list:focus-within {
+  @apply block;
 }
 
 .dropdown-list {
-  @apply min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
+  @apply min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
 }
 .dropdown-item {
   @apply swap text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
 }
 
-a:focus .tooltip:before, 
+a:focus .tooltip:before,
 a:focus .tooltip:after,
 button:focus .tooltip:before,
 button:focus .tooltip:after {

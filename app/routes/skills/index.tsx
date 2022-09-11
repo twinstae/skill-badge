@@ -3,15 +3,14 @@ import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { Link } from '~/Link';
-import type { Skill } from '~/models/skills/schema';
+import type { SkillT } from '~/models/skills/schema';
 import { context } from '~/models/context';
 
 type LoaderData = {
-  skills: Pick<Skill, 'slug' | 'title'>[];
+  skills: Pick<SkillT, 'slug' | 'title'>[];
 };
 
 export const loader = async () => {
-
   const skills = await context.skillsRepo.getAllList();
   return json<LoaderData>({ skills });
 };
@@ -21,14 +20,18 @@ export default function SkillListPage() {
   const [search, setSearch] = useState('');
   const lowerSearch = search.toLowerCase();
 
-  const filteredSkills = skills.filter((skill) =>
-    skill.slug.includes(lowerSearch)
-    || skill.title.toLowerCase().includes(lowerSearch)
+  const filteredSkills = skills.filter(
+    (skill) =>
+      skill.slug.includes(lowerSearch) ||
+      skill.title.toLowerCase().includes(lowerSearch)
   );
   return (
     <CenterCardLayout>
       <h1>역량 목록</h1>
-      <Link className="btn btn-sm btn-primary w-full" to="/skills/admin/new">
+      <Link
+        className="btn btn-sm btn-primary w-full mb-2"
+        to="/skills/admin/new"
+      >
         새 역량 만들기
       </Link>
       <form role="search" onSubmit={(e) => e.preventDefault()}>
@@ -44,14 +47,19 @@ export default function SkillListPage() {
         </label>
       </form>
       <ul className="p-2 m-2 menu">
-        {filteredSkills.slice(0,10).map((skill) => (
-            <li key={skill.slug}>
-              <Link to={'/skills/' + skill.slug} className="p-2">
-                {skill.title} <span className="text-sm text-primary">{skill.slug}</span>
-              </Link>
-            </li>
-          ))}
-        {filteredSkills.length > 10 && <li className="text-2xl text-center">...{filteredSkills.length - 10} 개</li>}
+        {filteredSkills.slice(0, 10).map((skill) => (
+          <li key={skill.slug}>
+            <Link to={'/skills/' + skill.slug} className="p-2">
+              {skill.title}{' '}
+              <span className="text-sm text-primary">{skill.slug}</span>
+            </Link>
+          </li>
+        ))}
+        {filteredSkills.length > 10 && (
+          <li className="text-xl text-center">
+            ...{filteredSkills.length - 10} 개
+          </li>
+        )}
       </ul>
     </CenterCardLayout>
   );

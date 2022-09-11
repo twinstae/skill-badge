@@ -1,7 +1,7 @@
 import { CommandLineIcon } from '@heroicons/react/24/outline';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
-import Tooltip from '~/components/Tooltip';
+import Tooltip from '~/components/shared/Tooltip';
 import { count } from '~/funcUtil';
 import { type BadgeT } from '~/models/badges/schema';
 

@@ -1,10 +1,10 @@
+import React from 'react';
 import * as dialog from '@zag-js/dialog';
 import { Portal } from '@reach/portal';
 import { useMachine, normalizeProps } from '@zag-js/react';
-import React from 'react';
 import clsx from 'clsx';
-import XIcon from './icons/XIcon';
-import Tooltip from './Tooltip';
+import Tooltip from '~/components/shared/Tooltip';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export function Dialog({
   label,
@@ -46,7 +46,7 @@ export function Dialog({
                 className="btn btn-ghost btn-circle absolute top-2 right-2"
                 {...api.closeButtonProps}
               >
-                <XIcon />
+                <XMarkIcon className="w-6 h-6" />
               </button>
             </div>
           </div>

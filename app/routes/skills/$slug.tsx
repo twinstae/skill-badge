@@ -21,10 +21,10 @@ import {
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
 import createOptionalDataList from '~/components/createDataList';
-import LinkWithTooltip from '~/components/LinkWithTooltip';
-import Divider from '~/components/Divider';
-import Tooltip from '~/components/Tooltip';
-import { Dialog } from '~/components/Dialog';
+import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
+import Divider from '~/components/shared/Divider';
+import Tooltip from '~/components/shared/Tooltip';
+import { Dialog } from '~/components/shared/Dialog';
 
 import { context } from '~/models/context';
 import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
@@ -67,8 +67,8 @@ const RequirementList = createOptionalDataList<RequirementT>({
   selectId: (data) => data.content.replace(/ /g, '-'),
   Item: ({ data }) => (
     <LinkWithTooltip
-      to={'/positions/' + data.position}
-      tooltip={data.position + ' 직군'}
+      to={'/positions/' + data.positionSlug}
+      tooltip={data.positionSlug + ' 직군'}
       className="p-2"
     >
       {data.content}

@@ -11,7 +11,10 @@ select Skill {
     href,
   },
   requirements: {
-    content
+    id,
+    content,
+    skillSlug := .skill.slug,
+    positionSlug := .position.slug,
   }
 }
 filter .slug = <str>$slug

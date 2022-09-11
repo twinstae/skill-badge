@@ -1,6 +1,6 @@
 import { marked } from 'marked';
 import { useState } from 'react';
-import Tooltip from './Tooltip';
+import Tooltip from '~/components/shared/Tooltip';
 
 export function TextEditor({
   id,

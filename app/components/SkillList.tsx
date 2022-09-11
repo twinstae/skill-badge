@@ -1,6 +1,6 @@
 import { id } from '~/funcUtil';
-import createOptionalDataList from './createDataList';
-import LinkWithTooltip from './LinkWithTooltip';
+import createOptionalDataList from '~/components/createDataList';
+import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
 
 const SkillList = createOptionalDataList<string>({
   selectId: id,
