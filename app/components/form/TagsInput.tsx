@@ -105,26 +105,16 @@ export default function TagsInput<S>({
                 isValid && 'input-success'
               )}
               placeholder={placeholder}
+              list="skill-slugs"
+              autoComplete="off"
               {...api.inputProps}
             />
           )}
-          {api.inputValue !== '' && (
-            <ul className={clsx(`dropdown-list`, 'show')}>
-              {recommendation.map((candi) => (
-                <li key={candi} className="dropdown-item flex justify-center">
-                  <button
-                    type="button"
-                    className="py-2 px-4 w-full btn btn-sm btn-ghost lowercase font-normal"
-                    onClick={() => {
-                      api.addValue(candi);
-                    }}
-                  >
-                    {candi}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          <datalist id="skill-slugs">
+            {recommendation?.map((candi) => (
+              <option key={candi} value={candi} />
+            ))}
+          </datalist>
         </Tooltip>
         <ErrorMessages errors={errors} name={name} />
       </div>

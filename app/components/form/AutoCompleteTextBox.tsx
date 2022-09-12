@@ -24,6 +24,7 @@ export default function AutoCompleteTextBox({
   return (
     <div>
       <input
+        autoComplete="off"
         {...props}
         className={clsx(
           'input input-bordered',
@@ -32,24 +33,13 @@ export default function AutoCompleteTextBox({
         )}
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
+        list="skill-slugs"
       />
-      {value !== '' && recommendation && (
-        <ul className="dropdown-list">
-          {recommendation.map((candi) => (
-            <li key={candi} className="dropdown-item flex justify-center">
-              <button
-                type="button"
-                className="py-2 px-4 w-full btn btn-sm btn-ghost lowercase font-normal"
-                onClick={() => {
-                  setValue(candi);
-                }}
-              >
-                {candi}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <datalist id="skill-slugs">
+        {recommendation?.map((candi) => (
+          <option key={candi} value={candi} />
+        ))}
+      </datalist>
     </div>
   );
 }

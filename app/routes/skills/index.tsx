@@ -38,7 +38,7 @@ export default function SkillListPage() {
         <label>
           검색하기
           <input
-            type="text"
+            type="search"
             className="input input-bordered mt-2 w-full"
             value={search}
             placeholder="ex) database, 데이터베이스, react, 오픈 소스"

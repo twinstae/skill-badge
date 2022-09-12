@@ -90,6 +90,7 @@ export default function NewSkill() {
           value={slug}
           placeholder="ex) design-system"
           onChange={(e) => setSlug(e.currentTarget.value)}
+          autoComplete="off"
           className={clsx(
             'input input-bordered mb-2 w-full',
             isSlugDuplicated && 'input-error'
