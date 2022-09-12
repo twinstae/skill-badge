@@ -16,7 +16,7 @@ describe('createOptionalDataList', () => {
   it('render with heading', async () => {
     const dataList = [{name:'taehee'}, {name:'tamjung'}];
     render(
-      <DataList title="테스트 목록" titleId="test-list" dataList={dataList} />
+      <DataList title="테스트 목록" dataList={dataList} />
     );
 
     const $list = screen.getByLabelText('테스트 목록');

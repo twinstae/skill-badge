@@ -6,9 +6,9 @@ import ErrorMessages, {
   type FieldErrors,
 } from '~/components/form/ErrorMessage';
 import Tooltip from '~/components/shared/Tooltip';
+import { useId } from 'react';
 
 export default function TagsInput<S>({
-  id,
   className = '',
   name,
   initValue = [],
@@ -18,7 +18,6 @@ export default function TagsInput<S>({
   maxLength = 16,
   candidates = [],
 }: {
-  id: string;
   name: string;
   labelText: string;
   initValue?: string[];
@@ -28,6 +27,7 @@ export default function TagsInput<S>({
   maxLength?: number;
   candidates?: string[];
 }) {
+  const id = useId();
   const addInputId = `tags-input:${id}:input`;
   function validate({
     values,

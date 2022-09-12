@@ -130,14 +130,12 @@ export default function SkillDetail() {
       <h1>{title}  <span className="font-normal text-lg text-primary">{slug}</span></h1>
       <RequirementList
         title="채용공고"
-        titleId="position-title"
         dataList={requirements}
       />
       <Divider />
-      <SkillList title="상위 역량" titleId="parents-title" dataList={parents} />
+      <SkillList title="상위 역량" dataList={parents} />
       <SkillList
         title="하위 역량"
-        titleId="children-title"
         dataList={children}
       />
       <Divider />
@@ -170,7 +168,6 @@ export default function SkillDetail() {
       <Divider />
       <ResourceList
         title="학습 자료"
-        titleId="resource-title"
         dataList={resources}
       />
     </CenterCardLayout>

@@ -53,7 +53,6 @@ export default function BadgeDetailPage() {
       <h1>{fakeBadge.title}</h1>
       <SkillList
         title="역량"
-        titleId="skills-title"
         dataList={fakeBadge.skillSlugs}
       />
       <h2 id="pieces-title">조각들</h2>

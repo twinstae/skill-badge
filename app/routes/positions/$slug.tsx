@@ -61,7 +61,6 @@ export default function PositionDetail() {
       <h1 className="text-primary">{positionSlug}</h1>
       <RequirementList
         title="요구 역량"
-        titleId="requirements-title"
         dataList={requirements}
       />
       <Link

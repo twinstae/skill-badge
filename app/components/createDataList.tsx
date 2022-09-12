@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 export default function createOptionalDataList<T>({
   selectId,
   Item,
@@ -9,13 +11,12 @@ export default function createOptionalDataList<T>({
 }) {
   return function OptionalDataList({
     title,
-    titleId,
     dataList,
   }: {
     title: string;
-    titleId: string;
     dataList: T[];
   }) {
+    const titleId = useId();
     if (dataList.length === 0) {
       return null;
     }
