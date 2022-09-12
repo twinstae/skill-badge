@@ -27,7 +27,6 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 
       const fakeRequirementList =
         await globalThis.__fakePositionsRepo!.getRequirementsByPosition('frontend');
-      console.log(fakeRequirementList);
       return {
         ...skill,
         requirements: fakeRequirementList.filter(

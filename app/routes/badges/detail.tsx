@@ -1,9 +1,9 @@
-import { CommandLineIcon } from '@heroicons/react/24/outline';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
-import Tooltip from '~/components/shared/Tooltip';
-import { count } from '~/funcUtil';
 import { type BadgeT } from '~/models/badges/schema';
+import { count } from '~/funcUtil';
+import ProgressBadge from '~/components/ProgressBadge';
+import { CommandLineIcon } from '@heroicons/react/24/outline';
 
 const fakeBadge: BadgeT = {
   slug: 'linux-cli-fs',
@@ -24,37 +24,21 @@ const fakeBadge: BadgeT = {
   })),
 };
 
-
-declare module "csstype" {
-  interface Properties {
-    "--value"?: number,
-    "--thickness"?: string,
-  }
-}
-
-function ProgressBadge({ pieces }: { pieces: {isDone: boolean}[]}){
-  const doneCount = count(pieces, (piece) => piece.isDone);
-  const max = pieces.length;
-  const progress = Math.floor(doneCount / max * 100)
-  return (
-    <div className="radial-progress bg-quote text-primary float-left mr-2" style={{"--value":progress, "--thickness": "4px"}}>
-      <Tooltip tooltip={`${doneCount} / ${max} 완료`}>
-        <CommandLineIcon className="w-12 h-12 text-black"/>
-      </Tooltip>
-    </div>
-  )
-}
-
 export default function BadgeDetailPage() {
   const pieces = fakeBadge.pieces;
+
   return (
     <CenterCardLayout>
-      <ProgressBadge pieces={pieces} />
-      <h1>{fakeBadge.title}</h1>
-      <SkillList
-        title="역량"
-        dataList={fakeBadge.skillSlugs}
-      />
+      <header className="flex flex-row">
+        <ProgressBadge
+          max={pieces.length}
+          now={count(pieces, (piece) => piece.isDone)}
+          Icon={CommandLineIcon}
+          size="lg"
+        />
+        <h1>{fakeBadge.title}</h1>
+      </header>
+      <SkillList title="역량" dataList={fakeBadge.skillSlugs} />
       <h2 id="pieces-title">조각들</h2>
       <ul aria-labelledby="pieces-title" className="flex flex-col">
         {pieces.map(({ id, title, isDone }) => (

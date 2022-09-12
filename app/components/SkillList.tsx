@@ -15,7 +15,7 @@ export function SkillLink({
       to={'/skills/' + slug}
       tooltip={'/skills/' + slug}
       className={clsx(
-        'p-1 m-1 rounded-md bg-quote border-2 border-transparent focus:border-primary-focus',
+        'pl-2 pr-2 p-1 m-1 rounded-md bg-quote border-2 border-transparent focus:border-primary-focus text-primary',
         className
       )}
     >
