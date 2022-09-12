@@ -66,12 +66,12 @@ describe('TagsInput', () => {
     renderTagsInput([]);
     const $addInput = screen.getByLabelText('역량');
 
-    await userEvent.type($addInput, '{enter}re');
+    await userEvent.type($addInput, 're');
+    expect(screen.getAllByRole('option', { hidden: true })).toHaveLength(3)
 
-    await userEvent.click(screen.getByRole('button', { name: 'react' }));
+    await userEvent.type($addInput, 'd');
 
-    expect($addInput).toHaveValue('');
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('option', { hidden: true })).toHaveValue('redux')
   });
 
   it('form으로 제출할 수 있다', async () => {

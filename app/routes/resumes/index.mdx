@@ -1,0 +1,108 @@
+import CenterCardLayout from '~/components/CenterCardLayout';
+import Hero from '~/components/Hero';
+import plan from "../../components/plan.css";
+export const links = () => [
+  { rel: "stylesheet", href: plan },
+];
+
+<CenterCardLayout className="mdx">
+<Hero>
+  <h1 className="text-4xl">탐정토끼 (aka 김태희)</h1>
+  <p className="text-xl">
+    서로 다른 사람들이 함께 나아갈 수 있는 시스템을 만듭니다.
+  </p>
+</Hero>
+
+## 핵심 역량
+### Node.js 기반의 백엔드 개발 경험이 있으신 분
+- Express, Fastify, NestJS 경험이 있습니다.
+- 역량 배지는 Fastify와 Remix로 만들었습니다.
+
+### Linux의 기본적인 명령어들을 사용할 수 있고, EC2에 기본적인 패키지들을 설치하고 Node 애플리케이션을 실행할 수 있으신 분
+- Ubuntu 기반인 하모니카 리눅스를 주로 사용하고 있습니다.
+- 리눅스 터미널에 익숙하고, ssh를 이용한 원격 작업에도 익숙합니다.
+- 개발 환경을 밑바닥부터 구축하고 트러블 슈팅하는 일을 많이 합니다.
+
+### HTTP 통신에 대한 기본적인 이해, RESTful API에 대한 설계나 개발 경험이 있으신 분
+- 여러 http header들을 비롯해, HTTP의 스펙과 특성을 이해하고 있습니다.
+  - mime type이나 cache, allow origin 등과 관련된 에러를 해결해본 경험이 있습니다.
+- 로이 필딩의 논문을 읽고, 목적과 한계를 인지하고 있습니다.
+- RESTful api를 개발할 때에는 OpenAPI와 type 생성을 자동화하는 편입니다.
+
+### function, Class, Instance, Object, {} 에 대해 기본적인 내용을 알고 있고, 상황에 따라 적절하게 사용하고 계신 분
+- 자바나 python 같은 class 기반 객체지향 언어를 경험해보았습니다.
+- js의 프로토타입 기반 객체지향을 이해하고, this가 resolve되는 방식, apply, call 등을 적절히 사용합니다.
+- function과 화살표 연산자의 차이를 이해하고 적절하게 활용합니다.
+
+### ES6+ 에 추가된 기본 스펙들을 사용해본 경험이 있으신 분
+- 구조 분해 할당, for ...of, for ...in, 스프레드 연산자, Rest Parameter, 화살표 함수, 디폴트 파라미터, let&const, import & export, Map & Set, async & await 같은 문법과 기능을 밥 먹듯이 사용합니다
+
+### MySQL / PostgreSQL 과 같은 관계형 데이터베이스를 사용해보신 분
+### 기본적인 SQL 문법, JOIN, Subquery 등을 활용할 줄 아시는 분
+### RDBMS의 인덱스가 무엇인지 알고 있고, 어떤 경우 인덱스가 사용이 안되는지 알고 계신 분
+- 주로 ORM을 활용하지만, 언어나 ORM 라이브러리에 무관한 날 쿼리(raw query)도 즐겨 사용합니다.
+  - 특히 데이터를 읽어올 때에는 raw query를 선호합니다.
+- 역량 배지는 PostgreSQL에 기반한 Supabase와 EdgeDB를 사용하고 있습니다.
+- 읽기 / 쓰기 trade off를 고려해서 index를 적절히 설정합니다.
+  - 예를 들어 primary key가 아니지만 key처럼 활용되는 slug 같은 column에 index를 겁니다.
+
+### Git과 Github에 대한 기본적인 사용법을 알고 있고, Git Flow를 이해하고 계신 분
+- git flow보다는 github flow를 선호하지만, git flow의 사고 방식을 이해하고 있습니다.
+- SAP에서 일하면서 매일 작은 PR으로 지속적 통합(CI)하며 협업해본 경험이 있습니다.
+- 역량 배지를 비롯한 여러 프로젝트를 git과 github, github project를 이용해 관리하고 있습니다.
+- git commit --amend, reset, branch 등을 매일 사용합니다.
+- 팀원의 --force로 날아간 remote origin의 코드를, 로컬에 남아 있는 복제본을 이용해 복구해본 적이 있습니다.
+- 배배 꼬인 브랜치들의 관계를 풀어본 경험이 여러 번 있습니다.
+
+### Spring MVC와 같은 MVC Framework를 사용해본 경험이 있으신 분
+- Spring MVC, Django 와 같이 전통적인 MVC 풀 스택 웹 개발 경험이 있습니다.
+
+### 정적 타입 언어를 사용했거나, TypeScript에 대한 깊은 이해가 있으신 분
+- Java, Kotlin, Scala, Rescript와 같은 정적 타입 언어 경험이 있습니다.
+- 대부분의 프로젝트를 TypeScript로 개발합니다.
+- typescript의 특수한 기능을 이용해서, 타입 유틸리티를 만들어서 활용합니다.
+
+### 레이어드 아키텍처 (Layered Architecture) 가 왜 필요한지 이해하고, 적용해서 개발하고 계신 분
+### 언어/프레임워크에 관계 없이 DI (Dependency Injection) 패턴을 사용하고 있고, 왜 필요한지 알고 계신 분
+- 항상 인터페이스 표준을 정의하고, 교체 가능한 구현체를 만들어서 개발하고 있습니다.
+- typescript 백엔드는 물론 frontend에서도 DI를 사용합니다.
+- DI 프레임워크 없이도, 10가지 이상의 방법으로 상황에 맞게 의존성 주입을 할 수 있습니다.
+- class가 필요 없는 간단하고 type 안전한 DI 도구를 만들어 레거시를 테스트 가능하게 리팩토링한 경험이 있습니다.
+
+### Jest, Mocha 등을 테스트 프레임워크를 통해 테스트 코드를 작성해오신 분
+- jest, mocha, jasmine, pytest, junit 등의 다양한 테스트 프레임워크 경험이 있습니다.
+- 지금은 주로 vitest를 이용해 테스트를 작성하며, vitest의 다양한 설정과 기능을 적절히 활용합니다.
+- 테스트를 자동화 하기 어려운 경우에도, 스펙을 먼저 정의하고 작은 보폭으로 하나씩 확인하며 개발합니다.
+- stryker를 이용핸 mutation testing이나, cucumber를 이용해 자연어에 가까운 스펙을 토대로 테스트를 작성해보았습니다.
+
+### OOP에 대한 기본적인 이해도가 있으신 분
+### 객체의 역할 / 책임 / 협력과 객체간의 메세지 등에 대해 이해하고 계신 분
+- 프런트엔트와 백엔드를 오가면서, 서버도 커다란 객체처럼 생각하고 개발합니다.
+- 모든 모듈을 서버처럼 메세지를 주고 받는 객체로 생각하고 인터페이스를 정의하고 구현합니다.
+- class 없이도, 객체지향적으로 사고하고 구현할 수 있습니다.
+
+### 함수형에 대한 기본적인 이해가 있으시거나 아래 함수형 강좌를 수강해보신 분
+- 패스트 캠퍼스에서 [typescript 함수형 프로그래밍 온보딩] 강좌를 그린랩스의 김춘구 님과 같이 공동 제작 했습니다.
+- 객체지향에서도 불변을 선호합니다.
+- 부분 적용과 closure를 이용해 객체지향의 private처럼 캡슐화하고 의존성 주입하여 개발합니다.
+
+### 24/365 서비스 운영을 경험해보신 분
+
+### MySQL 혹은 PostgreSQL 과 같은 RDBMS 의 실행계획을 통해 인덱스 튜닝 / 쿼리 튜닝등을 진행해본 경험이 있으신 분
+
+### 일반적으로 DBA분들이 해주시기 때문에 DBA분들이 해주셨던 작업들에 대해 충분히 이해를 하고 계셔도 좋습니다.
+
+### 부하 테스트 (Stress Test) 를 통해 성능 개선을 진행해본 경험이 있으신 분
+
+### 모니터링/로그/알람을 통해 장애를 탐지하고 해결해본 경험이 있으신 분
+
+### 동일 장애 재발 방지를 위해 시스템/프로세스 개선을 해보신 분
+
+### 반복적으로 진행하는 수동적인 작업에 불편을 느껴 자동화를 진행해본 경험이 있으신 분
+
+### 위 언급되어있는 개념들을 몰라도 빠르게 내 것으로 만들수 있는 나만의 학습법을 가지고 계신 분
+
+### 운영/기획파트 등 개발자가 아닌 분들께 상황을 설명할 때 그들의 입장에서/그들의 언어로 이야기하는게 당연하신 분
+
+### 대화보다 하나의 문서를 작성하고 공유하길 좋아하시는 분
+</CenterCardLayout>

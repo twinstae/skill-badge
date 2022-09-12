@@ -14,4 +14,12 @@ module.exports = {
   serverDependenciesToBundle: [
     /^marked.*/,
   ],
+  mdx: async (filename) => {
+    const [rehypePrism] = await Promise.all([
+      import("@mapbox/rehype-prism").then((mod) => mod.default),
+    ]);
+    return {
+      rehypePlugins: [rehypePrism],
+    };
+  }
 };

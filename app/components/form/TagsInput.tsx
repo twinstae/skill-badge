@@ -6,9 +6,9 @@ import ErrorMessages, {
   type FieldErrors,
 } from '~/components/form/ErrorMessage';
 import Tooltip from '~/components/shared/Tooltip';
+import { useId } from 'react';
 
 export default function TagsInput<S>({
-  id,
   className = '',
   name,
   initValue = [],
@@ -18,16 +18,16 @@ export default function TagsInput<S>({
   maxLength = 16,
   candidates = [],
 }: {
-  id: string;
   name: string;
   labelText: string;
+  errors: FieldErrors<S> | undefined;
   initValue?: string[];
   placeholder?: string;
-  errors: FieldErrors<S> | undefined;
   className?: string;
   maxLength?: number;
   candidates?: string[];
 }) {
+  const id = useId();
   const addInputId = `tags-input:${id}:input`;
   function validate({
     values,
@@ -99,32 +99,23 @@ export default function TagsInput<S>({
         <Tooltip tooltip="추가하려면 Enter" isOpen={isValid}>
           {api.value.length < maxLength && (
             <input
+              type="text"
               id={addInputId}
               className={clsx(
                 'input input-bordered w-32 h-10 rounded-md p-2 m-1',
                 isValid && 'input-success'
               )}
               placeholder={placeholder}
+              list="skill-slugs"
+              autoComplete="off"
               {...api.inputProps}
             />
           )}
-          {api.inputValue !== '' && (
-            <ul className={clsx(`dropdown-list`, 'show')}>
-              {recommendation.map((candi) => (
-                <li key={candi} className="dropdown-item flex justify-center">
-                  <button
-                    type="button"
-                    className="py-2 px-4 w-full btn btn-sm btn-ghost lowercase font-normal"
-                    onClick={() => {
-                      api.addValue(candi);
-                    }}
-                  >
-                    {candi}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          <datalist id="skill-slugs">
+            {recommendation?.map((candi) => (
+              <option key={candi} value={candi} />
+            ))}
+          </datalist>
         </Tooltip>
         <ErrorMessages errors={errors} name={name} />
       </div>

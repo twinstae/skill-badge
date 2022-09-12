@@ -10,7 +10,12 @@ blockquote p:last-child {
   --typography-spacing-vertical: 0;
 }
 
-ul {
+main ul,
+aside ul {
   padding-inline-start: 1rem;
   list-style-type: disc;
+}
+
+main li {
+  padding: 0.125rem;
 }

@@ -7,7 +7,6 @@ import { SKILL_ALREADY_EXISTS } from './errorMessages';
 import skillsData from './fakeSkills.json';
 import type { ISkillRepo } from './IRepo';
 import { type SkillT, skillSchema } from './schema';
-import { context } from '~/models/context';
 
 export const fakeSkillList: SkillT[] = z.array(skillSchema).parse(skillsData);
 
@@ -27,7 +26,7 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
       if (skill === undefined) return null;
 
       const fakeRequirementList =
-        await context.positionsRepo.getRequirementsByPosition('frontend');
+        await globalThis.__fakePositionsRepo!.getRequirementsByPosition('frontend');
       return {
         ...skill,
         requirements: fakeRequirementList.filter(

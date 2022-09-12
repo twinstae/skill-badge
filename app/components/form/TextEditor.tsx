@@ -1,18 +1,17 @@
 import { marked } from 'marked';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import Tooltip from '~/components/shared/Tooltip';
 
 export function TextEditor({
-  id,
   name,
   label,
   initValue = '',
 }: {
-  id: string;
   label: string;
   name: string;
   initValue?: string;
 }) {
+  const id = useId();
   const [value, setValue] = useState(initValue);
   return (
     <div className="flex flex-col">

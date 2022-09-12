@@ -2,12 +2,12 @@ import * as serverBuild from '@remix-run/dev/server-build';
 import { remixFastifyPlugin } from '@mcansh/remix-fastify';
 import fastify from 'fastify';
 import lcache from 'fastify-lcache';
+import compress from '@fastify/compress';
 
 // import Keyv from '@keyvhq/core';
 // const _keyv = new Keyv();
 
 let MODE = process.env.NODE_ENV;
-
 
 async function start() {
   let app = fastify({ logger: true });
@@ -22,6 +22,7 @@ async function start() {
     publicPath: serverBuild.publicPath,
   });
 
+  await app.register(compress)
 
   const port = parseInt(process.env.PORT ?? '3000');
   const host = '0.0.0.0';

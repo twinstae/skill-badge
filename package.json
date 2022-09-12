@@ -19,8 +19,10 @@
     "start": "node build/index.js"
   },
   "dependencies": {
+    "@fastify/compress": "^6.1.1",
     "@heroicons/react": "^2.0.10",
     "@keyvhq/core": "^1.6.14",
+    "@mapbox/rehype-prism": "^0.8.0",
     "@mcansh/remix-fastify": "^1.11.5",
     "@reach/portal": "^0.17.0",
     "@remix-run/node": "^1.7.0",

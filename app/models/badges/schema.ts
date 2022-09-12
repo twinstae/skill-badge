@@ -10,8 +10,9 @@ export const pieceSchema = z.object({
 export type PieceT = z.infer<typeof pieceSchema>;
 
 export const badgeSchema = slugTitleSchema.extend({
-  skillSlugs: z.array(slugSchema),
-  pieces: z.array(pieceSchema)
+  skillSlugs: z.array(slugSchema).max(4),
+  pieces: z.array(pieceSchema),
+  icon: z.string(),
 });
 
 export type BadgeT = z.infer<typeof badgeSchema>;
