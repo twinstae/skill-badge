@@ -32,6 +32,7 @@ import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
 import HoverableIcon from '~/components/icons/HoverableIcon';
+import { Link } from '~/Link';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
 
@@ -170,6 +171,9 @@ export default function SkillDetail() {
         title="학습 자료"
         dataList={resources}
       />
+      <Link to={"/badges?skillSlug="+slug} className="btn btn-sm btn-primary">
+        배지 구경하러 가기
+      </Link>
     </CenterCardLayout>
   );
 }
