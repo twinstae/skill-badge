@@ -36,7 +36,6 @@ describe('직군 페이지', () => {
     cy.findLink('프런트엔드 보러 가기').click();
     // 프런트 직군 페이지로 이동한다
     cy.location('pathname').should('eq', '/positions/frontend');
-    cy.matchImageSnapshot('프런트엔드 직군 페이지');
   });
 
   it('직군에 공고 문구를 추가할 수 있다', () => {
@@ -48,7 +47,7 @@ describe('직군 페이지', () => {
     cy.findLink('공고 문구 추가하기').click();
     // form을 채우고 제출하면
     // findTextBox 라벨을가지고텍스트박스를찾아라 (aria-labeledby)
-    cy.findTextBox('슬러그').type('react');
+    cy.findByRole('combobox', {name: '슬러그'}).type('react');
     cy.findTextBox('내용').type('react를 기깔나게 다루시는 분');
     // radio input - findByRole에서 할수잇는건 radio의 name에서 '프런트엔드'찾아서클릭
     cy.findByRole('radio', { name: '프런트엔드' }).click();

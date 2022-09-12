@@ -99,6 +99,7 @@ export default function TagsInput<S>({
         <Tooltip tooltip="추가하려면 Enter" isOpen={isValid}>
           {api.value.length < maxLength && (
             <input
+              type="text"
               id={addInputId}
               className={clsx(
                 'input input-bordered w-32 h-10 rounded-md p-2 m-1',

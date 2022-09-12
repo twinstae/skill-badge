@@ -4,7 +4,7 @@ describe('스킬 페이지', () => {
 
     cy.visitAndCheck('/skills');
 
-    cy.findTextBox('검색하기').type('react');
+    cy.findByRole('searchbox', { name:  '검색하기' }).type('react');
     cy.findLink('리액트 네이티브 react-native').click();
 
     cy.location('pathname').should('eq', '/skills/react-native');
@@ -29,8 +29,7 @@ describe('스킬 페이지', () => {
 
     cy.findTextBox('슬러그').type('fake-for-test');
     cy.findTextBox('역량 제목').type('테스트 용 가짜');
-    cy.findTextBox('상위 역량').type('re');
-    cy.findButton('redux').click();
+    cy.findByRole('combobox', { name: '상위 역량' }).type('redux{enter}');
     cy.findTextBox('설명').type('> 테스트용 가짜 내용이에요');
     cy.matchImageSnapshot('역량 생성 폼');
 
@@ -46,7 +45,7 @@ describe('스킬 페이지', () => {
 
     cy.findTextBox('역량 제목').type('{backspace}{backspace}fake');
     cy.findButton('redux 태그를 삭제').click();
-    cy.findTextBox('하위 역량').type('react{enter}');
+    cy.findByRole('combobox', { name: '하위 역량' }).type('react{enter}');
 
     cy.matchImageSnapshot('역량 수정 폼');
 
