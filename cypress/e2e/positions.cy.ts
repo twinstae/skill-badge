@@ -3,6 +3,7 @@
 
 describe('직군 페이지', () => {
   it('직군 선택 페이지에서, 프런트엔드 직군을 선택하면, 해당 페이지로 이동한다', () => {
+    cy.request('delete', 'http://localhost:3000/positions/admin/reset');
     // given (어떤 주어진 상황 - 어떤 상황이 주어졌을 때)
     // 주소 창에 / 를 쳐서 들어온다
     cy.visit('http://localhost:3000/');
@@ -59,10 +60,10 @@ describe('직군 페이지', () => {
     cy.findByLabelText('공유 중...').wait(1000);
 
     // 역량 페이지에 해당 공고가 추가되어 있다
-    cy.visitAndCheck('/skills/react');
+    cy.visitAndCheck('/positions/frontend');
 
     // input이 textBox
-    cy.findByRole('listitem', { name: /react를 기깔나게 다루시는 분/ });
+    cy.findByRole('link', { name: /react를 기깔나게 다루시는 분/ });
   });
 });
 
