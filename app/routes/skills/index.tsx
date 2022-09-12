@@ -34,18 +34,16 @@ export default function SkillListPage() {
       >
         새 역량 만들기
       </Link>
-      <form role="search" onSubmit={(e) => e.preventDefault()}>
-        <label>
-          검색하기
-          <input
-            type="search"
-            className="input input-bordered mt-2 w-full"
-            value={search}
-            placeholder="ex) database, 데이터베이스, react, 오픈 소스"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </label>
-      </form>
+      <label>
+        검색하기
+        <input
+          type="search"
+          className="input input-bordered mt-2 w-full"
+          value={search}
+          placeholder="ex) database, 데이터베이스, react, 오픈 소스"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </label>
       <ul className="p-2 m-2 menu">
         {filteredSkills.slice(0, 10).map((skill) => (
           <li key={skill.slug}>
