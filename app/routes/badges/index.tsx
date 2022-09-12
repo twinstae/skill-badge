@@ -13,10 +13,12 @@ import { SkillLink } from '~/components/SkillList';
 import type { BadgeT } from '~/models/badges/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
+import fakeBadgeRepo from '~/models/badges/fakeRepo';
+import { count } from '~/funcUtil';
 
 type LoaderData = {
   search: string | null;
-  filteredList: typeof fakeBadgeList;
+  filteredList: BadgeT[];
   allSkillSlugs: string[]
 };
 
@@ -28,42 +30,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const filteredList =
     !search
-      ? fakeBadgeList
-      : fakeBadgeList.filter((badge) => badge.skillSlugs.includes(search));
+      ? fakeBadgeRepo
+      : fakeBadgeRepo.filter((badge) => badge.skillSlugs.includes(search));
   return json<LoaderData>({ search, filteredList, allSkillSlugs });
 };
-
-const fakeBadgeList: (Omit<BadgeT, 'pieces'> & {
-  max: number;
-  now: number;
-  icon: string;
-})[] = [
-  {
-    slug: 'linux-cli-fs',
-    title: '리눅스 명령줄로 파일 시스템을 탐색하고 조작할 수 있습니다',
-    skillSlugs: ['linux'],
-    max: 7,
-    now: 4,
-    icon: 'commandLine',
-  },
-  {
-    slug: 'css-flex',
-    title:
-      'css flex의 direction, grow & shrink, wrap, justify 등을 활용해서 layout을 만들 수 있습니다',
-    skillSlugs: ['frontend', 'css'],
-    max: 6,
-    now: 1,
-    icon: 'rectangleGroup',
-  },
-  {
-    slug: 'component-testing-library',
-    title: '컴포넌트를 testing-library를 이용해서 테스트할 수 있습니다',
-    skillSlugs: ['frontend', 'test'],
-    max: 6,
-    now: 6,
-    icon: 'magnifyingGlass',
-  },
-];
 
 const iconDict = {
   commandLine: CommandLineIcon,
@@ -87,6 +57,9 @@ export default function BadgeListPage() {
           </Link>
         )}
       </header>
+      <Link to="/badges/admin/new" className="w-full btn btn-primary mb-2">
+        배지 만들기
+      </Link>
       <Form  method="get" action="/badges">
         <AutoCompleteTextBox
           type="search"
@@ -99,36 +72,41 @@ export default function BadgeListPage() {
       <ul className="p-2 m-2 menu">
         {filteredList
           .slice(0, 10)
-          .map(({ slug, title, max, now, skillSlugs, icon }) => (
-            <li key={slug}>
-              <Link to={'/badges/detail'} className="flex flex-row">
-                <div className="indicator w-1/6 flex-none">
-                  {max === now && (
-                    <span className="indicator-item indicator-start badge badge-primary badge-xs">
-                      획득!
-                    </span>
-                  )}
-                  <ProgressBadge
-                    max={max}
-                    now={now}
-                    size="sm"
-                    Icon={iconDict[icon]}
-                  />
-                </div>
+          .map(({ slug, title, skillSlugs, icon, pieces }) => {
+            const max = pieces.length;
+            const now = count(pieces, (piece) => piece.isDone)
 
-                <div className="flex flex-col w-5/6">
-                  <span>{title}</span>
-                  <ul className="flex flex-row flex-wrap">
-                    {skillSlugs.map((skillSlug) => (
-                      <li key={skillSlug}>
-                        <SkillLink slug={skillSlug} className="w-fit" />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Link>
-            </li>
-          ))}
+            return (
+              <li key={slug}>
+                <Link to={'/badges/detail'} className="flex flex-row">
+                  <div className="indicator w-1/6 flex-none">
+                    {max === now && (
+                      <span className="indicator-item indicator-start badge badge-primary badge-xs">
+                        획득!
+                      </span>
+                    )}
+                    <ProgressBadge
+                      max={max}
+                      now={now}
+                      size="sm"
+                      Icon={iconDict[icon]}
+                    />
+                  </div>
+  
+                  <div className="flex flex-col w-5/6">
+                    <span>{title}</span>
+                    <ul className="flex flex-row flex-wrap">
+                      {skillSlugs.map((skillSlug) => (
+                        <li key={skillSlug}>
+                          <SkillLink slug={skillSlug} className="w-fit" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Link>
+              </li>
+            )
+          })}
         {filteredList.length > 10 && (
           <li className="text-xl text-center">
             ...{filteredList.length - 10} 개

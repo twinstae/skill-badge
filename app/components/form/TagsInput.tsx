@@ -20,9 +20,9 @@ export default function TagsInput<S>({
 }: {
   name: string;
   labelText: string;
+  errors: FieldErrors<S> | undefined;
   initValue?: string[];
   placeholder?: string;
-  errors: FieldErrors<S> | undefined;
   className?: string;
   maxLength?: number;
   candidates?: string[];

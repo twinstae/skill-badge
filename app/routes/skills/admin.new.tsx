@@ -112,7 +112,6 @@ export default function NewSkill() {
         />
         <ErrorMessages errors={errors} name="title" />
         <TagsInput
-          id="parents-input"
           className="mb-2"
           labelText="상위 역량"
           name="parents"
@@ -122,7 +121,6 @@ export default function NewSkill() {
           candidates={allSkillSlugs}
         />
         <TagsInput
-          id="children-input"
           className="mb-2"
           labelText="하위 역량"
           name="children"
@@ -133,7 +131,6 @@ export default function NewSkill() {
         />
 
         <TextEditor
-          id="input-content"
           label="설명"
           name="content"
           initValue=""
