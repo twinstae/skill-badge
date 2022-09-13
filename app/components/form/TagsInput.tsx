@@ -91,7 +91,13 @@ export default function TagsInput<S>({
 							</div>
 							<input {...api.getTagInputProps({ index, value })} />
 							{/* 실제로 보내는 값 */}
-							<input type="text" hidden={true} name={name} value={value} readOnly={true} />
+							<input
+								type="text"
+								hidden={true}
+								name={name}
+								value={value}
+								readOnly={true}
+							/>
 						</span>
 					),
 				)}

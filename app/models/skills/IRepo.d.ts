@@ -12,6 +12,8 @@ type SkillWithRequirementsAndResourcesT = z.infer<
 	typeof skillWithRequirementsAndResourcesSchema
 >;
 
+type ImmutableSkillT = Readonly<SkillT>;
+
 interface ISkillRepo {
 	getAllList: () => Promise<Pick<SkillT, 'title' | 'slug'>[]>;
 	getOneBySlug: (slug: SkillT['slug']) => Promise<SkillT | null>;

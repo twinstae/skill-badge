@@ -8,12 +8,12 @@ import SkillList from '~/components/SkillList';
 import ProgressBadge from '~/components/ProgressBadge';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
 import type { BadgeT } from '~/models/badges/schema';
-import { count } from '~/funcUtil';
+import { count } from '~/functional/Array';
 
 type LoaderData = BadgeT;
 
 export const loader: LoaderFunction = async ({ params }) => {
-	invariant(params.slug, "params.slug is required");
+	invariant(params.slug, 'params.slug is required');
 
 	const badge = fakeBadgeRepo.find((badge) => badge.slug === params.slug);
 

@@ -26,7 +26,9 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
 		async getOneBySlug(slug) {
 			const result = await client.querySingle(getOneBySlug, { slug });
 
-			if (result === null) { return null; }
+			if (result === null) {
+				return null;
+			}
 
 			return skillSchema.parse(flatChildren(result));
 		},
@@ -36,7 +38,9 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
 				{ slug },
 			);
 
-			if (result === null) { return null; }
+			if (result === null) {
+				return null;
+			}
 
 			return skillWithRequirementsAndResourcesSchema.parse(
 				flatChildren(result),

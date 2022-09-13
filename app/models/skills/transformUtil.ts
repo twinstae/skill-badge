@@ -12,5 +12,5 @@ export function flatLink(transform: (item: any) => any) {
 	});
 }
 
-export const flatSlug = (e: any) => e.slug;
-export const flatSlugs = flatMultiLink(flatSlug);
+export const selectSlug = (e: any) => e.slug;
+export const flatSlugs = flatMultiLink(selectSlug);

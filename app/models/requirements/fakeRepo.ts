@@ -20,6 +20,9 @@ export function FakePositionsRepo(
 				{ title: '백엔드', slug: 'backend' },
 			];
 		},
+		async getRequirements() {
+			return _store;
+		},
 		async getRequirementsByPosition(positionSlug) {
 			return _store.filter((req) => req.positionSlug === positionSlug);
 		},

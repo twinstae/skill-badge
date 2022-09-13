@@ -9,7 +9,7 @@ import type { BadgeT } from '~/models/badges/schema';
 import { context } from '~/models/context';
 import { flatSlug } from '~/models/skills/transformUtil';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
-import { count } from '~/funcUtil';
+import { count } from '~/functional/Array';
 
 type LoaderData = {
 	search: string | null;

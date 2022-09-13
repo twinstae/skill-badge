@@ -1,50 +1,48 @@
 import invariant from 'tiny-invariant';
 import { z } from 'zod';
-import { context } from '../context';
+import { difference } from '~/functional/Array';
+import { addTo, pick, removeAllFrom } from '~/functional/Object';
 
 import { fakeReactResources } from '../resources/fakeRepo';
 
-import { SKILL_ALREADY_EXISTS } from './errorMessages';
+import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from './errorMessages';
 import skillsData from './fakeSkills.json';
 import type { ISkillRepo } from './IRepo';
 import { type SkillT, skillSchema } from './schema';
+import { selectSlug } from './transformUtil';
 
 export const fakeSkillList: SkillT[] = z.array(skillSchema).parse(skillsData);
 
 export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
-	let _store = init;
+	let _store: Omit<SkillT, 'parents'>[] = init;
 	return {
 		async getAllList() {
-			return _store.map((item) => ({ slug: item.slug, title: item.title }));
+			return _store.map((skill) => pick(skill, ['slug', 'title']));
 		},
 		async getOneBySlug(slug) {
 			const result = _store.find((item) => item.slug === slug);
-			if (result === undefined) { return null; }
-			return result;
+			if (result === undefined) {
+				return null;
+			}
+
+			return {
+				...result,
+				parents: _store.filter((skill) => skill.children.includes(slug)).map(
+					selectSlug,
+				),
+			};
 		},
 		async getOneBySlugWithRequirementsAndResources(slug) {
-			const skill = _store.find((item) => item.slug === slug);
-			if (skill === undefined) { return null; }
+			const skill = await this.getOneBySlug(slug);
+			if (skill === null) {
+				return null;
+			}
 
-			const fakeRequirementList = await context.positionsRepo
-				.getPositionList()
-				.then(
-					(positions) =>
-						Promise.all(
-							positions.map(
-								(position) =>
-									context.positionsRepo.getRequirementsByPosition(
-										position.slug,
-									),
-							),
-						),
-				)
-				.then((nested) => nested.flat());
+			const requirementList =
+				await globalThis.__fakePositionsRepo!.getRequirements();
 			return {
 				...skill,
-				requirements: fakeRequirementList.filter(
-					(r) => r.skillSlug === skill.slug,
-				),
+				requirements: requirementList.filter((r) => r.skillSlug === skill.slug),
 				resources: fakeReactResources.filter((r) => r.skillSlug === skill.slug),
 			};
 		},
@@ -57,33 +55,36 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 
 			_store = _store.map(
 				(a) =>
-					skill.parents.includes(a.slug)
-						? { ...a, children: [...a.children, skill.slug] }
-						: a,
-			);
-			_store = _store.map(
-				(a) =>
-					skill.children.includes(a.slug)
-						? { ...a, parents: [...a.parents, skill.slug] }
-						: a,
+					skill.parents.includes(a.slug) ? addTo(a, 'children', skill.slug) : a,
 			);
 		},
-		async update(skill) {
-			_store = _store.map((item) => (item.slug === skill.slug ? skill : item));
+		async update({ slug, title, content, children, parents }) {
+			const old = await this.getOneBySlug(slug);
+			invariant(old !== null, SKILL_NOT_FOUND(slug));
+
+			const detached_parents = difference(old.parents, parents);
+			const new_parents = difference(parents, old.parents);
+
+			_store = _store.map((a) => {
+				if (detached_parents.includes(a.slug)) {
+					return removeAllFrom(a, 'children', slug);
+				}
+				if (new_parents.includes(a.slug)) {
+					return addTo(a, 'children', slug);
+				}
+
+				if (a.slug === slug) {
+					return { slug, title, content, children };
+				}
+
+				return a;
+			});
 		},
 		async delete(slug) {
 			_store = _store.filter((item) => item.slug !== slug);
 			_store = _store.map(
 				(a) =>
-					a.parents.includes(slug)
-						? { ...a, parents: a.parents.filter((item) => item !== slug) }
-						: a,
-			);
-			_store = _store.map(
-				(a) =>
-					a.children.includes(slug)
-						? { ...a, children: a.children.filter((item) => item !== slug) }
-						: a,
+					a.children.includes(slug) ? removeAllFrom(a, 'children', slug) : a,
 			);
 		},
 	};

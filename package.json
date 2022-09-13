@@ -69,6 +69,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/testing-library__cypress": "^5.0.9",
     "@vitejs/plugin-react": "^2.0.1",
+    "@vitest/coverage-c8": "^0.23.2",
     "autoprefixer": "^10.4.8",
     "cypress": "^10.7.0",
     "cypress-image-snapshot": "^4.0.1",

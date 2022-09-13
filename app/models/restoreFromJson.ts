@@ -23,7 +23,7 @@
 //       for parent_slug in parents_slug union (
 //         update Skill
 //         filter .slug = parent_slug
-//         set { 
+//         set {
 //           children += child
 //         }
 //       );
@@ -53,4 +53,4 @@
 // }
 // // restore();
 
-export default {}
+export default {};

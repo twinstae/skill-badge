@@ -15,6 +15,18 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
       `,
 			).then(z.array(positionSchema).parse);
 		},
+		async getRequirements() {
+			return client.query(
+				`
+      select Requirement {
+        id,
+        content,
+        skillSlug := .skill.slug,
+        positionSlug := .position.slug,
+      }
+      `,
+			).then(z.array(requirementSchema).parse);
+		},
 		async getRequirementsByPosition(positionSlug) {
 			return client.query(
 				`

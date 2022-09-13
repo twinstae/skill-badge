@@ -37,7 +37,7 @@ import { Link } from '~/Link';
 type LoaderData = SkillWithRequirementsAndResourcesT;
 
 export const loader: LoaderFunction = async ({ params }) => {
-	invariant(params.slug, "params.slug is required");
+	invariant(params.slug, 'params.slug is required');
 	const skill =
 		await context.skillsRepo.getOneBySlugWithRequirementsAndResources(
 			params.slug,
@@ -114,7 +114,13 @@ function DeleteForm({ slug }: { slug: string }) {
 					)}
 				/>
 			</label>
-			<input type="text" name="slug" value={slug} hidden={true} readOnly={true} />
+			<input
+				type="text"
+				name="slug"
+				value={slug}
+				hidden={true}
+				readOnly={true}
+			/>
 			<button type="submit" className="btn btn-error" disabled={!isValid}>
 				삭제하겠습니다
 			</button>

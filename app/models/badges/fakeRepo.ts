@@ -1,3 +1,4 @@
+import { uuidv4 } from '../uuidv4';
 import type { BadgeT } from './schema';
 
 const fakeBadgeList: BadgeT[] = [
@@ -16,7 +17,7 @@ const fakeBadgeList: BadgeT[] = [
 			'파일을 다룰 때 흔한 실수를 알고 예방할 수 있습니다',
 		].map(
 			(title, index) => ({
-				id: (Math.random() * 1_000_000_000).toString(),
+				id: uuidv4(),
 				title,
 				isDone: index < 3,
 			}),
@@ -38,7 +39,7 @@ const fakeBadgeList: BadgeT[] = [
 			'파일을 다룰 때 흔한 실수를 알고 예방할 수 있습니다',
 		].map(
 			(title, index) => ({
-				id: (Math.random() * 1_000_000_000).toString(),
+				id: uuidv4(),
 				title,
 				isDone: index < 3,
 			}),
@@ -59,7 +60,7 @@ const fakeBadgeList: BadgeT[] = [
 			'파일을 다룰 때 흔한 실수를 알고 예방할 수 있습니다',
 		].map(
 			(title, index) => ({
-				id: (Math.random() * 1_000_000_000).toString(),
+				id: uuidv4(),
 				title,
 				isDone: index < 3,
 			}),
