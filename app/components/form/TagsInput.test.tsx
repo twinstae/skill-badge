@@ -8,7 +8,6 @@ import TagsInput from './TagsInput';
 function renderTagsInput(initValue: string[]) {
 	render(
 		<TagsInput
-			id="skills-input"
 			className="mb-2"
 			labelText="역량"
 			name="skills"

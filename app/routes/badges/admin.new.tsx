@@ -14,14 +14,14 @@ import {
 	redirect,
 } from '@remix-run/node';
 import { context } from '~/models/context';
-import { badgeSchema, type BadgeT } from '~/models/badges/schema';
+import type { BadgeT } from '~/models/badges/schema';
 import ErrorMessages, {
 	type FieldErrors,
 	getFieldErrors,
 } from '~/components/form/ErrorMessage';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
 import Spinner from '~/components/shared/Spinner';
-import { uuidv4 } from '~/models/uuidv4';
+import { createBadgeSchema } from '~/models/badges/IRepo.d';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -48,22 +48,16 @@ export const action: ActionFunction = async ({ request }) => {
 				title: formData.get('title'),
 				skillSlugs: formData.getAll('skillSlugs'), // getAll은 같은 name이 여러 개임
 				icon: formData.get('icon'),
-				pieces: formData.getAll('pieces')?.map(
-					(title) => ({
-						id: uuidv4(),
-						title,
-						isDone: false,
-					}),
-				),
+				pieces: formData.getAll('pieces'),
 			}),
 		)
-		.then(badgeSchema.safeParse);
+		.then(createBadgeSchema.safeParse);
 
 	if (!result.success) {
 		return json<ActionData>(getFieldErrors(result));
 	}
 
-	fakeBadgeRepo.push(result.data);
+	await fakeBadgeRepo.createBadge(result.data);
 
 	return redirect('/badges');
 };

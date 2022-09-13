@@ -13,9 +13,14 @@ export const removeAllFrom = <O, K extends keyof O>(
 	from: K,
 	target: O[K] extends Array<infer T> ? T : never,
 ): O => {
+	const prop = obj[from] as typeof target[];
+	if(!prop.includes(target)){
+		return obj;
+	}
+
 	return {
 		...obj,
-		[from]: removeAll(obj[from] as typeof target[], target),
+		[from]: removeAll(prop, target),
 	};
 };
 

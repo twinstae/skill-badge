@@ -16,7 +16,9 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 	let _store: Omit<SkillT, 'parents'>[] = init;
 	return {
 		async getAllList() {
-			return IsomorphicArray(_store.map((skill) => pick(skill, ['slug', 'title'])));
+			return IsomorphicArray(
+				_store.map((skill) => pick(skill, ['slug', 'title'])),
+			);
 		},
 		async getOneBySlug(slug) {
 			const result = _store.find((item) => item.slug === slug);
@@ -80,10 +82,7 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 		},
 		async delete(slug) {
 			_store = _store.filter((item) => item.slug !== slug);
-			_store = _store.map(
-				(a) =>
-					a.children.includes(slug) ? removeAllFrom(a, 'children', slug) : a,
-			);
+			_store = _store.map((a) => removeAllFrom(a, 'children', slug));
 		},
 	};
 }

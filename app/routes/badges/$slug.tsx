@@ -15,9 +15,9 @@ type LoaderData = BadgeT;
 export const loader: LoaderFunction = async ({ params }) => {
 	invariant(params.slug, 'params.slug is required');
 
-	const badge = fakeBadgeRepo.find((badge) => badge.slug === params.slug);
+	const badge = await fakeBadgeRepo.getBadgeWithPieces(params.slug);
 
-	if (badge === undefined) {
+	if (badge === null) {
 		return redirect('/badges');
 	}
 

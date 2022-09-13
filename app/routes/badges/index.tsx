@@ -5,15 +5,14 @@ import AutoCompleteTextBox from '~/components/form/AutoCompleteTextBox';
 
 import ProgressBadge from '~/components/ProgressBadge';
 import { SkillLink } from '~/components/SkillList';
-import type { BadgeT } from '~/models/badges/schema';
 import { context } from '~/models/context';
 import { selectSlug } from '~/models/skills/transformUtil';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
-import { count } from '~/functional/Array';
+import type { BadgeListT } from '~/models/badges/IRepo';
 
 type LoaderData = {
 	search: string | null;
-	filteredList: BadgeT[];
+	filteredList: BadgeListT;
 	allSkillSlugs: string[];
 };
 
@@ -23,9 +22,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 	const allSkills = await context.skillsRepo.getAllList();
 	const allSkillSlugs = allSkills.map(selectSlug);
 
+	const badgeList = await fakeBadgeRepo.getBadgeList();
 	const filteredList = search
-		? fakeBadgeRepo.filter((badge) => badge.skillSlugs.includes(search))
-		: fakeBadgeRepo.slice(0, 10);
+		? badgeList.filter((badge) => badge.skillSlugs.includes(search))
+		: badgeList.slice(0, 10);
 	return json<LoaderData>({ search, filteredList, allSkillSlugs });
 };
 
@@ -60,10 +60,9 @@ export default function BadgeListPage() {
 					title,
 					skillSlugs,
 					icon,
-					pieces,
+					max,
 				}) => {
-					const max = pieces.length;
-					const now = count(pieces, (piece) => piece.isDone);
+					const now = max - 2;
 
 					return (
 						<li key={slug}>
@@ -81,9 +80,9 @@ export default function BadgeListPage() {
 									<span>{title}</span>
 									<ul className="flex flex-row flex-wrap">
 										{skillSlugs.map(
-											(skillSlug) => (
-												<li key={skillSlug}>
-													<SkillLink slug={skillSlug} className="w-fit" />
+											(slug) => (
+												<li key={slug}>
+													<SkillLink slug={slug} className="w-fit" />
 												</li>
 											),
 										)}
