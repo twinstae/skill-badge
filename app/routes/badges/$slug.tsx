@@ -1,14 +1,31 @@
+import { useLoaderData } from '@remix-run/react';
+import { json, redirect } from '@remix-run/node';
+import type { LoaderFunction } from '@remix-run/node';
+import invariant from 'tiny-invariant';
+
 import CenterCardLayout from '~/components/CenterCardLayout';
 import SkillList from '~/components/SkillList';
-import { count } from '~/funcUtil';
 import ProgressBadge from '~/components/ProgressBadge';
-import { CommandLineIcon } from '@heroicons/react/24/outline';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
+import type { BadgeT } from '~/models/badges/schema';
+import { count } from '~/funcUtil';
 
-const fakeBadge = fakeBadgeRepo[0];
+type LoaderData = BadgeT;
+
+export const loader: LoaderFunction = async ({ params }) => {
+  invariant(params.slug, `params.slug is required`);
+
+  const badge = fakeBadgeRepo.find((badge) => badge.slug === params.slug);
+
+  if (badge === undefined) {
+    return redirect('/badges');
+  }
+
+  return json<LoaderData>(badge);
+};
 
 export default function BadgeDetailPage() {
-  const pieces = fakeBadge.pieces;
+  const { title, slug, pieces, skillSlugs, icon } = useLoaderData() as LoaderData;
 
   return (
     <CenterCardLayout>
@@ -16,12 +33,15 @@ export default function BadgeDetailPage() {
         <ProgressBadge
           max={pieces.length}
           now={count(pieces, (piece) => piece.isDone)}
-          Icon={CommandLineIcon}
+          icon={icon}
           size="lg"
         />
-        <h1>{fakeBadge.title}</h1>
+        <h1>
+          {title}<br/>
+          <span className="font-normal text-lg text-primary">{slug}</span>
+        </h1>
       </header>
-      <SkillList title="역량" dataList={fakeBadge.skillSlugs} />
+      <SkillList title="역량" dataList={skillSlugs} />
       <h2 id="pieces-title">조각들</h2>
       <ul aria-labelledby="pieces-title" className="flex flex-col">
         {pieces.map(({ id, title, isDone }) => (

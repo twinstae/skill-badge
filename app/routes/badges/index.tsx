@@ -1,13 +1,8 @@
-import {
-  CommandLineIcon,
-  MagnifyingGlassIcon,
-  RectangleGroupIcon,
-} from '@heroicons/react/24/outline';
 import { json, type LoaderFunction } from '@remix-run/node';
 import { Form, Link, useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import AutoCompleteTextBox from '~/components/form/AutoCompleteTextBox';
-import type { IconT } from '~/components/icons/HoverableIcon';
+
 import ProgressBadge from '~/components/ProgressBadge';
 import { SkillLink } from '~/components/SkillList';
 import type { BadgeT } from '~/models/badges/schema';
@@ -30,16 +25,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const filteredList =
     !search
-      ? fakeBadgeRepo
+      ? fakeBadgeRepo.slice(0, 10)
       : fakeBadgeRepo.filter((badge) => badge.skillSlugs.includes(search));
   return json<LoaderData>({ search, filteredList, allSkillSlugs });
 };
-
-const iconDict = {
-  commandLine: CommandLineIcon,
-  rectangleGroup: RectangleGroupIcon,
-  magnifyingGlass: MagnifyingGlassIcon,
-} as Record<string, IconT>;
 
 export default function BadgeListPage() {
   const { search, filteredList, allSkillSlugs } = useLoaderData() as LoaderData;
@@ -57,13 +46,10 @@ export default function BadgeListPage() {
           </Link>
         )}
       </header>
-      <Link to="/badges/admin/new" className="w-full btn btn-primary mb-2">
-        배지 만들기
-      </Link>
       <Form  method="get" action="/badges">
         <AutoCompleteTextBox
           type="search"
-          className="input input-bordered"
+          className="input input-bordered w-full"
           name="skillSlug"
           initValue={search ?? ''}
           candidates={allSkillSlugs}
@@ -78,7 +64,7 @@ export default function BadgeListPage() {
 
             return (
               <li key={slug}>
-                <Link to={'/badges/detail'} className="flex flex-row">
+                <Link to={'/badges/'+slug} className="flex flex-row">
                   <div className="indicator w-1/6 flex-none">
                     {max === now && (
                       <span className="indicator-item indicator-start badge badge-primary badge-xs">
@@ -89,7 +75,7 @@ export default function BadgeListPage() {
                       max={max}
                       now={now}
                       size="sm"
-                      Icon={iconDict[icon]}
+                      icon={icon}
                     />
                   </div>
   
@@ -113,6 +99,9 @@ export default function BadgeListPage() {
           </li>
         )}
       </ul>
+      <Link to="/badges/admin/new" className="w-full btn btn-primary mb-2">
+        배지 만들기
+      </Link>
     </CenterCardLayout>
   );
 }

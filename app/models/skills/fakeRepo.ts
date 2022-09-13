@@ -1,5 +1,6 @@
 import invariant from 'tiny-invariant';
 import { z } from 'zod';
+import { context } from '../context';
 
 import { fakeReactResources } from '../resources/fakeRepo';
 
@@ -26,7 +27,10 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
       if (skill === undefined) return null;
 
       const fakeRequirementList =
-        await globalThis.__fakePositionsRepo!.getRequirementsByPosition('frontend');
+        await context.positionsRepo
+          .getPositionList()
+          .then(positions => Promise.all(positions.map(position => context.positionsRepo.getRequirementsByPosition(position.slug))))
+          .then(nested => nested.flat())
       return {
         ...skill,
         requirements: fakeRequirementList.filter(

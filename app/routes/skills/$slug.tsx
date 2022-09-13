@@ -25,13 +25,13 @@ import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
 import Divider from '~/components/shared/Divider';
 import Tooltip from '~/components/shared/Tooltip';
 import { Dialog } from '~/components/shared/Dialog';
+import HoverableIcon from '~/components/icons/HoverableIcon';
 
 import { context } from '~/models/context';
 import type { SkillWithRequirementsAndResourcesT } from '~/models/skills/IRepo';
 import type { ResourceT } from '~/models/resources/schema';
 import type { RequirementT } from '~/models/requirements/schema';
 import { slugSchema } from '~/models/skills/schema';
-import HoverableIcon from '~/components/icons/HoverableIcon';
 import { Link } from '~/Link';
 
 type LoaderData = SkillWithRequirementsAndResourcesT;
@@ -128,7 +128,7 @@ export default function SkillDetail() {
 
   return (
     <CenterCardLayout>
-      <h1>{title}  <span className="font-normal text-lg text-primary">{slug}</span></h1>
+      <h1>{title} <span className="font-normal text-lg text-primary">{slug}</span></h1>
       <RequirementList
         title="채용공고"
         dataList={requirements}

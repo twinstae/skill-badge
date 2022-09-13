@@ -1,5 +1,9 @@
 import Tooltip from '~/components/shared/Tooltip';
-import type { IconT } from './icons/HoverableIcon';
+import {
+  CommandLineIcon,
+  MagnifyingGlassIcon,
+  RectangleGroupIcon,
+} from '@heroicons/react/24/outline';
 
 declare module 'csstype' {
   interface Properties {
@@ -21,18 +25,25 @@ const iconSizeDict = {
   lg: 'w-14 h-14',
 } as const;
 
+const iconDict = {
+  commandLine: CommandLineIcon,
+  rectangleGroup: RectangleGroupIcon,
+  magnifyingGlass: MagnifyingGlassIcon,
+} as const;
+
 function ProgressBadge({
   now,
   max,
-  Icon,
+  icon,
   size = 'base',
 }: {
   now: number;
   max: number;
-  Icon: IconT,
+  icon: keyof typeof iconDict,
   size?: 'sm' | 'base' | 'lg';
 }) {
   const progress = Math.floor((now / max) * 100);
+  const Icon = iconDict[icon];
   return (
     <div
       className="radial-progress bg-quote text-primary mr-2 flex-none"

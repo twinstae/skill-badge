@@ -12,7 +12,7 @@ export type PieceT = z.infer<typeof pieceSchema>;
 export const badgeSchema = slugTitleSchema.extend({
   skillSlugs: z.array(slugSchema).max(4),
   pieces: z.array(pieceSchema),
-  icon: z.string(),
+  icon: z.enum(["commandLine", "rectangleGroup", "magnifyingGlass"]),
 });
 
 export type BadgeT = z.infer<typeof badgeSchema>;
