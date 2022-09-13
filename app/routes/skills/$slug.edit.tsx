@@ -13,7 +13,6 @@ import {
 } from '@remix-run/react';
 import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { selectSlug} from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/form/TextEditor';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/shared/Spinner';
@@ -41,7 +40,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 	return json<LoaderData>({
 		skill,
-		allSkillSlugs: allSkills.map(flatSlug),
+		allSkillSlugs: allSkills.slug
 	});
 };
 
@@ -112,7 +111,6 @@ export default function NewSkill() {
 				/>
 				<ErrorMessages errors={errors} name="title" />
 				<TagsInput
-					id="parents-input"
 					className="mb-2"
 					labelText="상위 역량"
 					name="parents"
@@ -123,7 +121,6 @@ export default function NewSkill() {
 					initValue={skill.parents}
 				/>
 				<TagsInput
-					id="children-input"
 					className="mb-2"
 					labelText="하위 역량"
 					name="children"
@@ -134,7 +131,6 @@ export default function NewSkill() {
 					initValue={skill.children}
 				/>
 				<TextEditor
-					id="input-content"
 					label="설명"
 					name="content"
 					initValue={skill.content}

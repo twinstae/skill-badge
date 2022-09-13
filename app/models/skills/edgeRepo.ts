@@ -15,13 +15,17 @@ import skillExists from './queries/skillExists.edgeql';
 import createSkill from './queries/createSkill.edgeql';
 import updateSkill from './queries/updateSkill.edgeql';
 import deleteSkill from './queries/deleteSkill.edgeql';
+import { difference, IsomorphicArray } from '~/functional/Array';
+import { z } from 'zod';
 
 const flatChildren = flatSlugs('children');
 
 export function EdgeSkillsRepo(client: Client): ISkillRepo {
 	return {
 		async getAllList() {
-			return client.query(getAllList);
+			return client.query(getAllList)
+				.then(z.array(skillSchema.pick({ slug: true, title: true })).parse)
+				.then(IsomorphicArray);
 		},
 		async getOneBySlug(slug) {
 			const result = await client.querySingle(getOneBySlug, { slug });
@@ -58,10 +62,8 @@ export function EdgeSkillsRepo(client: Client): ISkillRepo {
 			const old = await this.getOneBySlug(slug);
 			invariant(old !== null, SKILL_NOT_FOUND(slug));
 
-			const detached_parents = old.parents.filter(
-				(item) => !parents.includes(item),
-			);
-			const new_parents = parents.filter((item) => !old.parents.includes(item));
+			const detached_parents = difference(old.parents, parents);
+			const new_parents = difference(parents, old.parents);
 
 			await client.execute(updateSkill, {
 				slug,

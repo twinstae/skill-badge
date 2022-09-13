@@ -44,3 +44,23 @@ export const union = <T>(a: T[], b: T[]): T[] => {
 
 	return difference(a, b).concat(b);
 };
+
+export type IsomorphicArrayT<T> = T[] & {
+	[K in keyof T]: T[K][];
+}
+
+export function IsomorphicArray<T>(arr: T[]) {
+	return new Proxy(arr, {
+		get(target, prop, receiver) {
+			if (target[0] === undefined || target[0] === null) {
+				return [];
+			}
+			if (prop in target[0]) {
+				return target.map((item) => item[prop as keyof T]);
+			}
+			return Reflect.get(target, prop, receiver);
+		},
+	}) as IsomorphicArrayT<T>;
+}
+
+export const get = IsomorphicArray;

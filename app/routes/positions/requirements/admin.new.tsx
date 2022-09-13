@@ -13,7 +13,6 @@ import {
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { selectSlug} from '~/models/skills/transformUtil';
 import {
 	requirementSchema,
 	type RequirementT,
@@ -32,7 +31,7 @@ export const loader: LoaderFunction = async () => {
 	const allSkills = await context.skillsRepo.getAllList();
 
 	return json<LoaderData>({
-		allSkillSlugs: allSkills.map(flatSlug),
+		allSkillSlugs: allSkills.slug
 	});
 };
 
@@ -40,7 +39,7 @@ type ActionData = FieldErrors<RequirementT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
 	const allSkills = await context.skillsRepo.getAllList();
-	const allSkillSlugs = allSkills.map(flatSlug);
+	const allSkillSlugs = allSkills.slug
 	const result = await request
 		.formData()
 		.then(

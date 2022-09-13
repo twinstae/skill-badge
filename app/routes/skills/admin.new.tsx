@@ -22,7 +22,6 @@ import ErrorMessages, {
 } from '~/components/form/ErrorMessage';
 import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { selectSlug} from '~/models/skills/transformUtil';
 import TagsInput from '~/components/form/TagsInput';
 import { TextEditor } from '~/components/form/TextEditor';
 
@@ -34,7 +33,7 @@ export const loader: LoaderFunction = async () => {
 	const allSkills = await context.skillsRepo.getAllList();
 
 	return json<LoaderData>({
-		allSkillSlugs: allSkills.map(flatSlug),
+		allSkillSlugs: allSkills.slug,
 	});
 };
 

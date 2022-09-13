@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { count, difference, intersection, removeAll, union } from './Array';
+import type { SkillT } from '~/models/skills/schema';
+import {
+	count,
+	difference,
+	get,
+	intersection,
+	IsomorphicArray,
+	removeAll,
+	union,
+} from './Array';
 
 describe('functional: Array', () => {
 	it('count', () => {
@@ -21,5 +30,27 @@ describe('functional: Array', () => {
 
 	it('union', () => {
 		expect(union([1, 2, 3, 4], [3, 4, 5, 6])).toEqual([1, 2, 3, 4, 5, 6]);
+	});
+
+	it('IsomorphicArray', () => {
+		const arr = [
+			{
+				slug: 'optimization',
+				title: '최적화',
+				parents: [],
+				children: [],
+				content: '',
+			},
+			{
+				slug: 'react-native',
+				title: '리액트 네이티브',
+				parents: ['react'],
+				children: [],
+				content: '',
+			},
+		] as SkillT[];
+
+		expect(IsomorphicArray(arr).slug).toEqual(['optimization', 'react-native']);
+		expect(get(arr).slug).toEqual(['optimization', 'react-native']);
 	});
 });

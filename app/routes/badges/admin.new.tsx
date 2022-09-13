@@ -14,7 +14,6 @@ import {
 	redirect,
 } from '@remix-run/node';
 import { context } from '~/models/context';
-import { selectSlug} from '~/models/skills/transformUtil';
 import { badgeSchema, type BadgeT } from '~/models/badges/schema';
 import ErrorMessages, {
 	type FieldErrors,
@@ -32,7 +31,7 @@ export const loader: LoaderFunction = async () => {
 	const allSkills = await context.skillsRepo.getAllList();
 
 	return json<LoaderData>({
-		allSkillSlugs: allSkills.map(flatSlug),
+		allSkillSlugs: allSkills.slug,
 	});
 };
 

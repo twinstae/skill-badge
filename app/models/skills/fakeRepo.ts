@@ -1,6 +1,6 @@
 import invariant from 'tiny-invariant';
 import { z } from 'zod';
-import { difference } from '~/functional/Array';
+import { difference, get, IsomorphicArray } from '~/functional/Array';
 import { addTo, pick, removeAllFrom } from '~/functional/Object';
 
 import { fakeReactResources } from '../resources/fakeRepo';
@@ -9,7 +9,6 @@ import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from './errorMessages';
 import skillsData from './fakeSkills.json';
 import type { ISkillRepo } from './IRepo';
 import { type SkillT, skillSchema } from './schema';
-import { selectSlug } from './transformUtil';
 
 export const fakeSkillList: SkillT[] = z.array(skillSchema).parse(skillsData);
 
@@ -17,7 +16,7 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 	let _store: Omit<SkillT, 'parents'>[] = init;
 	return {
 		async getAllList() {
-			return _store.map((skill) => pick(skill, ['slug', 'title']));
+			return IsomorphicArray(_store.map((skill) => pick(skill, ['slug', 'title'])));
 		},
 		async getOneBySlug(slug) {
 			const result = _store.find((item) => item.slug === slug);
@@ -27,9 +26,8 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 
 			return {
 				...result,
-				parents: _store.filter((skill) => skill.children.includes(slug)).map(
-					selectSlug,
-				),
+				parents: get(_store.filter((skill) => skill.children.includes(slug)))
+					.slug,
 			};
 		},
 		async getOneBySlugWithRequirementsAndResources(slug) {
