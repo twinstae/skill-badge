@@ -47,7 +47,7 @@ export const union = <T>(a: T[], b: T[]): T[] => {
 
 export type IsomorphicArrayT<T> = T[] & {
 	[K in keyof T]: T[K][];
-}
+};
 
 export function IsomorphicArray<T>(arr: T[]) {
 	return new Proxy(arr, {

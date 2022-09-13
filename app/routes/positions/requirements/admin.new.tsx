@@ -31,7 +31,7 @@ export const loader: LoaderFunction = async () => {
 	const allSkills = await context.skillsRepo.getAllList();
 
 	return json<LoaderData>({
-		allSkillSlugs: allSkills.slug
+		allSkillSlugs: allSkills.slug,
 	});
 };
 
@@ -39,7 +39,7 @@ type ActionData = FieldErrors<RequirementT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
 	const allSkills = await context.skillsRepo.getAllList();
-	const allSkillSlugs = allSkills.slug
+	const allSkillSlugs = allSkills.slug;
 	const result = await request
 		.formData()
 		.then(

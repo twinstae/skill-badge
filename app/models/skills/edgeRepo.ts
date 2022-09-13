@@ -23,7 +23,8 @@ const flatChildren = flatSlugs('children');
 export function EdgeSkillsRepo(client: Client): ISkillRepo {
 	return {
 		async getAllList() {
-			return client.query(getAllList)
+			return client
+				.query(getAllList)
 				.then(z.array(skillSchema.pick({ slug: true, title: true })).parse)
 				.then(IsomorphicArray);
 		},

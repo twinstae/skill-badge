@@ -7,9 +7,7 @@ import { TextEditor } from './TextEditor';
 
 describe('TextEditor', () => {
 	it('preview', async () => {
-		render(
-			<TextEditor label="설명" name="content" initValue="" />,
-		);
+		render(<TextEditor label="설명" name="content" initValue="" />);
 
 		const $editor = screen.getByLabelText('설명');
 		const $preview = screen.getByLabelText('미리보기');

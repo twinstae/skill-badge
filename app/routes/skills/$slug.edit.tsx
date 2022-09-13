@@ -40,7 +40,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 	return json<LoaderData>({
 		skill,
-		allSkillSlugs: allSkills.slug
+		allSkillSlugs: allSkills.slug,
 	});
 };
 
@@ -130,11 +130,7 @@ export default function NewSkill() {
 					candidates={allSkillSlugs}
 					initValue={skill.children}
 				/>
-				<TextEditor
-					label="설명"
-					name="content"
-					initValue={skill.content}
-				/>
+				<TextEditor label="설명" name="content" initValue={skill.content} />
 				<ErrorMessages errors={errors} name="content" />
 				<button type="submit" className="btn btn-primary" disabled={isCreating}>
 					{isCreating ? <Spinner message="수정 중..." /> : '역량 수정하기'}

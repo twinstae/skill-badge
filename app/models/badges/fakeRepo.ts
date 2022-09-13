@@ -29,7 +29,7 @@ export function FakeBadgeRepo(init: BadgeT[]): IBadgeRepo {
 			const pieces = badge.pieces.map(
 				(title) => ({ id: uuidv4(), title, isDone: true }),
 			);
-			
+
 			_store = [..._store, { ...badge, pieces }];
 		},
 	};
