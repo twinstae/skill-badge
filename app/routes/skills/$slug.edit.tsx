@@ -13,7 +13,7 @@ import {
 } from '@remix-run/react';
 import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { flatSlug } from '~/models/skills/transformUtil';
+import { selectSlug} from '~/models/skills/transformUtil';
 import { TextEditor } from '~/components/form/TextEditor';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import Spinner from '~/components/shared/Spinner';

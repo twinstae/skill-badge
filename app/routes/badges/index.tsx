@@ -7,7 +7,7 @@ import ProgressBadge from '~/components/ProgressBadge';
 import { SkillLink } from '~/components/SkillList';
 import type { BadgeT } from '~/models/badges/schema';
 import { context } from '~/models/context';
-import { flatSlug } from '~/models/skills/transformUtil';
+import { selectSlug } from '~/models/skills/transformUtil';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
 import { count } from '~/functional/Array';
 
@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 	const url = new URL(request.url);
 	const search = url.searchParams.get('skillSlug');
 	const allSkills = await context.skillsRepo.getAllList();
-	const allSkillSlugs = allSkills.map(flatSlug);
+	const allSkillSlugs = allSkills.map(selectSlug);
 
 	const filteredList = search
 		? fakeBadgeRepo.filter((badge) => badge.skillSlugs.includes(search))

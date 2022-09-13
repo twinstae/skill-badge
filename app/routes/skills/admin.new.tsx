@@ -22,7 +22,7 @@ import ErrorMessages, {
 } from '~/components/form/ErrorMessage';
 import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { flatSlug } from '~/models/skills/transformUtil';
+import { selectSlug} from '~/models/skills/transformUtil';
 import TagsInput from '~/components/form/TagsInput';
 import { TextEditor } from '~/components/form/TextEditor';
 

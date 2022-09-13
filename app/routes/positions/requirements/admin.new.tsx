@@ -13,7 +13,7 @@ import {
 import CenterCardLayout from '~/components/CenterCardLayout';
 import { slugRegex } from '~/models/skills/schema';
 import { context } from '~/models/context';
-import { flatSlug } from '~/models/skills/transformUtil';
+import { selectSlug} from '~/models/skills/transformUtil';
 import {
 	requirementSchema,
 	type RequirementT,

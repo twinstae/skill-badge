@@ -14,7 +14,7 @@ import {
 	redirect,
 } from '@remix-run/node';
 import { context } from '~/models/context';
-import { flatSlug } from '~/models/skills/transformUtil';
+import { selectSlug} from '~/models/skills/transformUtil';
 import { badgeSchema, type BadgeT } from '~/models/badges/schema';
 import ErrorMessages, {
 	type FieldErrors,
