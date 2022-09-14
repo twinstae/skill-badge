@@ -8,64 +8,75 @@
       {
         "id": "adacefd9-8b53-4995-9ee7-3c383f86f32b",
         "title": "pwd, ls, cd, tree 명령어로 파일 시스템을 탐색할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "c3dbc61b-c5ac-4ef2-b0e5-176e0783ef38",
         "title": "cp, mv, rm 명령어로 파일을 복사, 이동, 삭제할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "601fe7fb-4a8d-43a1-a0b9-1631c4120707",
         "title": "mkdir과 -r flag로 디렉토리를 다룰 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "862bf7fa-5c48-4230-aad4-497f3f67df15",
         "title": "ln으로 링크를 생성하고 활용할 수 있습니다",
+        "content": "",
         "isDone": false
       },
       {
         "id": "887b3e33-fee9-4566-add0-236c52dc1b07",
         "title": "상대 경로와 절대 경로를 이해하고 활용할 수 있습니다",
+        "content": "",
         "isDone": false
       },
       {
         "id": "f1a311f4-058e-4051-8744-8c230192ae79",
         "title": ". 으로 시작하는 숨김 파일을 다룰 수 있습니다",
+        "content": "",
         "isDone": false
       },
       {
         "id": "3f264095-71fa-481a-9aa0-5d2c2d9c99c4",
         "title": "파일을 다룰 때 흔한 실수를 알고 예방할 수 있습니다",
+        "content": "",
         "isDone": false
       }
     ]
   },
   {
     "slug": "css-flex",
-    "title": "css flex의 direction, grow & shrink, wrap, justify 등을 활용해서 layout을 만들 수 있습니다",
+    "title": "css flex의 여러 옵션을 활용해서 layout을 만들 수 있습니다",
     "skillSlugs": ["frontend", "css"],
     "icon": "rectangleGroup",
     "pieces": [
       {
         "id": "318e735b-c7fb-4bbc-bd09-eaa193b2f8d6",
         "title": "flex의 row와 col axis을 이해하고 설정할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "9b903a6a-5771-4ba1-8f76-0aa8f5de984e",
         "title": "flex의 grow & shrink로 요소의 크기를 반응적으로 조절할 수 있습니다",
+        "content": "",
         "isDone": false
       },
       {
         "id": "9b903a6a-5771-4ba1-8f76-0aa8f5de984e",
         "title": "wrap을 이용해서 요소의 줄 바꿈 여부를 선택할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "9b903a6a-5771-4ba1-8f76-0aa8f5de984e",
         "title": "justify와 align으로 요소의 배치를 결정할 수 있습니다",
+        "content": "",
         "isDone": false
       }
     ]
@@ -79,26 +90,31 @@
       {
         "id": "a04b60ab-9431-4912-89fc-78fe2f25287c",
         "title": "컴포넌트를 렌더하고, screen에서 요소를 쿼리할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "fb0ce630-cc49-41b8-b669-5ff2ee1602e6",
         "title": "textbox, button, link, checkbox 등 적절한 role을 설정하고 요소를 가져올 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "93b85d3d-68b7-45fd-ad02-1fa3ad1fae25",
         "title": "텍스트가 없는 요소도 적절한 label을 이용해 쿼리할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "823dd43c-f894-48b3-93a7-3894b643b29c",
         "title": "click, type, tab 등 유저와의 상호작용을 userEvent로 테스트할 수 있습니다",
+        "content": "",
         "isDone": true
       },
       {
         "id": "aa69bfdb-99b9-4b01-8d95-6c1e2b40c882",
         "title": "api, router, global state 등의 의존성 context를 주입하여 테스트할 수 있습니다",
+        "content": "",
         "isDone": true
       }
     ]
