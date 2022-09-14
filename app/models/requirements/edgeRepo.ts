@@ -1,5 +1,6 @@
 import type { Client } from 'edgedb';
 import { z } from 'zod';
+import { IsomorphicArray } from '~/functional/Array';
 import type { IPositionsRepo } from './IRepo';
 import { positionSchema, requirementSchema } from './schema';
 
@@ -13,7 +14,23 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
         title
       }
       `,
-			).then(z.array(positionSchema).parse);
+			)
+      .then(z.array(positionSchema).parse)
+      .then(IsomorphicArray);
+		},
+    async getRequirementById(targetId: string) {
+			return client.query(
+				`
+      select Requirement {
+        id,
+        content,
+        skillSlug := .skill.slug,
+        positionSlug := .position.slug,
+      }
+      filter .id = <uuid>$targetId
+      `,
+      { targetId }
+			).then(requirementSchema.parse);
 		},
 		async getRequirements() {
 			return client.query(
@@ -43,7 +60,7 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
 			).then(z.array(requirementSchema).parse);
 		},
 		async addRequirement(requirement) {
-			return client.execute(
+			return client.queryRequiredSingle(
 				`
       with skill := ( select Skill filter .slug in <str>$skillSlug limit 1 ),
         position := ( select Position filter .slug in <str>$positionSlug limit 1 )

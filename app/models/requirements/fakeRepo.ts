@@ -4,6 +4,8 @@ import type { IPositionsRepo } from './IRepo';
 import { withSkillSlug } from '../skills/schema';
 import { z } from 'zod';
 import { uuidv4 } from '../uuidv4';
+import invariant from 'tiny-invariant';
+import { IsomorphicArray } from '~/functional/Array';
 
 const reqListSchema = z.array(withSkillSlug(requirementSchema));
 
@@ -15,27 +17,45 @@ export function FakePositionsRepo(
 	let _store = requirementList;
 	return {
 		async getPositionList() {
-			return [
+			return IsomorphicArray([
 				{ title: '프런트엔드', slug: 'frontend' },
 				{ title: '백엔드', slug: 'backend' },
-			];
+			]);
 		},
 		async getRequirements() {
 			return _store;
 		},
+		async getRequirementById(uuid) {
+			return _store.find((req) => req.id === uuid) ?? null;
+		},
 		async getRequirementsByPosition(positionSlug) {
+			invariant(['frontend', 'backend'].includes(positionSlug));
+
 			return _store.filter((req) => req.positionSlug === positionSlug);
 		},
 		async addRequirement(requirement) {
-			_store = [..._store, { ...requirement, id: uuidv4() }];
+			invariant(['frontend', 'backend'].includes(requirement.positionSlug));
+
+			const id = uuidv4();
+			_store = [..._store, { ...requirement, id }];
+			return id;
 		},
-		async deleteRequirement(uuid) {
-			_store = _store.filter((req) => req.id !== uuid);
+		async deleteRequirement(targetId) {
+			invariant(
+				_store.some((req) => req.id === targetId),
+				`[not-found] Requirement { id: ${targetId} }를 찾을 수 없습니다.`,
+			);
+
+			_store = _store.filter((req) => req.id !== targetId);
 		},
 		async updateRequirement(requirement) {
-			_store = _store.map(
-				(req) => (req.id === requirement.id ? requirement : req),
+			const targetId = requirement.id;
+			invariant(
+				_store.some((req) => req.id === targetId),
+				`[not-found] Requirement { id: ${targetId} } 를 찾을 수 없습니다.`,
 			);
+
+			_store = _store.map((req) => (req.id === targetId ? requirement : req));
 		},
 	};
 }

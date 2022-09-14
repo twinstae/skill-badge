@@ -27,7 +27,7 @@ export function FakeBadgeRepo(init: BadgeT[]): IBadgeRepo {
 		},
 		async createBadge(badge) {
 			const pieces = badge.pieces.map(
-				(title) => ({ id: uuidv4(), title, isDone: true }),
+				(title) => ({ id: uuidv4(), title, content: '', isDone: true }),
 			);
 
 			_store = [..._store, { ...badge, pieces }];

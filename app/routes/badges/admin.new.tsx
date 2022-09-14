@@ -38,15 +38,13 @@ export const loader: LoaderFunction = async () => {
 type ActionData = FieldErrors<BadgeT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
-	// https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
 	const result = await request
-		//
-		.formData() // formdata를 꺼내서
+		.formData()
 		.then(
 			(formData) => ({
-				slug: formData.get('slug'), // name에 해당하는 데이터를 꺼냄
+				slug: formData.get('slug'),
 				title: formData.get('title'),
-				skillSlugs: formData.getAll('skillSlugs'), // getAll은 같은 name이 여러 개임
+				skillSlugs: formData.getAll('skillSlugs'),
 				icon: formData.get('icon'),
 				pieces: formData.getAll('pieces'),
 			}),
