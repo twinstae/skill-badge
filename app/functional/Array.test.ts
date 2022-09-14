@@ -23,7 +23,7 @@ describe('functional: Array', () => {
 	});
 
 	it('unique', () => {
-		expect(unique([1, 2,2,2,2, 2, 3, 4,3,3])).toEqual([1,2,3,4]);
+		expect(unique([1, 2, 2, 2, 2, 2, 3, 4, 3, 3])).toEqual([1, 2, 3, 4]);
 	});
 
 	it('removeAll', () => {

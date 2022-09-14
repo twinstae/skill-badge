@@ -7,18 +7,19 @@ import { positionSchema, requirementSchema } from './schema';
 export function EdgePositionsRepo(client: Client): IPositionsRepo {
 	return {
 		async getPositionList() {
-			return client.query(
-				`
+			return client
+				.query(
+					`
       select Position {
         slug,
         title
       }
       `,
-			)
-      .then(z.array(positionSchema).parse)
-      .then(IsomorphicArray);
+				)
+				.then(z.array(positionSchema).parse)
+				.then(IsomorphicArray);
 		},
-    async getRequirementById(targetId: string) {
+		async getRequirementById(targetId: string) {
 			return client.query(
 				`
       select Requirement {
@@ -29,7 +30,7 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
       }
       filter .id = <uuid>$targetId
       `,
-      { targetId }
+				{ targetId },
 			).then(requirementSchema.parse);
 		},
 		async getRequirements() {

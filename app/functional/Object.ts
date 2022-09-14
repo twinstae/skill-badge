@@ -1,6 +1,9 @@
 import { removeAll } from './Array';
 
-export const pick = <T, K extends Extract<keyof T, string>>(obj: T, keys: K[]): Pick<T, K> => {
+export const pick = <T, K extends Extract<keyof T, string>>(
+	obj: T,
+	keys: K[],
+): Pick<T, K> => {
 	const result = {} as Pick<T, K>;
 	for (const key of keys) {
 		result[key] = obj[key];
@@ -8,11 +11,14 @@ export const pick = <T, K extends Extract<keyof T, string>>(obj: T, keys: K[]): 
 	return result;
 };
 
-export const omit = <T extends object, K extends Extract<keyof T, string>>(obj: T, keys: K[]): Omit<T, K> => {
+export const omit = <T extends object, K extends Extract<keyof T, string>>(
+	obj: T,
+	keys: K[],
+): Omit<T, K> => {
 	const result = {} as Omit<T, K>;
 	for (const key in obj) {
-		if (! keys.includes(key as any)){
-			const resultKey = key as Extract<keyof Omit<T, K>, string>
+		if (!keys.includes(key as any)) {
+			const resultKey = key as Extract<keyof Omit<T, K>, string>;
 			result[resultKey] = obj[resultKey];
 		}
 	}

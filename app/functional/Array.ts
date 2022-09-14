@@ -10,11 +10,11 @@ export const count = <T>(arr: Iterable<T>, predicate: (item: T) => boolean) => {
 
 export const sum = (arr: Iterable<number>): number => {
 	let result = 0;
-	for (const n of arr){
+	for (const n of arr) {
 		result += n;
 	}
 	return result;
-}
+};
 
 export const unique = <T>(arr: T[]): T[] => {
 	return [...new Set(arr)];
