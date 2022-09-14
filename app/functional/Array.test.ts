@@ -7,13 +7,23 @@ import {
 	intersection,
 	IsomorphicArray,
 	removeAll,
+	sum,
 	union,
+	unique,
 } from './Array';
 
 describe('functional: Array', () => {
 	it('count', () => {
 		expect(count([1, 2, 3, 4], (n) => n % 2 === 0)).toBe(2);
 		expect(count([], (n) => n % 2 === 0)).toBe(0);
+	});
+
+	it('sum', () => {
+		expect(sum([1, 2, 3, 4])).toBe(10);
+	});
+
+	it('unique', () => {
+		expect(unique([1, 2,2,2,2, 2, 3, 4,3,3])).toEqual([1,2,3,4]);
 	});
 
 	it('removeAll', () => {
