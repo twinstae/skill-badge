@@ -9,7 +9,8 @@
     "build:remix": "remix build",
     "dev": "run-p \"dev:*\"",
     "dev:css": "postcss styles --base styles --dir app/styles -w",
-    "dev:remix": "remix dev",
+    "dev:remix": "remix watch",
+    "dev:server": "cross-env NODE_ENV=development node build/index.js",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css",
     "unit": "vitest",
     "e2e": "start-server-and-test dev http://localhost:3000 \"npx cypress open --env failOnSnapshotDiff=false\"",
@@ -17,7 +18,7 @@
     "e2e:update": "start-server-and-test dev http://localhost:3000 \"npx cypress run --env updateSnapshots=true --browser chrome --headed\"",
     "lint": "eslint app",
     "format": "rome format app --write",
-    "start": "node build/index.js"
+    "start": "cross-env NODE_ENV=production node build/index.js"
   },
   "dependencies": {
     "@fastify/compress": "^6.1.1",
@@ -79,6 +80,7 @@
     "eslint-plugin-unicorn": "^43.0.2",
     "jsdom": "^20.0.0",
     "npm-run-all": "^4.1.5",
+    "pino-pretty": "^9.1.0",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
     "rome": "^0.9.2-next",
