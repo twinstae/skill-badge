@@ -32,7 +32,7 @@ client.query(
 		raw.map(flatSkillSlug),
 	);
 	return fs.writeFile(
-		'./app/models/resources/fakeResources.json',
+		'./app/models/resources/backup.json',
 		JSON.stringify(data),
 		{ encoding: 'utf8' },
 	);
@@ -52,7 +52,7 @@ client.query(
 		raw.map(flatSkillSlug),
 	);
 	return fs.writeFile(
-		'./app/models/requirements/fakeRequirementList.json',
+		'./app/models/requirements/backup.json',
 		JSON.stringify(data),
 		{ encoding: 'utf8' },
 	);
@@ -71,7 +71,7 @@ client.query(
   `,
 ).then((raw) => {
 	const data = z.array(skillSchema).parse(raw.map(flatChildren));
-	return fs.writeFile('./app/models/skills/fakeSkills.json', JSON.stringify(
+	return fs.writeFile('./app/models/skills/backup.json', JSON.stringify(
 		data,
 	), { encoding: 'utf8' });
 });
