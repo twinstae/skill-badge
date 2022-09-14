@@ -22,7 +22,7 @@ declare global {
 }
 
 function visitAndCheck(path: string, waitTime: number = 1000) {
-  cy.visit('http://localhost:3000'+path);
+  cy.visit(path);
   cy.location('pathname').should('contain', path).wait(waitTime);
 }
 
