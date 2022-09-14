@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 export default function AutoCompleteTextBox({
 	initValue = '',
@@ -21,6 +21,8 @@ export default function AutoCompleteTextBox({
 		(candi) => candi.includes(value),
 	).slice(0, 10);
 
+	const dataListId = useId();
+
 	return (
 		<div>
 			<input
@@ -33,9 +35,9 @@ export default function AutoCompleteTextBox({
 				)}
 				value={value}
 				onChange={(e) => setValue(e.currentTarget.value)}
-				list="skill-slugs"
+				list={dataListId}
 			/>
-			<datalist id="skill-slugs">
+			<datalist id={dataListId}>
 				{recommendation?.map(
 					(candi) => (
 						<option key={candi} value={candi} />
