@@ -104,26 +104,26 @@ function BadgeIconInput({ initValue }: { initValue: HeroIconName | '' }) {
 			{HeroIconNameList.includes(value as HeroIconName) && (
 				<ProgressBadge now={4} max={4} icon={value as HeroIconName} />
 			)}
-			<label className="mb-2 mt-2">
+			<label className="mb-2 mt-2" htmlFor="badge-icon-input">
 				아이콘
-				<AutoCompleteTextBox
-					id="badge-icon-input"
-					name="icon"
-					initValue="CommandLineIcon"
-					candidates={HeroIconNameList}
-					candidateLimit={HeroIconNameList.length}
-					value={value}
-					onChange={(e) => setValue(e.currentTarget.value)}
-				/>
-				<a
-					href="https://heroicons.com/"
-					target="_blank"
-					rel="noreferrer"
-					className="link link-primary text-sm"
-				>
-					아이콘 구경하기
-				</a>
 			</label>
+			<AutoCompleteTextBox
+				id="badge-icon-input"
+				name="icon"
+				initValue="CommandLineIcon"
+				candidates={HeroIconNameList}
+				candidateLimit={HeroIconNameList.length}
+				value={value}
+				onChange={(e) => setValue(e.currentTarget.value)}
+			/>
+			<a
+				href="https://heroicons.com/"
+				target="_blank"
+				rel="noreferrer"
+				className="link link-primary text-sm"
+			>
+				아이콘 구경하기
+			</a>
 		</>
 	);
 }
