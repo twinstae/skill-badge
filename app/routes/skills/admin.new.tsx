@@ -41,18 +41,18 @@ type ActionData = FieldErrors<SkillT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
 	// https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-const result = await request
-.formData()
-.then(
-	(formData) => ({
-		slug: formData.get('slug'),
-		title: formData.get('title'),
-		parents: formData.getAll('parents'),
-		children: formData.getAll('children'),
-		content: formData.get('content'),
-	}),
-)
-.then(skillSchema.safeParse);
+	const result = await request
+		.formData()
+		.then(
+			(formData) => ({
+				slug: formData.get('slug'),
+				title: formData.get('title'),
+				parents: formData.getAll('parents'),
+				children: formData.getAll('children'),
+				content: formData.get('content'),
+			}),
+		)
+		.then(skillSchema.safeParse);
 
 	if (!result.success) {
 		return json<ActionData>(getFieldErrors(result));

@@ -21,11 +21,9 @@ client.query(
   `,
 ).then((raw) => {
 	const data = z.array(withSkillSlug(resourceSchema)).parse(raw);
-	return fs.writeFile(
-		'./app/models/resources/backup.json',
-		JSON.stringify(data),
-		{ encoding: 'utf8' },
-	);
+	return fs.writeFile('./app/models/resources/backup.json', JSON.stringify(
+		data,
+	), { encoding: 'utf8' });
 });
 
 client.query(
@@ -37,11 +35,9 @@ client.query(
   `,
 ).then((raw) => {
 	const data = z.array(withSkillSlug(requirementSchema)).parse(raw);
-	return fs.writeFile(
-		'./app/models/requirements/backup.json',
-		JSON.stringify(data),
-		{ encoding: 'utf8' },
-	);
+	return fs.writeFile('./app/models/requirements/backup.json', JSON.stringify(
+		data,
+	), { encoding: 'utf8' });
 });
 
 const flatChildren = flatSlugs('children');
@@ -57,7 +53,7 @@ client.query(
   `,
 ).then((raw) => {
 	const data = z.array(skillSchema).parse(raw.map(flatChildren));
-	return fs.writeFile('./app/models/skills/backup.json', JSON.stringify(
-		data,
-	), { encoding: 'utf8' });
+	return fs.writeFile('./app/models/skills/backup.json', JSON.stringify(data), {
+		encoding: 'utf8',
+	});
 });

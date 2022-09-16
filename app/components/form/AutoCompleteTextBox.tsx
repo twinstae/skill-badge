@@ -38,7 +38,7 @@ export default function AutoCompleteTextBox({
 				value={props.value ?? value}
 				onChange={(e) => {
 					setValue(e.currentTarget.value);
-					if(props.onChange){
+					if (props.onChange) {
 						props.onChange(e);
 					}
 				}}
