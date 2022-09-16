@@ -155,7 +155,7 @@
   },
   {
     "slug": "graph-ql",
-    "title": "GraphQL 그래프큐엘",
+    "title": "GraphQL",
     "parents": ["web-api"],
     "children": [],
     "content": ""
@@ -218,7 +218,7 @@
   },
   {
     "slug": "html",
-    "title": "HTML: 하이퍼 텍스트 마크업 언어",
+    "title": "HTML",
     "parents": ["web-standard"],
     "children": ["semantic-html"],
     "content": ""
@@ -239,7 +239,7 @@
   },
   {
     "slug": "css",
-    "title": "CSS 캐스케이딩 스타일 시트",
+    "title": "CSS",
     "parents": ["web-standard"],
     "children": ["sass"],
     "content": "> WHAT IS CSS? Cascading Style Sheets (CSS) is a simple mechanism for adding style (e.g., fonts, colors, spacing) to Web documents. \n>\n> 출처: <a rel=\"author\" class=\"link link-primary\" href=\"https://www.w3.org/Style/CSS\">W3C Cascading Style Sheets home page</a>"

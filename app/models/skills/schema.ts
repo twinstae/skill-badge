@@ -9,8 +9,8 @@ export const slugSchema = z.string().regex(new RegExp(slugRegex)).min(
 ).trim();
 
 export const skillSchema = z.object({
-	slug: slugSchema.max(32),
-	title: z.string().min(1, '값을 입력해주세요').max(64).trim(),
+	slug: slugSchema.max(16),
+	title: z.string().min(1, '값을 입력해주세요').max(32).trim(),
 	parents: z.array(slugSchema).max(4).default([]),
 	children: z.array(slugSchema).max(16).default([]),
 	content: z.string().max(1024),

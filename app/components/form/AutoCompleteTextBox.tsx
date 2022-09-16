@@ -4,11 +4,13 @@ import { useId, useState } from 'react';
 export default function AutoCompleteTextBox({
 	initValue = '',
 	candidates,
+	candidateLimit = 10,
 	className,
 	...props
 }: React.ComponentProps<'input'> & {
 	initValue: string;
-	candidates?: string[];
+	candidates?: readonly string[];
+	candidateLimit?: number;
 }) {
 	const [value, setValue] = useState(initValue);
 
@@ -19,7 +21,7 @@ export default function AutoCompleteTextBox({
 	// 😱
 	const recommendation = candidates?.filter(
 		(candi) => candi.includes(value),
-	).slice(0, 10);
+	).slice(0, candidateLimit);
 
 	const dataListId = useId();
 
@@ -33,8 +35,13 @@ export default function AutoCompleteTextBox({
 					className,
 					isValid && 'input-success',
 				)}
-				value={value}
-				onChange={(e) => setValue(e.currentTarget.value)}
+				value={props.value ?? value}
+				onChange={(e) => {
+					setValue(e.currentTarget.value);
+					if(props.onChange){
+						props.onChange(e);
+					}
+				}}
 				list={dataListId}
 			/>
 			<datalist id={dataListId}>

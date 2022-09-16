@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { HeroIconNameList } from '~/components/icons/HeroIconName';
 import { slugSchema } from '../skills/schema';
 
 export const pieceSchema = z.object({
@@ -15,7 +16,7 @@ export const badgeSchema = z.object({
 	title: z.string().min(1, '값을 입력해주세요').max(64).trim(),
 	skillSlugs: z.array(slugSchema).max(4),
 	pieces: z.array(pieceSchema),
-	icon: z.enum(['commandLine', 'rectangleGroup', 'magnifyingGlass']),
+	icon: z.enum(HeroIconNameList),
 });
 
 export type BadgeT = z.infer<typeof badgeSchema>;

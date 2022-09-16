@@ -22,6 +22,12 @@ import ErrorMessages, {
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
 import Spinner from '~/components/shared/Spinner';
 import { createBadgeSchema } from '~/models/badges/IRepo.d';
+import AutoCompleteTextBox from '~/components/form/AutoCompleteTextBox';
+import {
+	type HeroIconName,
+	HeroIconNameList,
+} from '~/components/icons/HeroIconName';
+import ProgressBadge from '~/components/ProgressBadge';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -91,6 +97,37 @@ function DynamicTextBoxList({ name }: { name: string }) {
 	);
 }
 
+function BadgeIconInput({ initValue }: { initValue: HeroIconName | '' }) {
+	const [value, setValue] = useState(initValue as string);
+	return (
+		<>
+			{HeroIconNameList.includes(value as HeroIconName) && (
+				<ProgressBadge now={4} max={4} icon={value as HeroIconName} />
+			)}
+			<label className="mb-2 mt-2">
+				아이콘
+				<AutoCompleteTextBox
+					id="badge-icon-input"
+					name="icon"
+					initValue="CommandLineIcon"
+					candidates={HeroIconNameList}
+					candidateLimit={HeroIconNameList.length}
+					value={value}
+					onChange={(e) => setValue(e.currentTarget.value)}
+				/>
+				<a
+					href="https://heroicons.com/"
+					target="_blank"
+					rel="noreferrer"
+					className="link link-primary text-sm"
+				>
+					아이콘 구경하기
+				</a>
+			</label>
+		</>
+	);
+}
+
 export default function NewBadgePage() {
 	const { allSkillSlugs } = useLoaderData() as LoaderData;
 
@@ -138,8 +175,8 @@ export default function NewBadgePage() {
 						allSkillSlugs
 					} // taginput에넣을수잇는자동완성의후보들 (allSkillSlugs)
 				/>
-				<label htmlFor="badge-icon">아이콘</label>
-				<input type="text" name="icon" value="commandLine" readOnly={true} />
+
+				<BadgeIconInput initValue="" />
 				<ErrorMessages errors={errors} name="icon" />
 				<DynamicTextBoxList name="pieces" />
 				<ErrorMessages errors={errors} name="pieces" />

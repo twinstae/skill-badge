@@ -3,7 +3,7 @@
     "slug": "linux-cli-fs",
     "title": "리눅스 명령줄로 파일 시스템을 탐색하고 조작할 수 있습니다",
     "skillSlugs": ["linux"],
-    "icon": "commandLine",
+    "icon": "CommandLineIcon",
     "pieces": [
       {
         "id": "adacefd9-8b53-4995-9ee7-3c383f86f32b",
@@ -53,7 +53,7 @@
     "slug": "css-flex",
     "title": "css flex의 여러 옵션을 활용해서 layout을 만들 수 있습니다",
     "skillSlugs": ["frontend", "css"],
-    "icon": "rectangleGroup",
+    "icon": "RectangleGroupIcon",
     "pieces": [
       {
         "id": "318e735b-c7fb-4bbc-bd09-eaa193b2f8d6",
@@ -85,7 +85,7 @@
     "slug": "component-testing-library",
     "title": "컴포넌트를 testing-library를 이용해서 테스트할 수 있습니다",
     "skillSlugs": ["frontend", "test"],
-    "icon": "magnifyingGlass",
+    "icon": "MagnifyingGlassIcon",
     "pieces": [
       {
         "id": "a04b60ab-9431-4912-89fc-78fe2f25287c",

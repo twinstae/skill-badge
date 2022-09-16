@@ -1,9 +1,8 @@
 import Tooltip from '~/components/shared/Tooltip';
-import {
-	CommandLineIcon,
-	MagnifyingGlassIcon,
-	RectangleGroupIcon,
-} from '@heroicons/react/24/outline';
+
+import React, { Suspense } from 'react';
+import type { HeroIconName } from './icons/HeroIconName';
+import { iconDict } from './icons/iconDict';
 
 declare module 'csstype' {
 	interface Properties {
@@ -25,16 +24,10 @@ const iconSizeDict = {
 	lg: 'w-14 h-14',
 } as const;
 
-const iconDict = {
-	commandLine: CommandLineIcon,
-	rectangleGroup: RectangleGroupIcon,
-	magnifyingGlass: MagnifyingGlassIcon,
-} as const;
-
 function ProgressBadge({ now, max, icon, size = 'base' }: {
 	now: number;
 	max: number;
-	icon: keyof typeof iconDict;
+	icon: HeroIconName;
 	size?: 'sm' | 'base' | 'lg';
 }) {
 	const progress = Math.floor((now / max) * 100);
@@ -49,7 +42,9 @@ function ProgressBadge({ now, max, icon, size = 'base' }: {
 			}}
 		>
 			<Tooltip tooltip={`${now} / ${max} 완료`}>
-				<Icon className={`text-black ${iconSizeDict[size]}`} />
+				<Suspense fallback={<span>{icon}</span>}>
+					<Icon className={`text-black ${iconSizeDict[size]}`} />
+				</Suspense>
 			</Tooltip>
 		</div>
 	);

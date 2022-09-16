@@ -16,7 +16,7 @@ describe('BadgeRepo', () => {
 			title: 'database 테스트용 배지',
 			skillSlugs: ['database'],
 			pieces: [],
-			icon: 'commandLine' as const
+			icon: 'CommandLineIcon' as const
 		};
 		await repo.createBadge(newBadge);
 
