@@ -1,7 +1,6 @@
 import * as serverBuild from '@remix-run/dev/server-build';
 import { remixFastifyPlugin } from '@mcansh/remix-fastify';
 import fastify from 'fastify';
-// import lcache from 'fastify-lcache';
 import compress from '@fastify/compress';
 import { logger } from '~/logger';
 
@@ -12,10 +11,6 @@ const MODE = process.env.NODE_ENV;
 
 async function start() {
 	const app = fastify({ logger });
-
-	// await app.register(lcache, {
-	// 	ttlInMinutes: 1,
-	// });
 
 	await app.register(compress);
 
