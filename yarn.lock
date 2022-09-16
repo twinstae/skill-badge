@@ -10336,6 +10336,11 @@ remark-toc@^8.0.1:
     mdast-util-toc "^6.0.0"
     unified "^10.0.0"
 
+remix-params-helper@^0.4.10:
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/remix-params-helper/-/remix-params-helper-0.4.10.tgz#91663100282e720687edad3de57f3c88cf502715"
+  integrity sha512-1LZ1FjxCtPekg4a1R50aKA0uB2+668Wd2a0ld7LDrQ0bJ2TzijnCVr822cs8epziS6MG2bG8ZHMPDAR2t4PK+Q==
+
 remote-origin-url@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/remote-origin-url/-/remote-origin-url-1.0.0.tgz#add020aa5f1a0b37372858e02b323dc28d4cd030"

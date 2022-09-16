@@ -1,12 +1,9 @@
 import { marked } from 'marked';
-import { useId, useState } from 'react';
+import React, { useId, useState } from 'react';
 import Tooltip from '~/components/shared/Tooltip';
 
-export function TextEditor({ name, label, initValue = '' }: {
-	label: string;
-	name: string;
-	initValue?: string;
-}) {
+export function TextEditor(props: React.ComponentProps<'textarea'> & { label: string, initValue?: string }) {
+	const { name, label, initValue = '' } = props;
 	const id = useId();
 	const [value, setValue] = useState(initValue);
 	return (
@@ -22,6 +19,7 @@ export function TextEditor({ name, label, initValue = '' }: {
 				/>
 			</Tooltip>
 			<textarea
+				{...props}
 				id={id}
 				name={name}
 				value={value}

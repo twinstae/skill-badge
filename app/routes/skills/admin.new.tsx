@@ -18,12 +18,12 @@ import Spinner from '~/components/shared/Spinner';
 import ErrorMessages, {
 	ErrorMessage,
 	type FieldErrors,
-	getFieldErrors,
 } from '~/components/form/ErrorMessage';
 import TagsInput from '~/components/form/TagsInput';
 import { TextEditor } from '~/components/form/TextEditor';
-import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
+import { type SkillT, skillSchema } from '~/models/skills/schema';
 import { context } from '~/models/context';
+import { getFormData, useFormInputProps } from 'remix-params-helper';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -41,21 +41,11 @@ type ActionData = FieldErrors<SkillT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
 	// https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-	const result = await request
-		.formData()
-		.then(
-			(formData) => ({
-				slug: formData.get('slug'),
-				title: formData.get('title'),
-				parents: formData.getAll('parents'),
-				children: formData.getAll('children'),
-				content: formData.get('content'),
-			}),
-		)
-		.then(skillSchema.safeParse);
+	const result = await getFormData(request, skillSchema);
 
 	if (!result.success) {
-		return json<ActionData>(getFieldErrors(result));
+		console.log(result.errors);
+		return json<ActionData>(result.errors);
 	}
 
 	await context.skillsRepo.create(result.data);
@@ -75,6 +65,7 @@ export default function NewSkill() {
 	const [slug, setSlug] = useState(slugSearch ?? '');
 	const isSlugDuplicated = allSkillSlugs.includes(slug);
 
+	const inputProps = useFormInputProps(skillSchema)
 	return (
 		<CenterCardLayout>
 			<Form method="post" className="flex flex-col">
@@ -83,11 +74,7 @@ export default function NewSkill() {
 				</label>
 				<input
 					id="input-slug"
-					type="text"
-					name="slug"
-					maxLength={16}
-					required={true}
-					pattern={slugRegex}
+					{...inputProps('slug')}
 					value={slug}
 					placeholder="ex) design-system"
 					onChange={(e) => setSlug(e.currentTarget.value)}
@@ -104,10 +91,7 @@ export default function NewSkill() {
 				</label>
 				<input
 					id="input-title"
-					type="text"
-					name="title"
-					maxLength={32}
-					required={true}
+					{...inputProps('title')}
 					placeholder="ex) 디자인 시스템"
 					className="input input-bordered mb-2 w-full"
 				/>
@@ -131,7 +115,7 @@ export default function NewSkill() {
 					candidates={allSkillSlugs}
 				/>
 
-				<TextEditor label="설명" name="content" initValue="" />
+				<TextEditor label="설명" name="content" initValue="" required={true} />
 				<ErrorMessages errors={errors} name="content" />
 				<button type="submit" className="btn btn-primary" disabled={isCreating}>
 					{isCreating ? <Spinner message="공유 중..." /> : '역량 공유하기'}

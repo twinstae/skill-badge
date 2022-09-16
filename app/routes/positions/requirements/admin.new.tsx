@@ -22,6 +22,7 @@ import ErrorMessages, {
 } from '~/components/form/ErrorMessage';
 import Spinner from '~/components/shared/Spinner';
 import AutoCompleteTextBox from '~/components/form/AutoCompleteTextBox';
+import { getFormData } from 'remix-params-helper';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -37,27 +38,21 @@ export const loader: LoaderFunction = async () => {
 
 type ActionData = FieldErrors<RequirementT> | undefined;
 
+const newRequirementSchema = requirementSchema.omit({ id: true });
+
 export const action: ActionFunction = async ({ request }) => {
 	const allSkills = await context.skillsRepo.getAllList();
 	const allSkillSlugs = allSkills.slug;
-	const result = await request
-		.formData()
-		.then(
-			(formData) => ({
-				skillSlug: formData.get('skillSlug'),
-				content: formData.get('content'),
-				positionSlug: formData.get('positionSlug'),
-			}),
-		)
-		.then(
-			requirementSchema.omit({ id: true }).refine(({ skillSlug }) =>
-				allSkillSlugs.includes(skillSlug), {
-				message: '존재하지 않는 역량의 슬러그에요!',
-			}).safeParse,
-		);
+	const result = await getFormData(
+		request,
+		newRequirementSchema.refine(({ skillSlug }) =>
+			allSkillSlugs.includes(skillSlug), {
+			message: '존재하지 않는 역량의 슬러그에요!',
+		}),
+	);
 
 	if (!result.success) {
-		return json<ActionData>(result.error.formErrors.fieldErrors);
+		return json<ActionData>(result.errors);
 	}
 
 	await context.positionsRepo.addRequirement(result.data);
@@ -98,6 +93,8 @@ export default function NewSkill() {
 					type="text"
 					name="content"
 					required={true}
+					minLength={1}
+					maxLength={64}
 					placeholder="react 경험이 있으신 분"
 					className="input input-bordered mb-2 w-full"
 				/>

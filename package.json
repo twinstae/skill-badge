@@ -50,6 +50,7 @@
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
     "remark-toc": "^8.0.1",
+    "remix-params-helper": "^0.4.10",
     "tiny-invariant": "^1.2.0",
     "zod": "^3.18.0"
   },

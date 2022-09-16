@@ -17,7 +17,6 @@ import { context } from '~/models/context';
 import type { BadgeT } from '~/models/badges/schema';
 import ErrorMessages, {
 	type FieldErrors,
-	getFieldErrors,
 } from '~/components/form/ErrorMessage';
 import fakeBadgeRepo from '~/models/badges/fakeRepo';
 import Spinner from '~/components/shared/Spinner';
@@ -28,6 +27,7 @@ import {
 	HeroIconNameList,
 } from '~/components/icons/HeroIconName';
 import ProgressBadge from '~/components/ProgressBadge';
+import { getFormData } from 'remix-params-helper';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -44,21 +44,10 @@ export const loader: LoaderFunction = async () => {
 type ActionData = FieldErrors<BadgeT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
-	const result = await request
-		.formData()
-		.then(
-			(formData) => ({
-				slug: formData.get('slug'),
-				title: formData.get('title'),
-				skillSlugs: formData.getAll('skillSlugs'),
-				icon: formData.get('icon'),
-				pieces: formData.getAll('pieces'),
-			}),
-		)
-		.then(createBadgeSchema.safeParse);
+	const result = await getFormData(request, createBadgeSchema);
 
 	if (!result.success) {
-		return json<ActionData>(getFieldErrors(result));
+		return json<ActionData>(result.errors);
 	}
 
 	await fakeBadgeRepo.createBadge(result.data);

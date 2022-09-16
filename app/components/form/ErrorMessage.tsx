@@ -9,7 +9,7 @@ export function ErrorMessage({ error }: { error: string | undefined }) {
 	);
 }
 
-export type FieldErrors<S> = Partial<Record<keyof S, string[] | undefined>>;
+export type FieldErrors<S> = Partial<Record<keyof S, string | undefined>>;
 
 export default function ErrorMessages<S extends Record<string, any>>({
 	errors,
@@ -18,17 +18,7 @@ export default function ErrorMessages<S extends Record<string, any>>({
 	errors: FieldErrors<S> | undefined;
 	name: string;
 }) {
-	return errors?.[name] ? (
-		<ul>
-			{errors[name]?.map(
-				(error) => (
-					<ErrorMessage key={error} error={error} />
-				),
-			)}
-		</ul>
-	) : (
-		<span />
-	);
+	return errors?.[name] ? <ErrorMessage error={errors?.[name]} /> : null;
 }
 
 export function getFieldErrors<S extends Record<string, any>>(
