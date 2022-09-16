@@ -1,8 +1,8 @@
+import { z } from 'zod';
 import type { IBadgeRepo } from './IRepo';
 import type { BadgeT } from './schema';
 import { badgeSchema } from './schema';
 import rawFakeBadgeList from './fakeBadgeList.json';
-import { z } from 'zod';
 import { uuidv4 } from '../uuidv4';
 
 const fakeBadgeList = z.array(badgeSchema).parse(rawFakeBadgeList);

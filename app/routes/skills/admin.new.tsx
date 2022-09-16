@@ -20,10 +20,10 @@ import ErrorMessages, {
 	type FieldErrors,
 	getFieldErrors,
 } from '~/components/form/ErrorMessage';
-import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
-import { context } from '~/models/context';
 import TagsInput from '~/components/form/TagsInput';
 import { TextEditor } from '~/components/form/TextEditor';
+import { type SkillT, skillSchema, slugRegex } from '~/models/skills/schema';
+import { context } from '~/models/context';
 
 type LoaderData = {
 	allSkillSlugs: string[];
@@ -41,18 +41,18 @@ type ActionData = FieldErrors<SkillT> | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
 	// https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-	const result = await request
-		.formData()
-		.then(
-			(formData) => ({
-				slug: formData.get('slug'),
-				title: formData.get('title'),
-				parents: formData.getAll('parents'),
-				children: formData.getAll('children'),
-				content: formData.get('content'),
-			}),
-		)
-		.then(skillSchema.safeParse);
+const result = await request
+.formData()
+.then(
+	(formData) => ({
+		slug: formData.get('slug'),
+		title: formData.get('title'),
+		parents: formData.getAll('parents'),
+		children: formData.getAll('children'),
+		content: formData.get('content'),
+	}),
+)
+.then(skillSchema.safeParse);
 
 	if (!result.success) {
 		return json<ActionData>(getFieldErrors(result));
@@ -106,7 +106,7 @@ export default function NewSkill() {
 					id="input-title"
 					type="text"
 					name="title"
-					maxLength={16}
+					maxLength={32}
 					required={true}
 					placeholder="ex) 디자인 시스템"
 					className="input input-bordered mb-2 w-full"

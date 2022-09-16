@@ -90,33 +90,17 @@ p:last-child {
   border-color: hsl(var(--nf, var(--n)) / var(--tw-border-opacity));
 }
 
-label {
-  @apply text-lg font-semibold;
-}
-
 input.input {
-  transition: border-color 0.125s ease-in;
+  transition-property: border-color outline;
+  transition-duration: 0.2s;
 }
 
 input.input:not(:placeholder-shown):not(:focus):invalid {
-  @apply input-error;
+  @apply input-error ;
 }
 
-input:focus + .dropdown-list {
-  @apply block;
-}
-.dropdown-list:focus {
-  @apply block;
-}
-.dropdown-list:focus-within {
-  @apply block;
-}
-
-.dropdown-list {
-  @apply min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none;
-}
-.dropdown-item {
-  @apply swap text-sm font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100;
+input.input:focus {
+  outline: 2px solid hsla(var(--p) / 0.5);
 }
 
 a:focus .tooltip:before,

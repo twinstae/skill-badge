@@ -9,12 +9,6 @@ import { requirementSchema } from './requirements/schema';
 
 const client = edgedb();
 
-const flatSkillSlug = (item: any) => ({
-	...item,
-	skill: undefined,
-	skillSlug: item.skill.slug,
-});
-
 client.query(
 	`
     select Resource {
@@ -22,15 +16,11 @@ client.query(
       title,
       content,
       href,
-      skill: {
-        slug
-      }
+      skillSlug := .skill.slug
     }
   `,
 ).then((raw) => {
-	const data = z.array(withSkillSlug(resourceSchema)).parse(
-		raw.map(flatSkillSlug),
-	);
+	const data = z.array(withSkillSlug(resourceSchema)).parse(raw);
 	return fs.writeFile(
 		'./app/models/resources/backup.json',
 		JSON.stringify(data),
@@ -42,15 +32,11 @@ client.query(
 	`
     select Requirement {
       content,
-      skill: {
-        slug
-      }
+      skillSlug := .skill.slug
     }
   `,
 ).then((raw) => {
-	const data = z.array(withSkillSlug(requirementSchema)).parse(
-		raw.map(flatSkillSlug),
-	);
+	const data = z.array(withSkillSlug(requirementSchema)).parse(raw);
 	return fs.writeFile(
 		'./app/models/requirements/backup.json',
 		JSON.stringify(data),

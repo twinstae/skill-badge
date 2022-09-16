@@ -1,5 +1,6 @@
 import type { Client } from 'edgedb';
 import invariant from 'tiny-invariant';
+import { z } from 'zod';
 
 import { SKILL_ALREADY_EXISTS, SKILL_NOT_FOUND } from './errorMessages';
 import { flatSlugs } from './transformUtil';
@@ -16,7 +17,6 @@ import createSkill from './queries/createSkill.edgeql';
 import updateSkill from './queries/updateSkill.edgeql';
 import deleteSkill from './queries/deleteSkill.edgeql';
 import { difference, IsomorphicArray } from '~/functional/Array';
-import { z } from 'zod';
 
 const flatChildren = flatSlugs('children');
 

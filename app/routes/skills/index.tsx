@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import CenterCardLayout from '~/components/CenterCardLayout';
-import { Link } from '~/Link';
 import type { SkillT } from '~/models/skills/schema';
 import { context } from '~/models/context';
+import CenterCardLayout from '~/components/CenterCardLayout';
+import { Link } from '~/Link';
 
 type LoaderData = {
 	skills: Pick<SkillT, 'slug' | 'title'>[];
