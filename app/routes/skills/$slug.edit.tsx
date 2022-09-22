@@ -66,7 +66,7 @@ export default function NewSkill() {
 	const transition = useTransition();
 	const isCreating = Boolean(transition.submission);
 
-	const inputProps = useFormInputProps(skillSchema)
+	const inputProps = useFormInputProps(skillSchema);
 	return (
 		<CenterCardLayout>
 			<Form method="post" className="flex flex-col">

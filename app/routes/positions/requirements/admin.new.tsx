@@ -69,7 +69,6 @@ export default function NewSkill() {
 
 	return (
 		<CenterCardLayout>
-			{JSON.stringify(errors)}
 			<Form method="post" className="flex flex-col">
 				<label className="label" htmlFor="input-skill-slug">
 					슬러그
@@ -124,7 +123,11 @@ export default function NewSkill() {
 					</label>
 				</div>
 				<ErrorMessages errors={errors} name="positionSlug" />
-				<button type="submit" className="btn btn-primary mt-4">
+				<button
+					type="submit"
+					className="btn btn-primary mt-4"
+					disabled={isCreating}
+				>
 					{isCreating ? <Spinner message="공유 중..." /> : '직군별 자격 추가하기'}
 				</button>
 			</Form>

@@ -52,6 +52,7 @@
     "remark-toc": "^8.0.1",
     "remix-params-helper": "^0.4.10",
     "tiny-invariant": "^1.2.0",
+    "usehooks-ts": "^2.7.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {

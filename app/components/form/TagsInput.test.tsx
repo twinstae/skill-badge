@@ -48,7 +48,7 @@ describe('TagsInput', () => {
 		const $addInput = screen.getByLabelText('역량');
 		expect(screen.getByRole('button')).toBeInTheDocument();
 
-		await userEvent.type($addInput, '{enter}react{enter}');
+		await userEvent.type($addInput, 'react{enter}');
 
 		expect(screen.getByRole('button')).toBeInTheDocument();
 	});
@@ -63,7 +63,7 @@ describe('TagsInput', () => {
 
 	it('자동완성에서 선택할 수 있다', async () => {
 		renderTagsInput([]);
-		const $addInput = screen.getByLabelText('역량');
+		const $addInput = screen.getByRole('combobox', { name: '역량' });
 
 		await userEvent.type($addInput, 're');
 		expect(screen.getAllByRole('option', { hidden: true })).toHaveLength(3);

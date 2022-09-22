@@ -89,6 +89,7 @@ export default function TagsInput<S>({
 									&#x2715;
 								</button>
 							</div>
+							{/* 수정 용*/}
 							<input {...api.getTagInputProps({ index, value })} />
 							{/* 실제로 보내는 값 */}
 							<input

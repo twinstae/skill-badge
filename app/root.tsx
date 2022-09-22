@@ -14,6 +14,7 @@ import {
 import tailwind from './styles/tailwind.css';
 import styles from './styles/app.css';
 import CenterCardLayout from './components/CenterCardLayout';
+import { DarkModeProvider } from './components/DarkModeContext';
 
 export const meta: MetaFunction = () => ({
 	charset: 'utf-8',
@@ -41,7 +42,9 @@ export default function App() {
 				>
 					main으로 점프
 				</a>
-				<Outlet />
+				<DarkModeProvider>
+					<Outlet />
+				</DarkModeProvider>
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />

@@ -28,6 +28,10 @@ h3 {
   line-height: 1.5rem;
 }
 
+.tooltip:before {
+  speak: none;
+}
+
 .bg-quote {
   background-color: hsl(var(--p) / 0.05);
 }

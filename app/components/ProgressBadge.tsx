@@ -3,6 +3,7 @@ import Tooltip from '~/components/shared/Tooltip';
 import React, { Suspense } from 'react';
 import type { HeroIconName } from './icons/HeroIconName';
 import { iconDict } from './icons/iconDict';
+import clsx from 'clsx';
 
 declare module 'csstype' {
 	interface Properties {
@@ -43,7 +44,7 @@ function ProgressBadge({ now, max, icon, size = 'base' }: {
 		>
 			<Tooltip tooltip={`${now} / ${max} 완료`}>
 				<Suspense fallback={<span>{icon}</span>}>
-					<Icon className={`text-black ${iconSizeDict[size]}`} />
+					<Icon className={clsx('text-base-content', iconSizeDict[size])} />
 				</Suspense>
 			</Tooltip>
 		</div>

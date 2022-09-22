@@ -2,7 +2,6 @@ import { json, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import CenterCardLayout from '~/components/CenterCardLayout';
 import createOptionalDataList from '~/components/createDataList';
-import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
 import { Link } from '~/Link';
 import { context } from '~/models/context';
 import type { RequirementT } from '~/models/requirements/schema';
@@ -11,14 +10,12 @@ import type { RequirementT } from '~/models/requirements/schema';
 const RequirementList = createOptionalDataList<RequirementT>({
 	selectId: (r) => r.id,
 	Item: ({ data: r }) => (
-		<LinkWithTooltip
+		<Link
 			to={`/skills/${r.skillSlug}`}
-			tooltip={`/skills/${r.skillSlug}`}
-			className="p-2"
-			tooltipClass="text-left"
+			className="p-2 text-left rounded-lg"
 		>
-			- <span>{r.content}</span>
-		</LinkWithTooltip>
+			<span>{r.content}</span>
+		</Link>
 	),
 });
 
@@ -54,7 +51,7 @@ export default function PositionDetail() {
 				}
 				className="btn btn-primary btn-sm float-right"
 			>
-				{positionSlug === 'frontend' ? '백엔드' : '프런트엔드'} 보러 가기
+				<span> {positionSlug === 'frontend' ? '백엔드 보러 가기' : '프런트엔드 보러 가기'}</span>
 			</Link>
 			<h1 className="text-primary">{positionSlug}</h1>
 			<RequirementList title="요구 역량" dataList={requirements} />

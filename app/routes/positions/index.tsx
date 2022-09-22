@@ -33,7 +33,7 @@ export default function PositionPage() {
 	return (
 		<CenterCardLayout>
 			<h1>어떤 직군의 공고를 보실래요?</h1>
-			<div className="w-full h-96 mt-4 flex items-stretch">
+			<div className="w-full h-96 mt-4 flex flex-col md:flex-row items-stretch">
 				{positions.map(
 					(position) => (
 						<PositionLink key={position.slug} {...position} />

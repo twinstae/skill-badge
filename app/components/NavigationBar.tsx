@@ -15,6 +15,7 @@ import {
 	BuildingOfficeIcon as BuildingOfficeSolidIcon,
 } from '@heroicons/react/24/solid';
 import HoverableIcon, { type IconT } from './icons/HoverableIcon';
+import DarkModeButton from './DarkModeButton';
 // import FirstPathDropdown from './FirstPathDropdown';
 
 // function BreadCrumbs() {
@@ -86,7 +87,7 @@ function NavigationBar() {
 	const location = useLocation();
 	const currentPath = location.pathname; // "/skills/agile" | "/skills" | "/"
 	return (
-		<nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1">
+		<nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1 rounded-t-xl">
 			<ul className="flex justify-evenly w-1/2">
 				{paths.map(
 					({ title, path, icons }) => (
@@ -94,18 +95,20 @@ function NavigationBar() {
 							<Link
 								to={`/${path}`}
 								className={clsx(
-									'flex flex-col w-fit',
+									'flex flex-col w-fit text-center',
 									currentPath.startsWith(`/${path}`)
 										? 'link-primary'
 										: 'hover:text-primary focus:text-primary',
 								)}
+								aria-label={title}
 							>
 								<HoverableIcon icons={icons} label="" />
-								<span className="w-full text-center">{title}</span>
+								<span aria-hidden="true">{title}</span>
 							</Link>
 						</li>
 					),
 				)}
+				<DarkModeButton />
 			</ul>
 		</nav>
 	);

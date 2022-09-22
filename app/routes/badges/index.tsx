@@ -54,7 +54,7 @@ export default function BadgeListPage() {
 					candidates={allSkillSlugs}
 				/>
 			</Form>
-			<ul className="p-2 m-2 menu">
+			<ul className="p-0 md:p-4 mt-2 mb-2 menu">
 				{filteredList.slice(0, 10).map(({
 					slug,
 					title,
@@ -66,7 +66,7 @@ export default function BadgeListPage() {
 
 					return (
 						<li key={slug}>
-							<Link to={`/badges/${slug}`} className="flex flex-row">
+							<Link to={`/badges/${slug}`} className="flex flex-row" aria-label={`배지 ${title}, 더 자세한 내용을 보려면 클릭`}>
 								<div className="indicator w-1/6 flex-none">
 									{max === now && (
 										<span className="indicator-item indicator-start badge badge-primary badge-xs">

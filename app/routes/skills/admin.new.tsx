@@ -65,7 +65,7 @@ export default function NewSkill() {
 	const [slug, setSlug] = useState(slugSearch ?? '');
 	const isSlugDuplicated = allSkillSlugs.includes(slug);
 
-	const inputProps = useFormInputProps(skillSchema)
+	const inputProps = useFormInputProps(skillSchema);
 	return (
 		<CenterCardLayout>
 			<Form method="post" className="flex flex-col">

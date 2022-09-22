@@ -1,6 +1,6 @@
 import { id } from '~/funcUtil';
 import createOptionalDataList from '~/components/createDataList';
-import LinkWithTooltip from '~/components/shared/LinkWithTooltip';
+import { Link } from '~/Link';
 import clsx from 'clsx';
 
 export function SkillLink({ slug, className }: {
@@ -8,16 +8,15 @@ export function SkillLink({ slug, className }: {
 	className?: string;
 }) {
 	return (
-		<LinkWithTooltip
+		<Link
 			to={`/skills/${slug}`}
-			tooltip={`/skills/${slug}`}
 			className={clsx(
-				'pl-2 pr-2 p-1 m-1 rounded-md bg-quote border-2 border-transparent focus:border-primary-focus text-primary',
+				'pl-2 pr-2 p-1 m-1 rounded-md bg-quote border-2 border-transparent focus:border-primary-focus text-primary justify-center',
 				className,
 			)}
 		>
 			{slug}
-		</LinkWithTooltip>
+		</Link>
 	);
 }
 

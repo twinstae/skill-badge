@@ -7,8 +7,8 @@ export default function CenterCardLayout({ children, className }: {
 	className?: string;
 }) {
 	return (
-		<div className="flex flex-row justify-center">
-			<div className="static flex flex-col rounded-xl m-2 shadow-2xl max-w-xl w-full">
+		<div className="flex flex-row justify-center min-h-screen">
+			<div className="static flex flex-col md:rounded-xl m-0 md:m-2 shadow-2xl md:border-2 max-w-xl w-full">
 				<NavigationBar />
 				<main id="main" className={clsx('h-full w-full p-4', className)}>
 					{children}
