@@ -1,39 +1,36 @@
 import * as serverBuild from '@remix-run/dev/server-build';
 import { remixFastifyPlugin } from '@mcansh/remix-fastify';
 import fastify from 'fastify';
-import lcache from 'fastify-lcache';
 import compress from '@fastify/compress';
+import { logger } from '~/logger';
 
 // import Keyv from '@keyvhq/core';
 // const _keyv = new Keyv();
 
-let MODE = process.env.NODE_ENV;
+const MODE = process.env.NODE_ENV;
 
 async function start() {
-  let app = fastify({ logger: true });
-  await app.register(lcache, {
-    ttlInMinutes: 1,
-  });
+	const app = fastify({ logger });
 
-  await app.register(remixFastifyPlugin, {
-    assetsBuildDirectory: serverBuild.assetsBuildDirectory,
-    build: serverBuild,
-    mode: MODE,
-    publicPath: serverBuild.publicPath,
-  });
+	await app.register(compress);
 
-  await app.register(compress)
+	await app.register(remixFastifyPlugin, {
+		assetsBuildDirectory: serverBuild.assetsBuildDirectory,
+		build: serverBuild,
+		mode: MODE,
+		publicPath: serverBuild.publicPath,
+	});
 
-  const port = parseInt(process.env.PORT ?? '3000');
-  const host = '0.0.0.0';
-  app.listen({ port, host }, () => {
-    console.log(
-      `Fastify server listening\non http://${host}:${port}\n http://localhost:${port}`
-    );
-  });
+	const port = parseInt(process.env.PORT ?? '3000');
+	const host = '0.0.0.0';
+	app.listen({ port, host }, () => {
+		console.log(
+			`Fastify server listening on\nhttp://${host}:${port}\nhttp://localhost:${port}`,
+		);
+	});
 }
 
 start().catch((error) => {
-  console.error(error);
-  process.exit(1);
+	console.error(error);
+	process.exit(1);
 });

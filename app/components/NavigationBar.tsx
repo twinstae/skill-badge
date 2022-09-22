@@ -3,18 +3,19 @@ import { Link } from '~/Link';
 import { useLocation } from '@remix-run/react';
 import clsx from 'clsx';
 import {
-  CheckBadgeIcon as CheckBadgeOutlineIcon,
-  DocumentTextIcon as DocumentTextOutlineIcon,
-  ComputerDesktopIcon as ComputerDesktopOutlineIcon,
-  BuildingOfficeIcon as BuildingOfficeOutlineIcon,
+	CheckBadgeIcon as CheckBadgeOutlineIcon,
+	DocumentTextIcon as DocumentTextOutlineIcon,
+	ComputerDesktopIcon as ComputerDesktopOutlineIcon,
+	BuildingOfficeIcon as BuildingOfficeOutlineIcon,
 } from '@heroicons/react/24/outline';
 import {
-  CheckBadgeIcon as CheckBadgeSolidIcon,
-  DocumentTextIcon as DocumentTextSolidIcon,
-  ComputerDesktopIcon as ComputerDesktopSolidIcon,
-  BuildingOfficeIcon as BuildingOfficeSolidIcon,
+	CheckBadgeIcon as CheckBadgeSolidIcon,
+	DocumentTextIcon as DocumentTextSolidIcon,
+	ComputerDesktopIcon as ComputerDesktopSolidIcon,
+	BuildingOfficeIcon as BuildingOfficeSolidIcon,
 } from '@heroicons/react/24/solid';
 import HoverableIcon, { type IconT } from './icons/HoverableIcon';
+import DarkModeButton from './DarkModeButton';
 // import FirstPathDropdown from './FirstPathDropdown';
 
 // function BreadCrumbs() {
@@ -60,53 +61,57 @@ import HoverableIcon, { type IconT } from './icons/HoverableIcon';
 // <BreadCrumbs />
 
 const paths = [
-  {
-    title: '직군',
-    path: 'positions',
-    icons: [BuildingOfficeSolidIcon, BuildingOfficeOutlineIcon],
-  },
-  {
-    title: '역량',
-    path: 'skills',
-    icons: [ComputerDesktopSolidIcon, ComputerDesktopOutlineIcon],
-  },
-  {
-    title: '배지',
-    path: 'badges',
-    icons: [CheckBadgeSolidIcon, CheckBadgeOutlineIcon],
-  },
-  {
-    title: '이력서',
-    path: 'resumes',
-    icons: [DocumentTextSolidIcon, DocumentTextOutlineIcon],
-  },
+	{
+		title: '직군',
+		path: 'positions',
+		icons: [BuildingOfficeSolidIcon, BuildingOfficeOutlineIcon],
+	},
+	{
+		title: '역량',
+		path: 'skills',
+		icons: [ComputerDesktopSolidIcon, ComputerDesktopOutlineIcon],
+	},
+	{
+		title: '배지',
+		path: 'badges',
+		icons: [CheckBadgeSolidIcon, CheckBadgeOutlineIcon],
+	},
+	{
+		title: '이력서',
+		path: 'resumes',
+		icons: [DocumentTextSolidIcon, DocumentTextOutlineIcon],
+	},
 ] as { title: string; path: string; icons: [IconT, IconT] }[];
 
 function NavigationBar() {
-  const location = useLocation();
-  const currentPath = location.pathname; // "/skills/agile" | "/skills" | "/"
-  return (
-    <nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1">
-      <ul className="flex justify-evenly w-1/2">
-        {paths.map(({ title, path, icons }) => (
-          <li key={path}>
-            <Link
-              to={'/' + path}
-              className={clsx(
-                'flex flex-col w-fit',
-                currentPath.startsWith('/' + path)
-                  ? 'link-primary'
-                  : 'hover:text-primary focus:text-primary'
-              )}
-            >
-              <HoverableIcon icons={icons} label="" />
-              <span className="w-full text-center">{title}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
+	const location = useLocation();
+	const currentPath = location.pathname; // "/skills/agile" | "/skills" | "/"
+	return (
+		<nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1 rounded-t-xl">
+			<ul className="flex justify-evenly w-1/2">
+				{paths.map(
+					({ title, path, icons }) => (
+						<li key={path}>
+							<Link
+								to={`/${path}`}
+								className={clsx(
+									'flex flex-col w-fit text-center',
+									currentPath.startsWith(`/${path}`)
+										? 'link-primary'
+										: 'hover:text-primary focus:text-primary',
+								)}
+								aria-label={title}
+							>
+								<HoverableIcon icons={icons} label="" />
+								<span aria-hidden="true">{title}</span>
+							</Link>
+						</li>
+					),
+				)}
+				<DarkModeButton />
+			</ul>
+		</nav>
+	);
 }
 
 export default NavigationBar;

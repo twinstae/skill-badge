@@ -9,69 +9,45 @@ import { requirementSchema } from './requirements/schema';
 
 const client = edgedb();
 
-const flatSkillSlug = (item: any) => ({
-  ...item,
-  skill: undefined,
-  skillSlug: item.skill.slug
-})
+client.query(
+	`select Resource {
+    slug,
+    title,
+    content,
+    href,
+    skillSlug := .skill.slug
+  }`,
+).then((raw) => {
+	const data = z.array(withSkillSlug(resourceSchema)).parse(raw);
+	return fs.writeFile('./app/models/resources/backup.json', JSON.stringify(
+		data,
+	), { encoding: 'utf8' });
+});
 
-client
-  .query(`
-    select Resource {
-      slug,
-      title,
+client.query(
+	`select Requirement {
       content,
-      href,
-      skill: {
-        slug
-      }
-    }
-  `)
-  .then((raw) => {
-    const data = z.array(withSkillSlug(resourceSchema))
-      .parse(raw.map(flatSkillSlug));
-    return fs.writeFile(
-      './app/models/resources/fakeResources.json',
-      JSON.stringify(data),
-      { encoding: 'utf8' }
-    );
-  });
-
-client
-  .query(`
-    select Requirement {
-      content,
-      skill: {
-        slug
-      }
-    }
-  `)
-  .then((raw) => {
-    const data = z.array(withSkillSlug(requirementSchema))
-      .parse(raw.map(flatSkillSlug));
-    return fs.writeFile(
-      './app/models/requirements/fakeRequirementList.json',
-      JSON.stringify(data),
-      { encoding: 'utf8' }
-    );
-  });
+      skillSlug := .skill.slug
+    }`,
+).then((raw) => {
+	const data = z.array(withSkillSlug(requirementSchema)).parse(raw);
+	return fs.writeFile('./app/models/requirements/backup.json', JSON.stringify(
+		data,
+	), { encoding: 'utf8' });
+});
 
 const flatChildren = flatSlugs('children');
-client
-  .query(`
-    select Skill {
-      slug,
-      title,
-      content,
-      children: { slug },
-      parents
-    }
-  `)
-  .then((raw) => {
-    const data = z.array(skillSchema).parse(raw.map(flatChildren));
-    return fs.writeFile(
-      './app/models/skills/fakeSkills.json',
-      JSON.stringify(data),
-      { encoding: 'utf8' }
-    );
-  });
+client.query(
+	`select Skill {
+    slug,
+    title,
+    content,
+    children: { slug },
+    parents
+  }`,
+).then((raw) => {
+	const data = z.array(skillSchema).parse(raw.map(flatChildren));
+	return fs.writeFile('./app/models/skills/backup.json', JSON.stringify(data), {
+		encoding: 'utf8',
+	});
+});

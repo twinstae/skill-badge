@@ -1,9 +1,14 @@
+import type { IsomorphicArrayT } from '~/functional/Array';
 import type { PositionT, RequirementT } from './schema';
 
 interface IPositionsRepo {
-  async getPositionList(): Promise<PositionT[]>
-  async getRequirementsByPosition(positionSlug: PositionT['slug']): Promise<RequirementT[]>
-  async addRequirement(requirement: Omit<RequirementT, 'id'>): Promise<void>
-  async deleteRequirement(id: string): Promise<void>
-  async updateRequirement(requirement: RequirementT): Promise<void>
+	getPositionList: () => Promise<IsomorphicArrayT<PositionT>>;
+	getRequirements: () => Promise<RequirementT[]>;
+	getRequirementById: (id: string) => Promise<RequirementT | null>;
+	getRequirementsByPosition: (
+		positionSlug: PositionT['slug'],
+	) => Promise<RequirementT[]>;
+	addRequirement: (requirement: Omit<RequirementT, 'id'>) => Promise<string>; // return id (uuid format)
+	deleteRequirement: (targetId: string) => Promise<void>;
+	updateRequirement: (requirement: RequirementT) => Promise<void>;
 }

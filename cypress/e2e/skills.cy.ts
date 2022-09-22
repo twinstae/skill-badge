@@ -1,7 +1,12 @@
 describe('스킬 페이지', () => {
+  before(() => {
+    cy.request('DELETE', 'http://localhost:3000/skills/admin/reset')
+      .then(response => {
+        expect(response.status).to.eq(204);
+      });
+  })
+  
   it('역량을 클릭하면 해당 페이지로 이동한다', () => {
-    cy.request('delete', 'http://localhost:3000/skills/admin/reset');
-
     cy.visitAndCheck('/skills');
 
     cy.findByRole('searchbox', { name:  '검색하기' }).type('react');

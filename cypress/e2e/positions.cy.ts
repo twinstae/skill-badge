@@ -2,13 +2,16 @@
 // BDD 행동 주도 개발|설계 Behavior Driven Design|Development
 
 describe('직군 페이지', () => {
+  before(() => {
+    cy.request('DELETE', 'http://localhost:3000/positions/admin/reset')
+      .then(response => {
+        expect(response.status).to.eq(204);
+      });
+  })
+
   it('직군 선택 페이지에서, 프런트엔드 직군을 선택하면, 해당 페이지로 이동한다', () => {
-    cy.request('delete', 'http://localhost:3000/positions/admin/reset');
     // given (어떤 주어진 상황 - 어떤 상황이 주어졌을 때)
-    // 주소 창에 / 를 쳐서 들어온다
-    cy.visit('http://localhost:3000/');
-    // /positions 로 리다이렉트 된다
-    cy.location('pathname').should('eq', '/positions');
+    cy.visitAndCheck('/positions');
 
     // when (사용자가 행동을 하면)
     // 프런트엔드라는 링크를 클릭한다

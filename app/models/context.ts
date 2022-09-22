@@ -13,11 +13,11 @@ import positionsRepo from './requirements/fakeRepo';
 // const positionsRepo = EdgePositionsRepo(client);
 
 interface ContextT {
-  skillsRepo: ISkillRepo;
-  positionsRepo: IPositionsRepo;
+	skillsRepo: ISkillRepo;
+	positionsRepo: IPositionsRepo;
 }
 
 export const context: ContextT = {
-  skillsRepo,
-  positionsRepo,
+	skillsRepo,
+	positionsRepo,
 };
