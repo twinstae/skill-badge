@@ -33,14 +33,15 @@ describe('SkillsRepo', () => {
 				content: '',
 			},
 		]);
-
+		const fakeSlug = 'fake-for-test';
 		const initialCount = await repo.getAllList().then((all) => all.length);
 
 		const initialReact = await repo.getOneBySlug('react');
-		expect(initialReact?.children).not.toContain('fake-for-test');
+
+		expect(initialReact?.children).not.toContain(fakeSlug);
 
 		await repo.create({
-			slug: 'fake-for-test',
+			slug: fakeSlug,
 			title: '테스트를 위한 가짜',
 			parents: ['react'],
 			children: [],
@@ -49,8 +50,8 @@ describe('SkillsRepo', () => {
 
 		await expect(repo.getAllList()).resolves.toHaveLength(initialCount + 1);
 
-		await expect(repo.getOneBySlug('fake-for-test')).resolves.toStrictEqual({
-			slug: 'fake-for-test',
+		await expect(repo.getOneBySlug(fakeSlug)).resolves.toStrictEqual({
+			slug: fakeSlug,
 			title: '테스트를 위한 가짜',
 			parents: ['react'],
 			children: [],
@@ -58,27 +59,28 @@ describe('SkillsRepo', () => {
 		});
 
 		await repo.update({
-			slug: 'fake-for-test',
+			slug: fakeSlug,
 			title: '테스트를 위한 가짜',
 			parents: ['svelte'],
 			children: ['vue'],
 			content: '가짜 내용',
 		});
 
-		await expect(repo.getOneBySlug('fake-for-test')).resolves.toStrictEqual({
-			slug: 'fake-for-test',
+		await expect(repo.getOneBySlug(fakeSlug)).resolves.toStrictEqual({
+			slug: fakeSlug,
 			title: '테스트를 위한 가짜',
 			parents: ['svelte'],
 			children: ['vue'],
 			content: '가짜 내용',
 		});
 
-		await repo.delete('fake-for-test');
+		await repo.delete(fakeSlug);
 
 		await expect(repo.getOneBySlug('react')).resolves.toStrictEqual(
 			initialReact,
 		);
 
-		await expect(repo.getOneBySlug('fake-for-test')).resolves.toBe(null);
+		
+		await expect(repo.getOneBySlug(fakeSlug)).resolves.toBe(null);
 	});
 });
