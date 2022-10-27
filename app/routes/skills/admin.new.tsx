@@ -44,7 +44,6 @@ export const action: ActionFunction = async ({ request }) => {
 	const result = await getFormData(request, skillSchema);
 
 	if (!result.success) {
-		console.log(result.errors);
 		return json<ActionData>(result.errors);
 	}
 
