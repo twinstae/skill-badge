@@ -19,6 +19,7 @@ export default function SkillListPage() {
 	const { skills } = useLoaderData() as LoaderData;
 	const [search, setSearch] = useState('');
 	const lowerSearch = search.toLowerCase();
+	const LIMIT = 10;
 
 	const filteredSkills = skills.filter(
 		(skill) =>
@@ -45,7 +46,7 @@ export default function SkillListPage() {
 				/>
 			</label>
 			<ul className="p-2 m-2 menu">
-				{filteredSkills.slice(0, 10).map(
+				{filteredSkills.slice(0, LIMIT).map(
 					(skill) => (
 						<li key={skill.slug}>
 							<Link to={`/skills/${skill.slug}`} className="p-2">
@@ -56,9 +57,9 @@ export default function SkillListPage() {
 						</li>
 					),
 				)}
-				{filteredSkills.length > 10 && (
+				{filteredSkills.length > LIMIT && (
 					<li className="text-xl text-center">
-						...{filteredSkills.length - 10} 개
+						...{filteredSkills.length - LIMIT} 개
 					</li>
 				)}
 			</ul>
