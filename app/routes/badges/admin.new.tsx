@@ -49,7 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
 	if (!result.success) {
 		return json<ActionData>(result.errors);
 	}
-
+	
 	await fakeBadgeRepo.createBadge(result.data);
 
 	return redirect('/badges');

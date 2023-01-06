@@ -82,7 +82,7 @@ export default function TagsInput<S>({
 								{/* 사람들눈에보이는value */}
 								<span>{value}</span>
 								<button
-									{...api.getTagDeleteButtonProps({ index, value })}
+									{...api.getTagDeleteTriggerProps({ index, value })}
 									tabIndex={1}
 									aria-label={`${value} 태그를 삭제`}
 								>

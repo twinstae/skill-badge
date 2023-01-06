@@ -7,7 +7,7 @@ describe('배지 페이지', () => {
     cy.findTextBox('배지 제목').type('리눅스로 ssh 통신을 해서 ec2에 node 세팅을 할 수 있습니다');
 
     cy.findByRole('combobox', {name: '역량 목록'})
-      .type('linux');
+      .type('linux{enter}');
     cy.findByRole('combobox', {name: '아이콘'})
       .type('ComputerDesktopIcon');
     // 스토리북 => 시각적 테스팅 도구 (보통 컴포넌트). 우리는 페이지 전체를 띄어놓고 하는데
