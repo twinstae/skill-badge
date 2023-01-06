@@ -29,7 +29,10 @@ export default function TagsInput<S>({
 }) {
 	const id = useId();
 	const addInputId = `tags-input:${id}:input`;
-	function validate({ values, inputValue }: {
+	function validate({
+		values,
+		inputValue,
+	}: {
 		values: string[];
 		inputValue: string;
 	}) {
@@ -54,9 +57,9 @@ export default function TagsInput<S>({
 
 	const api = tagsInput.connect(state, send, normalizeProps);
 
-	const recommendation = candidates.filter(
-		(candi) => candi.startsWith(api.inputValue),
-	).slice(0, 5);
+	const recommendation = candidates
+		.filter((candi) => candi.startsWith(api.inputValue))
+		.slice(0, 5);
 
 	const isValid = validate({
 		values: api.value,
@@ -75,33 +78,31 @@ export default function TagsInput<S>({
 					className,
 				)}
 			>
-				{api.value.map(
-					(value, index) => (
-						<span key={index} className="p-2 bg-slate-100 m-1 rounded-md">
-							<div {...api.getTagProps({ index, value })}>
-								{/* 사람들눈에보이는value */}
-								<span>{value}</span>
-								<button
-									{...api.getTagDeleteTriggerProps({ index, value })}
-									tabIndex={1}
-									aria-label={`${value} 태그를 삭제`}
-								>
-									&#x2715;
-								</button>
-							</div>
-							{/* 수정 용*/}
-							<input {...api.getTagInputProps({ index, value })} />
-							{/* 실제로 보내는 값 */}
-							<input
-								type="text"
-								hidden={true}
-								name={name}
-								value={value}
-								readOnly={true}
-							/>
-						</span>
-					),
-				)}
+				{api.value.map((value, index) => (
+					<span key={index} className="p-2 bg-slate-100 m-1 rounded-md">
+						<div {...api.getTagProps({ index, value })}>
+							{/* 사람들눈에보이는value */}
+							<span>{value}</span>
+							<button
+								{...api.getTagDeleteTriggerProps({ index, value })}
+								tabIndex={1}
+								aria-label={`${value} 태그를 삭제`}
+							>
+								&#x2715;
+							</button>
+						</div>
+						{/* 수정 용*/}
+						<input {...api.getTagInputProps({ index, value })} />
+						{/* 실제로 보내는 값 */}
+						<input
+							type="text"
+							hidden={true}
+							name={name}
+							value={value}
+							readOnly={true}
+						/>
+					</span>
+				))}
 				<Tooltip tooltip="추가하려면 Enter" isOpen={isValid}>
 					{api.value.length < maxLength && (
 						<input
@@ -118,11 +119,9 @@ export default function TagsInput<S>({
 						/>
 					)}
 					<datalist id="skill-slugs">
-						{recommendation?.map(
-							(candi) => (
-								<option key={candi} value={candi} />
-							),
-						)}
+						{recommendation?.map((candi) => (
+							<option key={candi} value={candi} />
+						))}
 					</datalist>
 				</Tooltip>
 				<ErrorMessages errors={errors} name={name} />

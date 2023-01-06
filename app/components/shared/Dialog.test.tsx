@@ -30,7 +30,9 @@ describe('Dialog', () => {
 
 		const $modal = screen.getByLabelText('역량을 삭제하기');
 
-		await userEvent.click(getByRole($modal, 'button', { name: '삭제하겠습니다' }));
+		await userEvent.click(
+			getByRole($modal, 'button', { name: '삭제하겠습니다' }),
+		);
 
 		expect(deleted).toBe(true);
 	});

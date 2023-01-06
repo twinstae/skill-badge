@@ -76,9 +76,9 @@ describe('TagsInput', () => {
 	it('form으로 제출할 수 있다', async () => {
 		renderTagsInput(['react', 'redux']);
 
-		const values = [...document.getElementsByTagName('input')].filter(
-			(input) => input.name === 'skills',
-		).map((input) => input.value);
+		const values = [...document.getElementsByTagName('input')]
+			.filter((input) => input.name === 'skills')
+			.map((input) => input.value);
 		expect(values).toEqual(['react', 'redux']);
 	});
 });

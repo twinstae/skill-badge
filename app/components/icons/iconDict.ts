@@ -163,7 +163,9 @@ export const iconDict: Record<
 	BanknotesIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/BanknotesIcon.js'),
 	),
-	Bars2Icon: React.lazy(() => import('@heroicons/react/24/outline/Bars2Icon.js')),
+	Bars2Icon: React.lazy(
+		() => import('@heroicons/react/24/outline/Bars2Icon.js'),
+	),
 	Bars3BottomLeftIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/Bars3BottomLeftIcon.js'),
 	),
@@ -173,8 +175,12 @@ export const iconDict: Record<
 	Bars3CenterLeftIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/Bars3CenterLeftIcon.js'),
 	),
-	Bars3Icon: React.lazy(() => import('@heroicons/react/24/outline/Bars3Icon.js')),
-	Bars4Icon: React.lazy(() => import('@heroicons/react/24/outline/Bars4Icon.js')),
+	Bars3Icon: React.lazy(
+		() => import('@heroicons/react/24/outline/Bars3Icon.js'),
+	),
+	Bars4Icon: React.lazy(
+		() => import('@heroicons/react/24/outline/Bars4Icon.js'),
+	),
 	BarsArrowDownIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/BarsArrowDownIcon.js'),
 	),
@@ -257,7 +263,8 @@ export const iconDict: Record<
 		() => import('@heroicons/react/24/outline/ChartPieIcon.js'),
 	),
 	ChatBubbleBottomCenterTextIcon: React.lazy(
-		() => import('@heroicons/react/24/outline/ChatBubbleBottomCenterTextIcon.js'),
+		() =>
+			import('@heroicons/react/24/outline/ChatBubbleBottomCenterTextIcon.js'),
 	),
 	ChatBubbleBottomCenterIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ChatBubbleBottomCenterIcon.js'),
@@ -272,7 +279,8 @@ export const iconDict: Record<
 		() => import('@heroicons/react/24/outline/ChatBubbleLeftIcon.js'),
 	),
 	ChatBubbleOvalLeftEllipsisIcon: React.lazy(
-		() => import('@heroicons/react/24/outline/ChatBubbleOvalLeftEllipsisIcon.js'),
+		() =>
+			import('@heroicons/react/24/outline/ChatBubbleOvalLeftEllipsisIcon.js'),
 	),
 	ChatBubbleOvalLeftIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ChatBubbleOvalLeftIcon.js'),
@@ -283,7 +291,9 @@ export const iconDict: Record<
 	CheckCircleIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/CheckCircleIcon.js'),
 	),
-	CheckIcon: React.lazy(() => import('@heroicons/react/24/outline/CheckIcon.js')),
+	CheckIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/CheckIcon.js'),
+	),
 	ChevronDoubleDownIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ChevronDoubleDownIcon.js'),
 	),
@@ -326,14 +336,18 @@ export const iconDict: Record<
 	ClipboardIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ClipboardIcon.js'),
 	),
-	ClockIcon: React.lazy(() => import('@heroicons/react/24/outline/ClockIcon.js')),
+	ClockIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/ClockIcon.js'),
+	),
 	CloudArrowDownIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/CloudArrowDownIcon.js'),
 	),
 	CloudArrowUpIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/CloudArrowUpIcon.js'),
 	),
-	CloudIcon: React.lazy(() => import('@heroicons/react/24/outline/CloudIcon.js')),
+	CloudIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/CloudIcon.js'),
+	),
 	CodeBracketSquareIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/CodeBracketSquareIcon.js'),
 	),
@@ -507,7 +521,9 @@ export const iconDict: Record<
 	HashtagIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/HashtagIcon.js'),
 	),
-	HeartIcon: React.lazy(() => import('@heroicons/react/24/outline/HeartIcon.js')),
+	HeartIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/HeartIcon.js'),
+	),
 	HomeModernIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/HomeModernIcon.js'),
 	),
@@ -521,7 +537,9 @@ export const iconDict: Record<
 	InboxStackIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/InboxStackIcon.js'),
 	),
-	InboxIcon: React.lazy(() => import('@heroicons/react/24/outline/InboxIcon.js')),
+	InboxIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/InboxIcon.js'),
+	),
 	InformationCircleIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/InformationCircleIcon.js'),
 	),
@@ -573,7 +591,9 @@ export const iconDict: Record<
 	MinusSmallIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/MinusSmallIcon.js'),
 	),
-	MinusIcon: React.lazy(() => import('@heroicons/react/24/outline/MinusIcon.js')),
+	MinusIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/MinusIcon.js'),
+	),
 	MoonIcon: React.lazy(() => import('@heroicons/react/24/outline/MoonIcon.js')),
 	MusicalNoteIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/MusicalNoteIcon.js'),
@@ -593,7 +613,9 @@ export const iconDict: Record<
 	PaperClipIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/PaperClipIcon.js'),
 	),
-	PauseIcon: React.lazy(() => import('@heroicons/react/24/outline/PauseIcon.js')),
+	PauseIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/PauseIcon.js'),
+	),
 	PencilSquareIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/PencilSquareIcon.js'),
 	),
@@ -609,8 +631,12 @@ export const iconDict: Record<
 	PhoneXMarkIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/PhoneXMarkIcon.js'),
 	),
-	PhoneIcon: React.lazy(() => import('@heroicons/react/24/outline/PhoneIcon.js')),
-	PhotoIcon: React.lazy(() => import('@heroicons/react/24/outline/PhotoIcon.js')),
+	PhoneIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/PhoneIcon.js'),
+	),
+	PhotoIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/PhotoIcon.js'),
+	),
 	PlayPauseIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/PlayPauseIcon.js'),
 	),
@@ -643,7 +669,9 @@ export const iconDict: Record<
 	QueueListIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/QueueListIcon.js'),
 	),
-	RadioIcon: React.lazy(() => import('@heroicons/react/24/outline/RadioIcon.js')),
+	RadioIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/RadioIcon.js'),
+	),
 	ReceiptPercentIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ReceiptPercentIcon.js'),
 	),
@@ -657,7 +685,9 @@ export const iconDict: Record<
 		() => import('@heroicons/react/24/outline/RectangleStackIcon.js'),
 	),
 	RssIcon: React.lazy(() => import('@heroicons/react/24/outline/RssIcon.js')),
-	ScaleIcon: React.lazy(() => import('@heroicons/react/24/outline/ScaleIcon.js')),
+	ScaleIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/ScaleIcon.js'),
+	),
 	ScissorsIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ScissorsIcon.js'),
 	),
@@ -667,7 +697,9 @@ export const iconDict: Record<
 	ServerIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ServerIcon.js'),
 	),
-	ShareIcon: React.lazy(() => import('@heroicons/react/24/outline/ShareIcon.js')),
+	ShareIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/ShareIcon.js'),
+	),
 	ShieldCheckIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/ShieldCheckIcon.js'),
 	),
@@ -717,8 +749,12 @@ export const iconDict: Record<
 	TicketIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/TicketIcon.js'),
 	),
-	TrashIcon: React.lazy(() => import('@heroicons/react/24/outline/TrashIcon.js')),
-	TruckIcon: React.lazy(() => import('@heroicons/react/24/outline/TruckIcon.js')),
+	TrashIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/TrashIcon.js'),
+	),
+	TruckIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/TruckIcon.js'),
+	),
 	UserCircleIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/UserCircleIcon.js'),
 	),
@@ -732,7 +768,9 @@ export const iconDict: Record<
 		() => import('@heroicons/react/24/outline/UserPlusIcon.js'),
 	),
 	UserIcon: React.lazy(() => import('@heroicons/react/24/outline/UserIcon.js')),
-	UsersIcon: React.lazy(() => import('@heroicons/react/24/outline/UsersIcon.js')),
+	UsersIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/UsersIcon.js'),
+	),
 	VariableIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/VariableIcon.js'),
 	),
@@ -758,5 +796,7 @@ export const iconDict: Record<
 	XCircleIcon: React.lazy(
 		() => import('@heroicons/react/24/outline/XCircleIcon.js'),
 	),
-	XMarkIcon: React.lazy(() => import('@heroicons/react/24/outline/XMarkIcon.js')),
+	XMarkIcon: React.lazy(
+		() => import('@heroicons/react/24/outline/XMarkIcon.js'),
+	),
 };

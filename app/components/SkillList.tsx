@@ -3,7 +3,10 @@ import createOptionalDataList from '~/components/createDataList';
 import { Link } from '~/Link';
 import clsx from 'clsx';
 
-export function SkillLink({ slug, className }: {
+export function SkillLink({
+	slug,
+	className,
+}: {
 	slug: string;
 	className?: string;
 }) {

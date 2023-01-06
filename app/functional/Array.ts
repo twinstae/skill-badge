@@ -63,6 +63,9 @@ export function IsomorphicArray<T>(arr: T[]) {
 			if (target[0] === undefined || target[0] === null) {
 				return [];
 			}
+			if (typeof target[0] !== 'object') {
+				throw Error(`${target}은 object 타입이 아닙니다`);
+			}
 			if (prop in target[0]) {
 				return target.map((item) => item[prop as keyof T]);
 			}

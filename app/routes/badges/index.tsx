@@ -55,43 +55,41 @@ export default function BadgeListPage() {
 				/>
 			</Form>
 			<ul className="p-0 md:p-4 mt-2 mb-2 menu">
-				{filteredList.slice(0, 10).map(({
-					slug,
-					title,
-					skillSlugs,
-					icon,
-					max,
-				}) => {
-					const now = max - 2;
+				{filteredList
+					.slice(0, 10)
+					.map(({ slug, title, skillSlugs, icon, max }) => {
+						const now = max - 2;
 
-					return (
-						<li key={slug}>
-							<Link to={`/badges/${slug}`} className="flex flex-row" aria-label={`배지 ${title}, 더 자세한 내용을 보려면 클릭`}>
-								<div className="indicator w-1/6 flex-none">
-									{max === now && (
-										<span className="indicator-item indicator-start badge badge-primary badge-xs">
-											획득!
-										</span>
-									)}
-									<ProgressBadge max={max} now={now} size="sm" icon={icon} />
-								</div>
+						return (
+							<li key={slug}>
+								<Link
+									to={`/badges/${slug}`}
+									className="flex flex-row"
+									aria-label={`배지 ${title}, 더 자세한 내용을 보려면 클릭`}
+								>
+									<div className="indicator w-1/6 flex-none">
+										{max === now && (
+											<span className="indicator-item indicator-start badge badge-primary badge-xs">
+												획득!
+											</span>
+										)}
+										<ProgressBadge max={max} now={now} size="sm" icon={icon} />
+									</div>
 
-								<div className="flex flex-col w-5/6">
-									<span>{title}</span>
-									<ul className="flex flex-row flex-wrap">
-										{skillSlugs.map(
-											(slug) => (
+									<div className="flex flex-col w-5/6">
+										<span>{title}</span>
+										<ul className="flex flex-row flex-wrap">
+											{skillSlugs.map((slug) => (
 												<li key={slug}>
 													<SkillLink slug={slug} className="w-fit" />
 												</li>
-											),
-										)}
-									</ul>
-								</div>
-							</Link>
-						</li>
-					);
-				})}
+											))}
+										</ul>
+									</div>
+								</Link>
+							</li>
+						);
+					})}
 				{filteredList.length > 10 && (
 					<li className="text-xl text-center">
 						...{filteredList.length - 10} 개

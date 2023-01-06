@@ -46,21 +46,19 @@ export default function BadgeDetailPage() {
 			<SkillList title="역량" dataList={skillSlugs} />
 			<h2 id="pieces-title">조각들</h2>
 			<ul aria-labelledby="pieces-title" className="flex flex-col">
-				{pieces.map(
-					({ id, title, isDone }) => (
-						<li className="form-control p-2" key={id}>
-							<label className="label font-normal justify-start">
-								<input
-									type="checkbox"
-									checked={isDone}
-									className="checkbox checkbox-primary mr-2 cursor-default"
-									readOnly={true}
-								/>
-								<span className="label-text">{title}</span>
-							</label>
-						</li>
-					),
-				)}
+				{pieces.map(({ id, title, isDone }) => (
+					<li className="form-control p-2" key={id}>
+						<label className="label font-normal justify-start">
+							<input
+								type="checkbox"
+								checked={isDone}
+								className="checkbox checkbox-primary mr-2 cursor-default"
+								readOnly={true}
+							/>
+							<span className="label-text">{title}</span>
+						</label>
+					</li>
+				))}
 			</ul>
 		</CenterCardLayout>
 	);

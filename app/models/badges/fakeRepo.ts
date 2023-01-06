@@ -11,12 +11,10 @@ export function FakeBadgeRepo(init: BadgeT[]): IBadgeRepo {
 	let _store = init;
 	return {
 		async getBadgeList() {
-			return _store.map(
-				(badge) => ({
-					...badge,
-					max: badge.pieces.length,
-				}),
-			);
+			return _store.map((badge) => ({
+				...badge,
+				max: badge.pieces.length,
+			}));
 		},
 		async getBadgeWithPieces(badgeSlug: string) {
 			const badge = _store.find((badge) => badge.slug === badgeSlug);
@@ -26,9 +24,12 @@ export function FakeBadgeRepo(init: BadgeT[]): IBadgeRepo {
 			return badge;
 		},
 		async createBadge(badge) {
-			const pieces = badge.pieces.map(
-				(title) => ({ id: uuidv4(), title, content: '', isDone: true }),
-			);
+			const pieces = badge.pieces.map((title) => ({
+				id: uuidv4(),
+				title,
+				content: '',
+				isDone: true,
+			}));
 
 			_store = [..._store, { ...badge, pieces }];
 		},

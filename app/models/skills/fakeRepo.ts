@@ -53,9 +53,8 @@ export function FakeSkillsRepo(init: SkillT[]): ISkillRepo {
 			);
 			_store = [..._store, skill];
 
-			_store = _store.map(
-				(a) =>
-					skill.parents.includes(a.slug) ? addTo(a, 'children', skill.slug) : a,
+			_store = _store.map((a) =>
+				skill.parents.includes(a.slug) ? addTo(a, 'children', skill.slug) : a,
 			);
 		},
 		async update({ slug, title, content, children, parents }) {

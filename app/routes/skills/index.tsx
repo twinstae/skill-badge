@@ -46,17 +46,14 @@ export default function SkillListPage() {
 				/>
 			</label>
 			<ul className="p-2 m-2 menu">
-				{filteredSkills.slice(0, LIMIT).map(
-					(skill) => (
-						<li key={skill.slug}>
-							<Link to={`/skills/${skill.slug}`} className="p-2">
-								{skill.title}
-								{' '}
-								<span className="text-sm text-primary">{skill.slug}</span>
-							</Link>
-						</li>
-					),
-				)}
+				{filteredSkills.slice(0, LIMIT).map((skill) => (
+					<li key={skill.slug}>
+						<Link to={`/skills/${skill.slug}`} className="p-2">
+							{skill.title}{' '}
+							<span className="text-sm text-primary">{skill.slug}</span>
+						</Link>
+					</li>
+				))}
 				{filteredSkills.length > LIMIT && (
 					<li className="text-xl text-center">
 						...{filteredSkills.length - LIMIT} 개

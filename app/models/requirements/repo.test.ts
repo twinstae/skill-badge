@@ -5,13 +5,15 @@ describe('PositionsRepo', () => {
 	const repo = FakePositionsRepo([
 		{
 			id: 'd5836f15-208e-447a-9c8c-9d360b25f26a',
-			content: 'HTML5, CSS3, ES6 Javascript 등 웹 표준, 시맨틱 마크업에 능숙하신 분',
+			content:
+				'HTML5, CSS3, ES6 Javascript 등 웹 표준, 시맨틱 마크업에 능숙하신 분',
 			positionSlug: 'frontend',
 			skillSlug: 'web-standard',
 		},
 		{
 			id: 'e45797bd-e028-4b89-ad82-6c18b5ff9753',
-			content: '전공지식은 필요하지만 전공학위는 꼭 필요하다고 생각하지 않기에 컴퓨터공학 학위 여부는 보지 않아요.',
+			content:
+				'전공지식은 필요하지만 전공학위는 꼭 필요하다고 생각하지 않기에 컴퓨터공학 학위 여부는 보지 않아요.',
 			positionSlug: 'backend',
 			skillSlug: 'computer-science',
 		},

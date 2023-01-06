@@ -2,7 +2,10 @@ import clsx from 'clsx';
 import React from 'react';
 import NavigationBar from './NavigationBar';
 
-export default function CenterCardLayout({ children, className }: {
+export default function CenterCardLayout({
+	children,
+	className,
+}: {
 	children: React.ReactNode;
 	className?: string;
 }) {

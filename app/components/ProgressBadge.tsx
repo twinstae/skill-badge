@@ -25,7 +25,12 @@ const iconSizeDict = {
 	lg: 'w-14 h-14',
 } as const;
 
-function ProgressBadge({ now, max, icon, size = 'base' }: {
+function ProgressBadge({
+	now,
+	max,
+	icon,
+	size = 'base',
+}: {
 	now: number;
 	max: number;
 	icon: HeroIconName;

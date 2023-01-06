@@ -19,9 +19,9 @@ export default function AutoCompleteTextBox({
 		(candidates === undefined || candidates.includes(value));
 
 	// 😱
-	const recommendation = candidates?.filter(
-		(candi) => candi.includes(value),
-	).slice(0, candidateLimit);
+	const recommendation = candidates
+		?.filter((candi) => candi.includes(value))
+		.slice(0, candidateLimit);
 
 	const dataListId = useId();
 
@@ -45,11 +45,9 @@ export default function AutoCompleteTextBox({
 				list={dataListId}
 			/>
 			<datalist id={dataListId}>
-				{recommendation?.map(
-					(candi) => (
-						<option key={candi} value={candi} />
-					),
-				)}
+				{recommendation?.map((candi) => (
+					<option key={candi} value={candi} />
+				))}
 			</datalist>
 		</div>
 	);

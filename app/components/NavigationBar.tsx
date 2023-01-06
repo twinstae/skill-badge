@@ -89,25 +89,23 @@ function NavigationBar() {
 	return (
 		<nav className="sticky top-0 left-0 w-full z-40 border-b-2 p-0 pl-2 bg-base-100 py-1 rounded-t-xl">
 			<ul className="flex justify-evenly w-1/2">
-				{paths.map(
-					({ title, path, icons }) => (
-						<li key={path}>
-							<Link
-								to={`/${path}`}
-								className={clsx(
-									'flex flex-col w-fit text-center',
-									currentPath.startsWith(`/${path}`)
-										? 'link-primary'
-										: 'hover:text-primary focus:text-primary',
-								)}
-								aria-label={title}
-							>
-								<HoverableIcon icons={icons} label="" />
-								<span aria-hidden="true">{title}</span>
-							</Link>
-						</li>
-					),
-				)}
+				{paths.map(({ title, path, icons }) => (
+					<li key={path}>
+						<Link
+							to={`/${path}`}
+							className={clsx(
+								'flex flex-col w-fit text-center',
+								currentPath.startsWith(`/${path}`)
+									? 'link-primary'
+									: 'hover:text-primary focus:text-primary',
+							)}
+							aria-label={title}
+						>
+							<HoverableIcon icons={icons} label="" />
+							<span aria-hidden="true">{title}</span>
+						</Link>
+					</li>
+				))}
 				<DarkModeButton />
 			</ul>
 		</nav>

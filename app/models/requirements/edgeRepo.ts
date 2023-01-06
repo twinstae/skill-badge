@@ -20,8 +20,9 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
 				.then(IsomorphicArray);
 		},
 		async getRequirementById(targetId: string) {
-			return client.query(
-				`
+			return client
+				.query(
+					`
       select Requirement {
         id,
         content,
@@ -30,12 +31,14 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
       }
       filter .id = <uuid>$targetId
       `,
-				{ targetId },
-			).then(requirementSchema.parse);
+					{ targetId },
+				)
+				.then(requirementSchema.parse);
 		},
 		async getRequirements() {
-			return client.query(
-				`
+			return client
+				.query(
+					`
       select Requirement {
         id,
         content,
@@ -43,11 +46,13 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
         positionSlug := .position.slug,
       }
       `,
-			).then(z.array(requirementSchema).parse);
+				)
+				.then(z.array(requirementSchema).parse);
 		},
 		async getRequirementsByPosition(positionSlug) {
-			return client.query(
-				`
+			return client
+				.query(
+					`
       with position := ( select Position filter .slug = <str>$positionSlug )
       select Requirement {
         id,
@@ -57,8 +62,9 @@ export function EdgePositionsRepo(client: Client): IPositionsRepo {
       }
       filter .position = position;
       `,
-				{ positionSlug },
-			).then(z.array(requirementSchema).parse);
+					{ positionSlug },
+				)
+				.then(z.array(requirementSchema).parse);
 		},
 		async addRequirement(requirement) {
 			return client.queryRequiredSingle(

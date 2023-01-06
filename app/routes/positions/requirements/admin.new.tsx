@@ -45,10 +45,12 @@ export const action: ActionFunction = async ({ request }) => {
 	const allSkillSlugs = allSkills.slug;
 	const result = await getFormData(
 		request,
-		newRequirementSchema.refine(({ skillSlug }) =>
-			allSkillSlugs.includes(skillSlug), {
-			message: '존재하지 않는 역량의 슬러그에요!',
-		}),
+		newRequirementSchema.refine(
+			({ skillSlug }) => allSkillSlugs.includes(skillSlug),
+			{
+				message: '존재하지 않는 역량의 슬러그에요!',
+			},
+		),
 	);
 
 	if (!result.success) {
@@ -128,7 +130,11 @@ export default function NewSkill() {
 					className="btn btn-primary mt-4"
 					disabled={isCreating}
 				>
-					{isCreating ? <Spinner message="공유 중..." /> : '직군별 자격 추가하기'}
+					{isCreating ? (
+						<Spinner message="공유 중..." />
+					) : (
+						'직군별 자격 추가하기'
+					)}
 				</button>
 			</Form>
 		</CenterCardLayout>

@@ -49,7 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
 	if (!result.success) {
 		return json<ActionData>(result.errors);
 	}
-	
+
 	await fakeBadgeRepo.createBadge(result.data);
 
 	return redirect('/badges');
@@ -160,9 +160,7 @@ export default function NewBadgePage() {
 					placeholder="ex) react, linux, react-query"
 					className=""
 					maxLength={4}
-					candidates={
-						allSkillSlugs
-					} // taginput에넣을수잇는자동완성의후보들 (allSkillSlugs)
+					candidates={allSkillSlugs} // taginput에넣을수잇는자동완성의후보들 (allSkillSlugs)
 				/>
 
 				<BadgeIconInput initValue="" />

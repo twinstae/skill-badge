@@ -1,8 +1,8 @@
-import * as serverBuild from '@remix-run/dev/server-build';
 import { remixFastifyPlugin } from '@mcansh/remix-fastify';
 import fastify from 'fastify';
 import compress from '@fastify/compress';
 import { logger } from '~/logger';
+import path from 'node:path';
 
 // import Keyv from '@keyvhq/core';
 // const _keyv = new Keyv();
@@ -15,10 +15,11 @@ async function start() {
 	await app.register(compress);
 
 	await app.register(remixFastifyPlugin, {
-		assetsBuildDirectory: serverBuild.assetsBuildDirectory,
-		build: serverBuild,
+		build: path.join(process.cwd(), "build/index.js"),
 		mode: MODE,
-		publicPath: serverBuild.publicPath,
+		getLoadContext() {
+      return { loadContextName: "John Doe" };
+    },
 	});
 
 	const port = parseInt(process.env.PORT ?? '3000');

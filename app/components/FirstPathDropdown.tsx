@@ -3,7 +3,10 @@ import clsx from 'clsx';
 import { useNavigate } from '@remix-run/react';
 
 // 4-1 prop에 타입을 정의한다
-function FirstPathDropdown({ current, currentPath }: {
+function FirstPathDropdown({
+	current,
+	currentPath,
+}: {
 	current: string;
 	currentPath: string;
 }) {

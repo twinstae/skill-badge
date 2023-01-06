@@ -80,7 +80,6 @@ describe('SkillsRepo', () => {
 			initialReact,
 		);
 
-		
 		await expect(repo.getOneBySlug(fakeSlug)).resolves.toBe(null);
 	});
 });
